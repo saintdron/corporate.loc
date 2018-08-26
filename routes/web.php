@@ -19,6 +19,13 @@ Route::resource('/', 'IndexController', [
     ]
 ]);
 
+Route::resource('portfolio', 'PortfolioController', [
+    'parameters' => [
+        'portfolio' => 'alias'
+    ]
+
+]);
+
 
 //Auth::routes();
 
