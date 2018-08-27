@@ -3,7 +3,7 @@
         <div class="hentry group">
             <div class="section portfolio">
 
-                <h3 class="title">Latest projects</h3>
+                <h3 class="title">{{ trans('custom.latest_projects') }}</h3>
 
                 @foreach($portfolio as $k=>$item)
                     @if ($k === 0)
@@ -11,8 +11,8 @@
                             <div class="work-thumbnail">
                                 <a class="thumb">
                                     <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolio_path') }}/{{ $item->img->max }}"
-                                         alt="{{ $item->alias }}"
-                                         title="{{ $item->alias }}"/>
+                                         alt="{{ $item->title }}"
+                                         title="{{ $item->title }}"/>
                                 </a>
                                 <div class="work-overlay">
                                     <h3>

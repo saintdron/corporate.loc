@@ -3,6 +3,7 @@
 namespace Corp\Http\Controllers;
 
 use Corp\Menu;
+use Corp\Repositories\ArticleRepository;
 use Corp\Repositories\MenuRepository;
 use Corp\Repositories\PortfolioRepository;
 use Corp\Repositories\SliderRepository;
@@ -12,7 +13,7 @@ use Config;
 
 class IndexController extends SiteController
 {
-    public function __construct(SliderRepository $s_rep, PortfolioRepository $p_rep)
+    public function __construct(SliderRepository $s_rep, PortfolioRepository $p_rep, ArticleRepository $a_rep)
     {
         parent::__construct(new MenuRepository(new Menu));
 
@@ -20,6 +21,7 @@ class IndexController extends SiteController
         $this->template = 'index';
         $this->s_rep = $s_rep;
         $this->p_rep = $p_rep;
+        $this->a_rep = $a_rep;
     }
 
     /**
@@ -29,6 +31,10 @@ class IndexController extends SiteController
      */
     public function index()
     {
+        $this->keywords = 'Home Page';
+        $this->meta_desc = 'Home Page';
+        $this->title = 'Home Page';
+
         $portfolio = $this->getPortfolio();
         $content_sect = view(env('THEME') . '.content')
             ->with('portfolio', $portfolio)
@@ -38,11 +44,22 @@ class IndexController extends SiteController
             ->with('slider', $this->getSlider())
             ->render();
 
+        $articles = $this->getArticles();
+        $this->contentRightBar = view(env('THEME') . '.indexBar')
+            ->with('articles', $articles)
+            ->render();
+
         $this->vars = array_merge($this->vars, [
             'slider_sect' => $slider_sect,
             'content_sect' => $content_sect
         ]);
         return $this->renderOutput();
+    }
+
+    protected function getArticles()
+    {
+        $articles = $this->a_rep->get(['title', 'img', 'created_at', 'alias'], Config::get('settings.home_articles_count'));
+        return $articles;
     }
 
     protected function getPortfolio()
@@ -63,7 +80,6 @@ class IndexController extends SiteController
             $item->img = Config::get('settings.slider_path') . '/' . $item->img;
             return $item;
         });
-//        dd($slider);
         return $slider;
     }
 

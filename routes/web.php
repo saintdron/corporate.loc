@@ -26,6 +26,11 @@ Route::resource('portfolio', 'PortfolioController', [
 
 ]);
 
+Route::resource('articles', 'ArticleController', [
+    'parameters' => [
+        'articles' => 'alias'
+    ]
+]);
 
 //Auth::routes();
 
