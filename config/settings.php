@@ -6,5 +6,6 @@ return [
 
     'home_portfolio_count' => 5,
     'home_articles_count' => 3,
+    'articles_paginate' => 2
 
 ];

@@ -13,12 +13,12 @@ use Config;
 
 class IndexController extends SiteController
 {
-    public function __construct(SliderRepository $s_rep, PortfolioRepository $p_rep, ArticleRepository $a_rep)
+    public function __construct(MenuRepository $m_rep, SliderRepository $s_rep, PortfolioRepository $p_rep, ArticleRepository $a_rep)
     {
-        parent::__construct(new MenuRepository(new Menu));
+        parent::__construct($m_rep);
 
-        $this->bar = 'right';
         $this->template = 'index';
+        $this->bar = 'right';
         $this->s_rep = $s_rep;
         $this->p_rep = $p_rep;
         $this->a_rep = $a_rep;
