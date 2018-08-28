@@ -21,11 +21,9 @@ class AppServiceProvider extends ServiceProvider
             return "<?php $name = $val ?>";
         });
 
-/*        DB::listen(
-            function ($sql) {
-                dump($sql);
-            }
-        );*/
+//        DB::listen(function ($query) {
+//            dump($query->sql);
+//        });
     }
 
     /**

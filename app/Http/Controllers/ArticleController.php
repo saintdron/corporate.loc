@@ -49,6 +49,9 @@ class ArticleController extends SiteController
     protected function getComments($take)
     {
         $comments = $this->c_rep->get(['name', 'email', 'text', 'site', 'article_id', 'user_id'], $take);
+        if ($comments) {
+            $comments->load('article', 'user');
+        }
         return $comments;
     }
 

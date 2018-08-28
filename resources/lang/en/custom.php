@@ -6,4 +6,5 @@ return [
     'read_more'         => 'Read more',
     'articles_no'       => 'There are no posts to display',
     'recent_posts'      => 'Recent Posts',
+    'recent_comments'   => 'Recent Comments',
 ];

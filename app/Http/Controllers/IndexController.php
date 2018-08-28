@@ -66,9 +66,12 @@ class IndexController extends SiteController
         return $articles;
     }
 
-    protected function getportfolios()
+    protected function getPortfolios()
     {
         $portfolios = $this->p_rep->get('*', Config::get('settings.home_portfolios_count'));
+        if ($portfolios) {
+            $portfolios->load('filter');
+        }
         return $portfolios;
     }
 
