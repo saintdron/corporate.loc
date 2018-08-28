@@ -5,7 +5,7 @@
             @foreach($articles as $article)
                 <div class="hentry-post group">
                     <div class="thumb-img">
-                        <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.article_path') }}/{{ $article->img->mini }}"
+                        <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.articles_path') }}/{{ $article->img->mini }}"
                              alt="{{ $article->title }}" title="{{ $article->title }}"/>
                     </div>
                     <div class="text">
@@ -17,7 +17,7 @@
                         // $currentLocal = setlocale(LC_ALL, 0);
                         // dd($currentLocal);
                         ?>
-                        <p class="post-date">{{ $article->formatDate() }}</p>
+                        <p class="post-date">{{ $article->formatCreatedAtDate('%d %B %Y') }}</p>
                     </div>
                 </div>
             @endforeach

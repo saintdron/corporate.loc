@@ -8,10 +8,11 @@ use Menu;
 
 class SiteController extends Controller
 {
-    protected $p_rep; // PortfoliosRepository
-    protected $s_rep; // SlidersRepository
-    protected $a_rep; // ArticlesRepository
+    protected $p_rep; // PortfolioRepository
+    protected $s_rep; // SliderRepository
+    protected $a_rep; // ArticleRepository
     protected $m_rep; // MenuRepository
+    protected $c_rep; // CommentRepository
 
     protected $keywords;
     protected $meta_desc;

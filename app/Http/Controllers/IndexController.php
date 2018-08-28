@@ -35,9 +35,13 @@ class IndexController extends SiteController
         $this->meta_desc = 'Home Page';
         $this->title = 'Home Page';
 
-        $portfolio = $this->getPortfolio();
+        $portfolios = $this->getportfolios();
+        $portfolios->transform(function ($item) {
+            $item->text = str_replace(["\\r\\n", "\\r", "\\n"], " ", $item->text);
+            return $item;
+        });
         $content_sect = view(env('THEME') . '.content')
-            ->with('portfolio', $portfolio)
+            ->with('portfolios', $portfolios)
             ->render();
 
         $slider_sect = view(env('THEME') . '.slider')
@@ -62,10 +66,10 @@ class IndexController extends SiteController
         return $articles;
     }
 
-    protected function getPortfolio()
+    protected function getportfolios()
     {
-        $portfolio = $this->p_rep->get('*', Config::get('settings.home_portfolio_count'));
-        return $portfolio;
+        $portfolios = $this->p_rep->get('*', Config::get('settings.home_portfolios_count'));
+        return $portfolios;
     }
 
     protected function getSlider()

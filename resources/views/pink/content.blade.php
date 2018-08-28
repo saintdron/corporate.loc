@@ -1,36 +1,36 @@
-@if($portfolio && count($portfolio) > 0)
+@if($portfolios && count($portfolios) > 0)
     <div id="content-home" class="content group">
         <div class="hentry group">
             <div class="section portfolio">
 
                 <h3 class="title">{{ trans('custom.latest_projects') }}</h3>
 
-                @foreach($portfolio as $k=>$item)
+                @foreach($portfolios as $k=>$portfolio)
                     @if ($k === 0)
                         <div class="hentry work group portfolio-sticky portfolio-full-description">
                             <div class="work-thumbnail">
                                 <a class="thumb">
-                                    <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolio_path') }}/{{ $item->img->max }}"
-                                         alt="{{ $item->title }}"
-                                         title="{{ $item->title }}"/>
+                                    <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolios_path') }}/{{ $portfolio->img->max }}"
+                                         alt="{{ $portfolio->title }}"
+                                         title="{{ $portfolio->title }}"/>
                                 </a>
                                 <div class="work-overlay">
                                     <h3>
-                                        <a href="{{ route('portfolio.show', ['alias' => $item->alias]) }}">{{ $item->title }}</a>
+                                        <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}">{{ $portfolio->title }}</a>
                                     </h3>
                                     <p class="work-overlay-categories">
                                         <img src="{{ asset(env('THEME')) }}/images/categories.png"
-                                             alt="Categories"/> in: <a href="#">{{ $item->filter->title }}</a>
+                                             alt="Categories"/> in: <a href="#">{{ $portfolio->filter->title }}</a>
                                     </p>
                                 </div>
                             </div>
                             <div class="work-description">
                                 <h2>
-                                    <a href="{{ route('portfolio.show', ['alias' => $item->alias]) }}">{{ $item->title }}</a>
+                                    <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}">{{ $portfolio->title }}</a>
                                 </h2>
-                                <p class="work-categories">in: <a href="#">{{ $item->filter->title }}</a></p>
-                                <p>{{ str_limit($item->text, 200) }}</p>
-                                <a href="{{ route('portfolio.show', ['alias' => $item->alias]) }}" class="read-more">|| Read more</a>
+                                <p class="work-categories">in: <a href="#">{{ $portfolio->filter->title }}</a></p>
+                                <p>{{ str_limit($portfolio->text, config('settings.portfolio_index_preview_length')) }}</p>
+                                <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}" class="read-more">|| Read more</a>
                             </div>
                         </div>
 
@@ -41,24 +41,24 @@
                     @if ($k === 1)
                     <div class="portfolio-projects">
                     @endif
-                        <div class="related_project {{ ($k === Config::get('settings.home_portfolio_count') - 1) ? 'related_project_last' : '' }}">
+                        <div class="related_project {{ ($k === Config::get('settings.home_portfolios_count') - 1) ? 'related_project_last' : '' }}">
                             <div class="overlay_a related_img">
                                 <div class="overlay_wrapper">
-                                    <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolio_path') }}/{{ $item->img->mini }}" alt="{{ $item->alias }}"
-                                         title="{{ $item->alias }}"/>
+                                    <img src="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolios_path') }}/{{ $portfolio->img->mini }}" alt="{{ $portfolio->alias }}"
+                                         title="{{ $portfolio->alias }}"/>
                                     <div class="overlay">
                                         <a class="overlay_img"
-                                           href="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolio_path') }}/{{ $item->img->path }}" rel="lightbox"
+                                           href="{{ asset(env('THEME')) }}/images/{{ Config::get('settings.portfolios_path') }}/{{ $portfolio->img->path }}" rel="lightbox"
                                            title=""></a>
-                                        <a class="overlay_project" href="{{ route('portfolio.show', ['alias' => $item->alias]) }}"></a>
-                                        <span class="overlay_title">{{ $item->title }}</span>
+                                        <a class="overlay_project" href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}"></a>
+                                        <span class="overlay_title">{{ $portfolio->title }}</span>
                                     </div>
                                 </div>
                             </div>
                             <h4>
-                                <a href="{{ route('portfolio.show', ['alias' => $item->alias]) }}">{{ $item->title }}</a>
+                                <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}">{{ $portfolio->title }}</a>
                             </h4>
-                            <p>{{ str_limit($item->text, 200) }}</p>
+                            <p>{{ str_limit($portfolio->text, config('settings.portfolio_index_preview_length')) }}</p>
                         </div>
 
                 @endforeach
