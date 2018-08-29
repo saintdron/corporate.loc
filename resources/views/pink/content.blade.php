@@ -30,7 +30,7 @@
                                 </h2>
                                 <p class="work-categories">in: <a href="#">{{ $portfolio->filter->title }}</a></p>
                                 <p>{{ str_limit($portfolio->text, config('settings.portfolio_index_preview_length')) }}</p>
-                                <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}" class="read-more">|| Read more</a>
+                                <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}" class="read-more">|| {{ config('settings.read_more') }}</a>
                             </div>
                         </div>
 

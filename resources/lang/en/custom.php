@@ -5,6 +5,8 @@ return [
     'comments'          => 'comment|comments|comments',
     'read_more'         => 'Read more',
     'articles_no'       => 'There are no posts to display',
+    'article_no'        => 'The specified article is absent',
     'recent_posts'      => 'Recent Posts',
     'recent_comments'   => 'Recent Comments',
+    'reply'             => 'Reply',
 ];

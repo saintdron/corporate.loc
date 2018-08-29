@@ -2,6 +2,7 @@
 
 namespace Corp\Http\Controllers;
 
+use Corp\Category;
 use Corp\Repositories\ArticleRepository;
 use Corp\Repositories\CommentRepository;
 use Corp\Repositories\MenuRepository;
@@ -21,29 +22,58 @@ class ArticleController extends SiteController
         $this->c_rep = $c_rep;
     }
 
-    public function index()
+    public function index($cat_alias = false)
     {
-        $articles = $this->getArticles();
+        $articles = $this->getArticles($cat_alias);
         $content = view(env('THEME') . '.articles_content')
             ->with('articles', $articles)
             ->render();
         $this->vars = array_add($this->vars, 'content_sect', $content);
 
-        $comments = $this->getComments(config('settings.recent_comments'));
-        $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
+        $this->formContentRightBar();
 
-        $this->contentRightBar = view(env('THEME') . '.articlesBar')
-            ->with(['comments' => $comments, 'portfolios' => $portfolios]);
         return $this->renderOutput();
     }
 
-    protected function getArticles($alias = false)
+    public function show($alias)
     {
-        $articles = $this->a_rep->get(['id', 'title', 'text', 'desc', 'alias', 'img', 'created_at', 'user_id', 'category_id'], false, true);
-        if ($articles) {
-            $articles->load('category', 'user', 'comments');
+        $article = $this->getArticle($alias);
+//        dd($article->comments->groupBy('parent_id'));
+
+        $content = view(env('THEME') . '.article_content')
+            ->with('article', $article)
+            ->render();
+        $this->vars = array_add($this->vars, 'content_sect', $content);
+
+        $this->formContentRightBar();
+
+        return $this->renderOutput();
+    }
+
+    protected function getArticles($cat_alias = false)
+    {
+        $where = false;
+        if ($cat_alias) {
+            $id = Category::select('id')->where('alias', $cat_alias)->first()->id;
+            $where = ['category_id', $id];
         }
+
+        $articles = $this->a_rep->get(['id', 'title', 'text', 'desc', 'alias', 'img', 'created_at', 'user_id', 'category_id'], false, true, $where);
         return $articles;
+    }
+
+    protected function getArticle($alias)
+    {
+        $article = $this->a_rep->one($alias);
+        return $article;
+    }
+
+    protected function formContentRightBar()
+    {
+        $comments = $this->getComments(config('settings.recent_comments'));
+        $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
+        $this->contentRightBar = view(env('THEME') . '.articlesBar')
+            ->with(['comments' => $comments, 'portfolios' => $portfolios]);
     }
 
     protected function getComments($take)

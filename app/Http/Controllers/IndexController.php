@@ -35,28 +35,26 @@ class IndexController extends SiteController
         $this->meta_desc = 'Home Page';
         $this->title = 'Home Page';
 
-        $portfolios = $this->getportfolios();
-        $portfolios->transform(function ($item) {
-            $item->text = str_replace(["\\r\\n", "\\r", "\\n"], " ", $item->text);
-            return $item;
-        });
-        $content_sect = view(env('THEME') . '.content')
-            ->with('portfolios', $portfolios)
-            ->render();
-
         $slider_sect = view(env('THEME') . '.slider')
             ->with('slider', $this->getSlider())
             ->render();
 
-        $articles = $this->getArticles();
-        $this->contentRightBar = view(env('THEME') . '.indexBar')
-            ->with('articles', $articles)
+        $portfolios = $this->getPortfolios();
+        $content_sect = view(env('THEME') . '.content')
+            ->with('portfolios', $portfolios)
             ->render();
 
         $this->vars = array_merge($this->vars, [
             'slider_sect' => $slider_sect,
             'content_sect' => $content_sect
         ]);
+
+        $articles = $this->getArticles();
+        $this->contentRightBar = view(env('THEME') . '.indexBar')
+            ->with('articles', $articles)
+            ->render();
+
+
         return $this->renderOutput();
     }
 

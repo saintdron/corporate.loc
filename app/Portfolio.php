@@ -10,4 +10,9 @@ class Portfolio extends Model
     {
         return $this->belongsTo('Corp\Filter', 'filter_alias', 'alias');
     }
+
+    public function getTextAttribute($value)
+    {
+        return str_replace(["\\r\\n", "\\r", "\\n"], " ", $value);
+    }
 }
