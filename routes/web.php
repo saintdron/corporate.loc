@@ -34,6 +34,10 @@ Route::resource('articles', 'ArticleController', [
 
 Route::get('articles/cat/{cat_alias?}', ['uses' => 'ArticleController@index', 'as' => 'articlesCat']);
 
-//Auth::routes();
+Route::resource('comments', 'CommentController', [
+    'only' => ['store']
+]);
 
-//Route::get('/home', 'HomeController@index')->name('home');
+/*Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');*/
