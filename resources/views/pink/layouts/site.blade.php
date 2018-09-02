@@ -28,6 +28,8 @@
     <meta name="description" content="{{ (isset($meta_desc)) ? $meta_desc : '' }}">
     <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : '' }}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ $title or 'Pink' }}</title>
 
     <!-- [favicon] begin -->
@@ -93,6 +95,8 @@
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.colorbox-min.js"></script> <!-- nav -->
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.tweetable.js"></script>
 
+    <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/myscripts.js"></script>
+
 </head>
 <!-- END HEAD -->
 
@@ -109,11 +113,12 @@
         <div id="header" class="group">
 
             <div class="group inner">
-
                 <!-- START LOGO -->
                 <div id="logo" class="group">
-                    <a href="{{ route('home') }}" title="Pink Rio"><img src="{{ asset(env('THEME')) }}/images/logo.png" title="Pink Rio"
-                                                               alt="Pink Rio"/></a>
+                    <a href="{{ route('home') }}" title="Pink Rio">
+                        <img src="{{ asset(env('THEME')) }}/images/logo.png" title="Pink Rio"
+                                                               alt="Pink Rio"/>
+                    </a>
                 </div>
                 <!-- END LOGO -->
 
@@ -126,12 +131,12 @@
                     </div>
                 </div>
                 <div class="clearer"></div>
-
                 <hr/>
 
                 <!-- START MAIN NAVIGATION -->
-            @yield('navigation')
-            <!-- END MAIN NAVIGATION -->
+                @yield('navigation')
+                <!-- END MAIN NAVIGATION -->
+
                 <div id="header-shadow"></div>
                 <div id="menu-shadow"></div>
             </div>
@@ -141,8 +146,13 @@
 
         <!-- START SLIDER -->
         @yield('slider')
+        <!-- END SLIDER -->
 
-    <!-- START PRIMARY -->
+        <!-- START STASUS -->
+        <div class="wrap_status"></div>
+        <!-- END STASUS -->
+
+        <!-- START PRIMARY -->
         <div id="primary" class="sidebar-{{ isset($bar) ? $bar : 'no' }}">
             <div class="inner group">
                 <!-- START CONTENT -->

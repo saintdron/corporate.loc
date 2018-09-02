@@ -12,8 +12,9 @@
             <div class="comment-meta commentmetadata">
                 <div class="intro">
                     <div class="commentDate">
-                        <a href="#comment-2">
-                            {{ $item->formatCreatedAtDate('%B %d, %Y'). ' в '. $item->formatCreatedAtDate('%R') }}</a>
+                        <a href="#">
+                            {{ $item->formatCreatedAtDate('%B %d, %Y'). ' в '. $item->formatCreatedAtDate('%R') }}
+                        </a>
                     </div>
                     <div class="commentNumber">#&nbsp;</div>
                 </div>
@@ -22,7 +23,7 @@
                 </div>
                 <div class="reply group">
                     <a class="comment-reply-link" href="#respond"
-                       onclick="return addComment.moveForm(&quot;comment-{{ $item->id }}&quot;, &quot;{{ $item->id }}&quot;, &quot;respond&quot;, &quot;{{ $article->id }}&quot;)">{{ config('custom.reply') }}</a>
+                       onclick="return addComment.moveForm(&quot;comment-{{ $item->id }}&quot;, &quot;{{ $item->id }}&quot;, &quot;respond&quot;, &quot;{{ $article->id }}&quot;)">{{ trans('custom.reply') }}</a>
                 </div>
                 <!-- .reply -->
             </div>

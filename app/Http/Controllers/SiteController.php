@@ -13,6 +13,7 @@ class SiteController extends Controller
     protected $a_rep; // ArticleRepository
     protected $m_rep; // MenuRepository
     protected $c_rep; // CommentRepository
+    protected $cat_rep; // CategoryRepository
 
     protected $keywords;
     protected $meta_desc;
@@ -32,22 +33,22 @@ class SiteController extends Controller
 
     protected function renderOutput()
     {
-        $navigation = view(env('THEME') . '.navigation')
+        $navigation_view = view(env('THEME') . '.navigation')
             ->with('menu', $this->getMenu())
             ->render();
-        $this->vars = array_add($this->vars, 'navigation_sect', $navigation);
+        $this->vars = array_add($this->vars, 'navigation_view', $navigation_view);
 
         if ($this->contentRightBar) {
             $rightBar = view(env('THEME') . '.rightBar')
                 ->with('content_rightBar', $this->contentRightBar)
                 ->render();
-            $this->vars = array_add($this->vars, 'rightBar_sect', $rightBar);
+            $this->vars = array_add($this->vars, 'rightBar_view', $rightBar);
         }
         $this->vars = array_add($this->vars, 'bar', $this->bar);
 
-        $footer = view(env('THEME') . '.footer')
+        $footer_view = view(env('THEME') . '.footer')
             ->render();
-        $this->vars = array_add($this->vars, 'footer_sect', $footer);
+        $this->vars = array_add($this->vars, 'footer_view', $footer_view);
 
         $this->vars = array_merge($this->vars, [
             'keywords' => $this->keywords,

@@ -4,6 +4,7 @@ namespace Corp\Http\Controllers;
 
 use Corp\Category;
 use Corp\Repositories\ArticleRepository;
+use Corp\Repositories\CategoryRepository;
 use Corp\Repositories\CommentRepository;
 use Corp\Repositories\MenuRepository;
 use Corp\Repositories\PortfolioRepository;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ArticleController extends SiteController
 {
-    public function __construct(MenuRepository $m_rep, PortfolioRepository $p_rep, ArticleRepository $a_rep, CommentRepository $c_rep)
+    public function __construct(MenuRepository $m_rep, PortfolioRepository $p_rep, ArticleRepository $a_rep, CommentRepository $c_rep, CategoryRepository $cat_rep)
     {
         parent::__construct($m_rep);
 
@@ -20,15 +21,22 @@ class ArticleController extends SiteController
         $this->p_rep = $p_rep;
         $this->a_rep = $a_rep;
         $this->c_rep = $c_rep;
+        $this->cat_rep = $cat_rep;
     }
 
     public function index($cat_alias = false)
     {
+        $category = $this->getCategory($cat_alias);
+        $this->title = $category->title;
+        $this->keywords = $category->keywords;
+        $this->meta_desc = $category->meta_desc;
+
         $articles = $this->getArticles($cat_alias);
+
         $content = view(env('THEME') . '.articles_content')
             ->with('articles', $articles)
             ->render();
-        $this->vars = array_add($this->vars, 'content_sect', $content);
+        $this->vars = array_add($this->vars, 'content_view', $content);
 
         $this->formContentRightBar();
 
@@ -38,12 +46,15 @@ class ArticleController extends SiteController
     public function show($alias)
     {
         $article = $this->getArticle($alias);
-//        dd($article->comments->groupBy('parent_id'));
+
+        $this->title = $article->title;
+        $this->keywords = $article->keywords;
+        $this->meta_desc = $article->meta_desc;
 
         $content = view(env('THEME') . '.article_content')
             ->with('article', $article)
             ->render();
-        $this->vars = array_add($this->vars, 'content_sect', $content);
+        $this->vars = array_add($this->vars, 'content_view', $content);
 
         $this->formContentRightBar();
 
@@ -58,14 +69,13 @@ class ArticleController extends SiteController
             $where = ['category_id', $id];
         }
 
-        $articles = $this->a_rep->get(['id', 'title', 'text', 'desc', 'alias', 'img', 'created_at', 'user_id', 'category_id'], false, true, $where);
-        return $articles;
+        return $this->a_rep->get(['id', 'title', 'text', 'desc', 'alias', 'img', 'created_at', 'user_id', 'category_id', 'keywords', 'meta_desc'],
+            false, true, $where);
     }
 
     protected function getArticle($alias)
     {
-        $article = $this->a_rep->one($alias);
-        return $article;
+        return $this->a_rep->one($alias);
     }
 
     protected function formContentRightBar()
@@ -87,7 +97,11 @@ class ArticleController extends SiteController
 
     protected function getPortfolios($take)
     {
-        $portfolios = $this->p_rep->get(['title', 'text', 'alias', 'customer', 'img', 'filter_alias'], $take);
-        return $portfolios;
+        return $this->p_rep->get(['title', 'text', 'alias', 'customer', 'img', 'filter_alias'], $take);
+    }
+
+    protected function getCategory($alias)
+    {
+        return $this->cat_rep->one($alias, ['title', 'alias', 'keywords', 'meta_desc']);
     }
 }

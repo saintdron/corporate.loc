@@ -31,22 +31,22 @@ class IndexController extends SiteController
      */
     public function index()
     {
-        $this->keywords = 'Home Page';
-        $this->meta_desc = 'Home Page';
-        $this->title = 'Home Page';
+        $this->title = 'Главная';
+        $this->keywords = 'Главная';
+        $this->meta_desc = 'Главная';
 
-        $slider_sect = view(env('THEME') . '.slider')
+        $slider_view = view(env('THEME') . '.slider')
             ->with('slider', $this->getSlider())
             ->render();
 
         $portfolios = $this->getPortfolios();
-        $content_sect = view(env('THEME') . '.content')
+        $content_view = view(env('THEME') . '.content')
             ->with('portfolios', $portfolios)
             ->render();
 
         $this->vars = array_merge($this->vars, [
-            'slider_sect' => $slider_sect,
-            'content_sect' => $content_sect
+            'slider_view' => $slider_view,
+            'content_view' => $content_view
         ]);
 
         $articles = $this->getArticles();

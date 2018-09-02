@@ -1,17 +1,17 @@
 @extends(env('THEME') . '.layouts.site')
 
 @section('navigation')
-    {!! $navigation_sect !!}
+    {!! $navigation_view !!}
 @endsection
 
 @section('content')
-    {!! $content_sect !!}
+    {!! $content_view !!}
 @endsection
 
 @section('sidebar')
-    {!! $rightBar_sect !!}
+    {!! $rightBar_view !!}
 @endsection
 
 @section('footer')
-    {!! $footer_sect !!}
+    {!! $footer_view !!}
 @endsection

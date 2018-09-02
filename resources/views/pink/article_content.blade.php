@@ -59,8 +59,8 @@
             <h3 id="comments-title">
                 <span>{{ count($article->comments) }}</span> {{ Lang::choice('custom.comments', count($article->comments)) }}
             </h3>
-            @set($com, $article->comments->groupBy('parent_id'))
             @if($article->comments)
+                @set($com, $article->comments->groupBy('parent_id'))
                 <ol class="commentlist group">
                     @foreach($com as $k => $comments)
                         @if($k !== 0)
@@ -82,26 +82,31 @@
                     <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel
                             reply</a></small>
                 </h3>
-                <form action="sendmail.PHP" method="post" id="commentform">
-                    <p class="comment-form-author"><label for="author">Name</label> <input id="author" name="author"
-                                                                                           type="text" value=""
-                                                                                           size="30"
-                                                                                           aria-required="true"/>
-                    </p>
-                    <p class="comment-form-email"><label for="email">Email</label> <input id="email" name="email"
-                                                                                          type="text" value=""
-                                                                                          size="30"
-                                                                                          aria-required="true"/></p>
-                    <p class="comment-form-url"><label for="url">Website</label><input id="url" name="url"
-                                                                                       type="text"
-                                                                                       value="" size="30"/></p>
-                    <p class="comment-form-comment"><label for="comment">Your comment</label><textarea id="comment"
-                                                                                                       name="comment"
-                                                                                                       cols="45"
-                                                                                                       rows="8"></textarea>
+                <form action="{{ route('comments.store') }}" method="post" id="commentform">
+                    @csrf
+                    @if(!Auth::check())
+                        <p class="comment-form-author">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" value="" size="30" aria-required="true"/>
+                        </p>
+                        <p class="comment-form-email">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="text" value="" size="30" aria-required="true"/>
+                        </p>
+                        <p class="comment-form-url">
+                            <label for="site">Website</label>
+                            <input id="site" name="site" type="text" value="" size="30"/>
+                        </p>
+                    @endif
+
+                    <p class="comment-form-comment">
+                        <label for="text">Your comment</label>
+                        <textarea id="text" name="text" cols="45" rows="8"></textarea>
                     </p>
                     <div class="clear"></div>
                     <p class="form-submit">
+                        <input type="hidden" id="comment_post_ID" name="comment_post_ID" value="{{ $article->id }}">
+                        <input type="hidden" id="comment_parent" name="comment_parent" value="0">
                         <input name="submit" type="submit" id="submit" value="Post Comment"/>
                     </p>
                 </form>
