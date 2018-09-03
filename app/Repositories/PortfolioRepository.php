@@ -20,4 +20,12 @@ class PortfolioRepository extends Repository
         }
         return $portfolios;
     }
+
+    public function one($alias, $select = '*') {
+        $portfolio = parent::one($alias, $select = '*');
+        if ($portfolio) {
+            $portfolio->load('filter');
+        }
+        return $portfolio;
+    }
 }

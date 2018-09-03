@@ -9,4 +9,7 @@ return [
     'recent_posts'      => 'Recent Posts',
     'recent_comments'   => 'Recent Comments',
     'reply'             => 'Reply',
+    'other_projects'    => 'Other Projects',
+    'send_message'      => 'Send Message',
+    'email_is_send'     => 'Email is send',
 ];

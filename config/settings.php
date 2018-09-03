@@ -10,6 +10,7 @@ return [
     'articles_paginate' => 2,
     'recent_portfolios' => 3,
     'recent_comments' => 3,
+    'other_portfolios' => 8,
 
     'portfolio_index_preview_length' => 200,
     'portfolio_bar_preview_length' => 130,

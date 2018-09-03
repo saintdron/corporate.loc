@@ -9,4 +9,7 @@ return [
     'recent_posts'      => 'Последние работы',
     'recent_comments'   => 'Последние комментарии',
     'reply'             => 'Ответить',
+    'other_projects'    => 'Другие работы',
+    'send_message'      => 'Отправить сообщение',
+    'email_is_send'     => 'Письмо отправлено',
 ];

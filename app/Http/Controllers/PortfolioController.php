@@ -22,7 +22,7 @@ class PortfolioController extends SiteController
         $this->keywords = 'Портфолио_ключи';
         $this->meta_desc = 'Портфолио_описание';
 
-        $portfolios = $this->getPortfolios();
+        $portfolios = $this->getPortfolios(false, true);
         $content = view(env('THEME') . '.portfolios_content')
             ->with('portfolios', $portfolios)
             ->render();
@@ -31,8 +31,32 @@ class PortfolioController extends SiteController
         return $this->renderOutput();
     }
 
-    protected function getPortfolios()
+    public function show($alias)
     {
-        return $this->p_rep->get(['title', 'text', 'alias', 'customer', 'img', 'filter_alias', 'created_at'], false, true);
+        $portfolio = $this->getPortfolio($alias);
+//        dd($portfolio);
+        $this->title = $portfolio->title;
+        $this->keywords = $portfolio->keywords;
+        $this->meta_desc = $portfolio->meta_desc;
+
+        $portfolios = $this->getPortfolios(config('settings.other_portfolios'), false);
+//        dd($portfolios);
+
+        $content_view = view(env('THEME') . '.portfolio_content')
+            ->with(['portfolio' => $portfolio, 'portfolios' => $portfolios])
+            ->render();
+        $this->vars = array_add($this->vars, 'content_view', $content_view);
+
+        return $this->renderOutput();
+    }
+
+    protected function getPortfolios($take = false, $pagination = false)
+    {
+        return $this->p_rep->get(['title', 'text', 'alias', 'customer', 'img', 'filter_alias', 'created_at'], $take, $pagination);
+    }
+
+    protected function getPortfolio($alias)
+    {
+        return $this->p_rep->one($alias, ['title', 'text', 'alias', 'customer', 'img', 'filter_alias', 'created_at']);
     }
 }
