@@ -52,7 +52,6 @@ class Handler extends ExceptionHandler
     {
         if ($this->isHttpException($exception)) {
             $code = $exception->getStatusCode();
-//            dd($code);
             switch ($code) {
                 case '404':
                     $obj = new SiteController(new MenuRepository(new Menu()));

@@ -1,10 +1,10 @@
 <?php
 
-namespace Corp\Http\Controllers;
+namespace Corp\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class IndexController extends AdminController
 {
     /**
      * Create a new controller instance.
@@ -13,7 +13,9 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        parent::__construct();
+
+        $this->template = 'admin.index';
     }
 
     /**
@@ -23,6 +25,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view(env('THEME') . '.admin.admin');
+        $this->title = 'Панель администратора';
+                
+        return $this->renderOutput();
     }
 }

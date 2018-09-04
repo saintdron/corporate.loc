@@ -44,3 +44,7 @@ Good work... and good luck! :)
 #portfolio .last {
     margin-bottom: 20px;
 }
+
+.input-prepend input[type="password"] {
+    border: 1px solid rgb(207, 207, 207);
+}

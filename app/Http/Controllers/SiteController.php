@@ -70,7 +70,7 @@ class SiteController extends Controller
     {
         $menu = $this->m_rep->get();
 
-        $mBuilder = Menu::make('MyNav', function ($m) use ($menu) {
+        return Menu::make('MyNav', function ($m) use ($menu) {
             foreach ($menu as $item) {
                 if ($item->parent_id === 0) {
                     $m->add($item->title, $item->path)->id($item->id);
@@ -82,7 +82,5 @@ class SiteController extends Controller
                 }
             }
         });
-
-        return $mBuilder;
     }
 }
