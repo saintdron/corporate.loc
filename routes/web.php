@@ -41,6 +41,6 @@ Route::resource('comments', 'CommentController', [
 
 Route::match(['get', 'post'], 'contacts', ['uses' => 'ContactController@index', 'as' => 'contacts']);
 
-/*Auth::routes();
+Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');*/
+Route::get('admin', 'AdminController@index')->name('admin');

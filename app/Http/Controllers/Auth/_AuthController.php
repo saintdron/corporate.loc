@@ -4,11 +4,11 @@ namespace Corp\Http\Controllers\Auth;
 
 use Corp\User;
 use Corp\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class AuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after registration.
@@ -29,6 +29,8 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/admin';
+
+    protected $username = 'login';
 
     /**
      * Create a new controller instance.
@@ -38,6 +40,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
+        $this->loginView = env('THEME') . '.auth.login';
     }
 
     /**
@@ -68,5 +72,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showLoginForm()
+    {
+        return view(env('THEME') . '.auth.login')
+            ->with(['title' => 'Вход на сайт']);
     }
 }
