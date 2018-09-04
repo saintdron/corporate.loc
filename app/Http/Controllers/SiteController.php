@@ -66,7 +66,7 @@ class SiteController extends Controller
             ->with($this->vars);
     }
 
-    protected function getMenu()
+    public function getMenu()
     {
         $menu = $this->m_rep->get();
 
