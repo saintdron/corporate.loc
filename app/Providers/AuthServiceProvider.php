@@ -3,7 +3,6 @@
 namespace Corp\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,12 +21,16 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
         $this->registerPolicies();
 
-        /*$gate->define('VIEW_ADMIN', function ($user) {
+        Gate::define('VIEW_ADMIN', function ($user) {
             return $user->canDo('VIEW_ADMIN');
-        });*/
+        });
+
+        Gate::define('VIEW_ADMIN_ARTICLES', function ($user) {
+            return $user->canDo('VIEW_ADMIN_ARTICLES');
+        });
     }
 }

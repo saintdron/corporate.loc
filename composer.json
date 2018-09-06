@@ -12,7 +12,8 @@
     "fideloper/proxy": "^4.0",
     "laravel/framework": "5.6.*",
     "laravel/tinker": "^1.0",
-    "lavary/laravel-menu": "dev-master"
+    "lavary/laravel-menu": "dev-master",
+    "laravelcollective/html": "^5.4.0"
   },
   "require-dev": {
     "filp/whoops": "^2.0",

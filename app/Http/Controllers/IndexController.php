@@ -9,6 +9,8 @@ use Corp\Repositories\PortfolioRepository;
 use Corp\Repositories\SliderRepository;
 use Illuminate\Http\Request;
 use Config;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class IndexController extends SiteController
@@ -22,6 +24,7 @@ class IndexController extends SiteController
         $this->s_rep = $s_rep;
         $this->p_rep = $p_rep;
         $this->a_rep = $a_rep;
+
     }
 
     /**
@@ -53,7 +56,6 @@ class IndexController extends SiteController
         $this->contentRightBar = view(env('THEME') . '.indexBar')
             ->with('articles', $articles)
             ->render();
-
 
         return $this->renderOutput();
     }

@@ -2,10 +2,20 @@
 
 namespace Corp\Http\Controllers\Admin;
 
+use Corp\Repositories\ArticleRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends AdminController
 {
+    public function __construct(ArticleRepository $a_rep)
+    {
+        parent::__construct();
+
+        $this->a_rep = $a_rep;
+        $this->template = 'admin.articles';
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +23,18 @@ class ArticleController extends AdminController
      */
     public function index()
     {
-        //
+        if (Gate::denies('VIEW_ADMIN_ARTICLES')) {
+            abort(403);
+        }
+
+        $this->title = "Управление статьями";
+
+        $articles = $this->getArticles();
+        $this->content_view = view(env('THEME') . '.admin.articles_content')
+            ->with('articles', $articles)
+            ->render();
+
+        return $this->renderOutput();
     }
 
     /**
@@ -29,7 +50,7 @@ class ArticleController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,7 +61,7 @@ class ArticleController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -51,7 +72,7 @@ class ArticleController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -62,8 +83,8 @@ class ArticleController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -74,11 +95,16 @@ class ArticleController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    public function getArticles()
+    {
+        return $this->a_rep->get();
     }
 }

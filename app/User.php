@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'login'
     ];
 
     /**
@@ -42,18 +42,51 @@ class User extends Authenticatable
         return $this->belongsToMany('Corp\Role', 'user_role');
     }
 
-    public function canDo($permission, $requireAll = false)
+    public function canDo($permissions, $requireAll = false)
     {
-        if (is_array($permission)) {
-            dump($permission);
+        if (is_array($permissions)) {
+            foreach ($permissions as $permission) {
+                $hasPermission = $this->canDo($permission);
+                if ($hasPermission && !$requireAll) {
+                    return true;
+                }
+                if (!$hasPermission && $requireAll) {
+                    return false;
+                }
+            }
+            return $requireAll;
         } else {
             foreach ($this->roles as $role) {
                 foreach ($role->permissions as $perm) {
-                    if (str_is($permission, $perm->name)) {
+                    if (str_is($permissions, $perm->name)) {
                         return true;
                     }
                 }
             }
         }
+        return false;
+    }
+
+    public function hasRole($roles, $requireAll = false)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                $hasRole = $this->hasRole($role);
+                if ($hasRole && !$requireAll) {
+                    return true;
+                }
+                if (!$hasRole && $requireAll) {
+                    return false;
+                }
+            }
+            return $requireAll;
+        } else {
+            foreach ($this->roles as $role) {
+                if (str_is($roles, $role->name)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
