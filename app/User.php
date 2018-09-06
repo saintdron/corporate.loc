@@ -28,10 +28,14 @@ class User extends Authenticatable
     ];
 
     public function articles() {
-        $this->hasMany('Corp\Article');
+        return $this->hasMany('Corp\Article');
     }
 
     public function comments() {
-        $this->hasMany('Corp\Comment');
+        return $this->hasMany('Corp\Comment');
+    }
+
+    public function roles(){
+        return $this->belongsToMany('Corp\Role', 'user_role');
     }
 }

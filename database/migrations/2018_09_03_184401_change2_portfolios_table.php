@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeArticlesTable extends Migration
+class Change2PortfoliosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class ChangeArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('portfolios', function (Blueprint $table) {
             $table->string('keywords');
             $table->string('meta_desc');
         });
@@ -26,7 +26,7 @@ class ChangeArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('portfolios', function (Blueprint $table) {
             $table->dropColumn(['keywords', 'meta_desc']);
         });
     }

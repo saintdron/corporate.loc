@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeCommentsTable extends Migration
+class Change2CommentsTable extends Migration
 {
     /**
      * Run the migrations.
