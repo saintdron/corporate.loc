@@ -3,6 +3,7 @@
 namespace Corp\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class IndexController extends AdminController
 {
@@ -15,6 +16,10 @@ class IndexController extends AdminController
     {
         parent::__construct();
 
+       /* if (Gate::denies('VIEW_ADMIN')) {
+            abort(403);
+        }*/
+
         $this->template = 'admin.index';
     }
 
@@ -26,7 +31,7 @@ class IndexController extends AdminController
     public function index()
     {
         $this->title = 'Панель администратора';
-                
+
         return $this->renderOutput();
     }
 }

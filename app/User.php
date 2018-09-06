@@ -27,15 +27,33 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function articles() {
+    public function articles()
+    {
         return $this->hasMany('Corp\Article');
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany('Corp\Comment');
     }
 
-    public function roles(){
+    public function roles()
+    {
         return $this->belongsToMany('Corp\Role', 'user_role');
+    }
+
+    public function canDo($permission, $requireAll = false)
+    {
+        if (is_array($permission)) {
+            dump($permission);
+        } else {
+            foreach ($this->roles as $role) {
+                foreach ($role->permissions as $perm) {
+                    if (str_is($permission, $perm->name)) {
+                        return true;
+                    }
+                }
+            }
+        }
     }
 }
