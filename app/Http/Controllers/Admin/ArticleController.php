@@ -2,17 +2,20 @@
 
 namespace Corp\Http\Controllers\Admin;
 
+use Corp\Article;
 use Corp\Repositories\ArticleRepository;
+use Corp\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends AdminController
 {
-    public function __construct(ArticleRepository $a_rep)
+    public function __construct(ArticleRepository $a_rep, CategoryRepository $cat_rep)
     {
         parent::__construct();
 
         $this->a_rep = $a_rep;
+        $this->cat_rep = $cat_rep;
         $this->template = 'admin.articles';
     }
 
@@ -44,7 +47,27 @@ class ArticleController extends AdminController
      */
     public function create()
     {
-        //
+        if (Gate::denies('create', new Article())) {
+            abort(403);
+        }
+
+        $this->title = "Добавление нового материала";
+
+        $categories = $this->getCategories();
+        $list = [];
+        foreach ($categories as $category) {
+            if ($category->parent_id === 0) {
+                $list[$category->title] = [];
+            } else {
+                $list[$categories->where('id', $category->parent_id)->first()->title][$category->id] = $category->title;
+            }
+        }
+
+        $this->content_view = view(env('THEME') . '.admin.articles_edit_content')
+            ->with('categories', $list)
+            ->render();
+
+        return $this->renderOutput();
     }
 
     /**
@@ -106,5 +129,10 @@ class ArticleController extends AdminController
     public function getArticles()
     {
         return $this->a_rep->get();
+    }
+
+    public function getCategories()
+    {
+        return $this->cat_rep->get(['title', 'alias', 'parent_id', 'id']);
     }
 }

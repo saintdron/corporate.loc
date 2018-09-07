@@ -11,6 +11,7 @@ class AdminController extends Controller
 {
     protected $p_rep;
     protected $a_rep;
+    protected $cat_rep;
     protected $user;
     protected $template;
     protected $content_view = false;
@@ -20,9 +21,6 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->user = Auth::user();
-//        if (!$this->user) {
-//            abort(403);
-//        }
     }
 
     public function renderOutput()
