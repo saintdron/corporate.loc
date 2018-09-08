@@ -15,5 +15,12 @@ return [
     'portfolio_index_preview_length' => 200,
     'portfolio_bar_preview_length' => 130,
     'comment_bar_preview_length' => 130,
+    'articles_desc_length' => 260,
+
+    'image' => ['width' => 1024, 'height' => 768],
+    'articles_img' => [
+        'max' => ['width' => 816, 'height' => 282],
+        'mini' => ['width' => 55, 'height' => 55]
+    ],
 
 ];

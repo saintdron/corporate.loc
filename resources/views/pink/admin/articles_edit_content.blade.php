@@ -10,7 +10,7 @@
         <ul>
             <li class="text-field">
                 <label for="title">
-                    <span class="label">Название:</span><br/>
+                    <span class="label">Название*:</span><br/>
                     <span class="sublabel">Заголовок материала</span><br/>
                 </label>
                 <div class="input-prepend">
@@ -19,12 +19,12 @@
             </li>
 
             <li class="text-field">
-                <label for="keywords">
-                    <span class="label">Ключевые слова:</span><br/>
-                    <span class="sublabel">Ключевые слова материала</span><br/>
+                <label for="alias">
+                    <span class="label">Псевдоним:</span><br/>
+                    <span class="sublabel">Псевдоним материала</span><br/>
                 </label>
                 <div class="input-prepend">
-                    {!! Form::text('keywords', isset($article->keywords) ? $article->keywords : old('keywords'), ['id' => 'keywords']) !!}
+                    {!! Form::text('alias', isset($article->alias) ? $article->alias : old('alias'), ['id' => 'alias']) !!}
                 </div>
             </li>
 
@@ -39,12 +39,12 @@
             </li>
 
             <li class="text-field">
-                <label for="alias">
-                    <span class="label">Псевдоним:</span><br/>
-                    <span class="sublabel">Псевдоним материала</span><br/>
+                <label for="keywords">
+                    <span class="label">Ключевые слова:</span><br/>
+                    <span class="sublabel">Ключевые слова материала</span><br/>
                 </label>
                 <div class="input-prepend">
-                    {!! Form::text('alias', isset($article->alias) ? $article->alias : old('alias'), ['id' => 'alias']) !!}
+                    {!! Form::text('keywords', isset($article->keywords) ? $article->keywords : old('keywords'), ['id' => 'keywords']) !!}
                 </div>
             </li>
 
@@ -60,7 +60,7 @@
 
             <li class="textarea-field">
                 <label for="editor2">
-                    <span class="label">Полный текст материала:</span>
+                    <span class="label">Полный текст материала*:</span>
                 </label>
                 <div class="input-prepend">
                     {!! Form::textarea('text', isset($article->text) ? $article->text : old('text'), ['id' => 'editor2', 'class' => 'form-control']) !!}
@@ -84,7 +84,7 @@
                     <span class="sublabel">Изображение материала</span><br/>
                 </label>
                 <div class="input-prepend">
-                    {!! Form::file('image', ['class' => 'filestyle', 'data-buttonText' => 'Выберите изображение', 'data-buttonName' => "btn-primary", 'data-placeholder' => "Файла нет"]) !!}
+                    {!! Form::file('image', ['class' => 'filestyle', 'data-text' => 'Выберите изображение', 'data-btnClass' => "btn-primary", 'data-placeholder' => "Файла нет"]) !!}
                 </div>
             </li>
 

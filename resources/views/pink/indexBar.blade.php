@@ -12,11 +12,6 @@
                         <a href="{{ route('articles.show', ['alias' => $article->alias]) }}"
                            title="{{ $article->title }}"
                            class="title">{{ $article->title }}</a>
-                        <?php
-                        $loc_ru = setlocale(LC_ALL, 'rus', 'ru', 'ru_RU', 'rus', 'Russian_ru', 'ru_RU.UTF-8', 'ru_RU.utf8', 'ru_RU.1251', 'ru_RU.cp1251', 'ru_Russian', 'ru_RU.utf-8', 'Russian_Russia.utf-8');
-                        // $currentLocal = setlocale(LC_ALL, 0);
-                        // dd($currentLocal);
-                        ?>
                         <p class="post-date">{{ $article->formatCreatedAtDate('%d %B %Y') }}</p>
                     </div>
                 </div>
