@@ -54,16 +54,7 @@ class ArticleController extends AdminController
 
         $this->title = "Добавление нового материала";
 
-        $categories = $this->getCategories();
-        $list = [];
-        foreach ($categories as $category) {
-            if ($category->parent_id === 0) {
-                $list[$category->title] = [];
-            } else {
-                $list[$categories->where('id', $category->parent_id)->first()->title][$category->id] = $category->title;
-            }
-        }
-
+        $list = $this->makeCategoriesList();
         $this->content_view = view(env('THEME') . '.admin.articles_edit_content')
             ->with('categories', $list)
             ->render();
@@ -104,9 +95,22 @@ class ArticleController extends AdminController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        if (Gate::denies('update', $article)) {
+            abort(403);
+        }
+
+        $this->title = "Редактирование материала – " . $article->title;
+
+        $article->img = json_decode($article->img);
+
+        $list = $this->makeCategoriesList();
+        $this->content_view = view(env('THEME') . '.admin.articles_edit_content')
+            ->with(['categories' => $list, 'article' => $article])
+            ->render();
+
+        return $this->renderOutput();
     }
 
     /**
@@ -116,9 +120,14 @@ class ArticleController extends AdminController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        $result = $this->a_rep->updateArticle($request, $article);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**
@@ -127,9 +136,14 @@ class ArticleController extends AdminController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+        $result = $this->a_rep->deleteArticle($article);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     public function getArticles()
@@ -140,5 +154,19 @@ class ArticleController extends AdminController
     public function getCategories()
     {
         return $this->cat_rep->get(['title', 'alias', 'parent_id', 'id']);
+    }
+
+    public function makeCategoriesList()
+    {
+        $categories = $this->getCategories();
+        $list = [];
+        foreach ($categories as $category) {
+            if ($category->parent_id === 0) {
+                $list[$category->title] = [];
+            } else {
+                $list[$categories->where('id', $category->parent_id)->first()->title][$category->id] = $category->title;
+            }
+        }
+        return $list;
     }
 }

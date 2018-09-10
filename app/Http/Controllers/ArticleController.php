@@ -33,10 +33,10 @@ class ArticleController extends SiteController
 
         $articles = $this->getArticles($cat_alias);
 
-        $content = view(env('THEME') . '.articles_content')
+        $content_view = view(env('THEME') . '.articles_content')
             ->with('articles', $articles)
             ->render();
-        $this->vars = array_add($this->vars, 'content_view', $content);
+        $this->vars = array_add($this->vars, 'content_view', $content_view);
 
         $this->formContentRightBar();
 
@@ -46,15 +46,18 @@ class ArticleController extends SiteController
     public function show($alias)
     {
         $article = $this->getArticle($alias);
+        if ($article) {
+            $this->title = $article->title;
+            $this->keywords = $article->keywords;
+            $this->meta_desc = $article->meta_desc;
 
-        $this->title = $article->title;
-        $this->keywords = $article->keywords;
-        $this->meta_desc = $article->meta_desc;
-
-        $content = view(env('THEME') . '.article_content')
-            ->with('article', $article)
-            ->render();
-        $this->vars = array_add($this->vars, 'content_view', $content);
+            $content_view = view(env('THEME') . '.article_content')
+                ->with('article', $article)
+                ->render();
+        } else {
+            $content_view = "<p>Указанный материал не найден</p>";
+}
+        $this->vars = array_add($this->vars, 'content_view', $content_view);
 
         $this->formContentRightBar();
 

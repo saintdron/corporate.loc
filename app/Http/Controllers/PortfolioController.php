@@ -34,13 +34,12 @@ class PortfolioController extends SiteController
     public function show($alias)
     {
         $portfolio = $this->getPortfolio($alias);
-//        dd($portfolio);
+
         $this->title = $portfolio->title;
         $this->keywords = $portfolio->keywords;
         $this->meta_desc = $portfolio->meta_desc;
 
         $portfolios = $this->getPortfolios(config('settings.other_portfolios'), false);
-//        dd($portfolios);
 
         $content_view = view(env('THEME') . '.portfolio_content')
             ->with(['portfolio' => $portfolio, 'portfolios' => $portfolios])

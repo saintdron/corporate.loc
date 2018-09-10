@@ -61,6 +61,74 @@ class ArticleRepository extends Repository
             return ['error' => 'Данный псевдоним уже используется'];
         }
 
+        $data['img'] = $this->getImage($request);
+
+        $this->model->fill($data);
+
+        if ($request->user()->articles()->save($this->model)) {
+            return ['status' => 'Материал добавлен'];
+        } else {
+            return ['error' => 'Не удалось сохранить материал'];
+        }
+    }
+
+    public function updateArticle(ArticleRequest $request, Article $article)
+    {
+        if (Gate::denies('update', $this->model)) {
+            abort(403);
+        }
+
+        $data = $request->except('_token', 'image', '_method');
+
+        if (empty($data)) {
+            return ['error' => 'Нет данных'];
+        }
+
+        if (empty($data['alias'])) {
+            $data['alias'] = $this->transliterate($data['title']);
+        } else {
+            $data['alias'] = $this->transliterate($data['alias']);
+        }
+
+        if (empty($data['desc'])) {
+            $data['desc'] = '<p>' . str_limit(strip_tags($data['text']), config('settings.articles_desc_length')) . '</p>';
+        }
+
+        $foundArticle = $this->one($data['alias'], ['id'], false);
+        if (!empty($foundArticle) && $foundArticle->id !== $article->id) {
+            $request->merge(['alias' => $data['alias']]);
+            $request->flash();
+            return ['error' => 'Данный псевдоним уже используется'];
+        }
+
+        $data['img'] = $this->getImage($request);
+
+        $article->fill($data);
+
+        if ($article->update()) {
+            return ['status' => 'Материал обновлен'];
+        } else {
+            return ['error' => 'Не удалось сохранить материал'];
+        }
+    }
+
+    public function deleteArticle(Article $article)
+    {
+        if (Gate::denies('delete', $article)) {
+            abort(403);
+        }
+
+        $article->comments()->delete();
+
+        if ($article->delete()) {
+            return ['status' => 'Материал удален'];
+        } else {
+            return ['error' => 'Не удалось удалить материал'];
+        }
+    }
+
+    public function getImage(ArticleRequest $request)
+    {
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
@@ -79,16 +147,9 @@ class ArticleRepository extends Repository
                 $img->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'])
                     ->save(public_path() . '/' . env('THEME') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
 
-                $data['img'] = json_encode($obj);
+                return json_encode($obj);
             }
         }
-
-        $this->model->fill($data);
-
-        if ($request->user()->articles()->save($this->model)) {
-            return ['status' => 'Материал добавлен'];
-        } else {
-            return ['error' => 'Не удалось сохранить материал'];
-        }
+        return null;
     }
 }
