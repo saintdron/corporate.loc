@@ -61,7 +61,10 @@ class ArticleRepository extends Repository
             return ['error' => 'Данный псевдоним уже используется'];
         }
 
-        $data['img'] = $this->getImage($request);
+        $image = $this->getImage($request);
+        if ($image) {
+            $data['img'] = $image;
+        }
 
         $this->model->fill($data);
 
@@ -101,7 +104,10 @@ class ArticleRepository extends Repository
             return ['error' => 'Данный псевдоним уже используется'];
         }
 
-        $data['img'] = $this->getImage($request);
+        $image = $this->getImage($request);
+        if ($image) {
+            $data['img'] = $image;
+        }
 
         $article->fill($data);
 
