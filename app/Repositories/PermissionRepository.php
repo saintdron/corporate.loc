@@ -10,11 +10,35 @@ namespace Corp\Repositories;
 
 
 use Corp\Permission;
+use Illuminate\Support\Facades\Gate;
+use Request;
 
 class PermissionRepository extends Repository
 {
-    public function __construct(Permission $model)
+    protected $rol_rep;
+
+    public function __construct(Permission $model, RoleRepository $rol_rep)
     {
         $this->model = $model;
+        $this->rol_rep = $rol_rep;
+    }
+
+    public function changePermission($request)
+    {
+        if (Gate::denies('update', $this->model)) {
+            abort(403);
+        }
+
+        $data = $request->except('_token');
+        $roles = $this->rol_rep->get(['id']);
+        foreach ($roles as $role) {
+            if (isset($data['roles'][$role->id])) {
+                $role->savePermissions($data['roles'][$role->id]);
+            } else {
+                $role->savePermissions([]);
+            }
+        }
+
+        return ['status' => 'Права обновлены'];
     }
 }

@@ -19,7 +19,7 @@ class ArticlePolicy
      */
     public function view(User $user, Article $article)
     {
-        //
+        return $user->canDo('VIEW_ADMIN_ARTICLES');
     }
 
     /**

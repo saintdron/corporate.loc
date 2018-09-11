@@ -38,4 +38,14 @@ class Role extends Model
         }
         return false;
     }
+
+    public function savePermissions($array)
+    {
+        if (!empty($array)) {
+            $this->permissions()->sync($array);
+        } else {
+            $this->permissions()->detach();
+        }
+        return true;
+    }
 }

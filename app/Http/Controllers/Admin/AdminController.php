@@ -27,7 +27,7 @@ class AdminController extends Controller
     {
         $this->vars = array_add($this->vars, 'title', $this->title);
 
-        $menu = $this->getMenu();
+        $menu = $this->getAdminMenu();
         $menu_view = view(env('THEME') . '.admin.menu')
             ->with('menu', $menu)
             ->render();
@@ -45,12 +45,12 @@ class AdminController extends Controller
             ->with($this->vars);
     }
 
-    public function getMenu()
+    public function getAdminMenu()
     {
         return Menu::make('adminMenu', function ($menu) {
             $menu->add('Статьи', ['route' => 'admin.articles.index']);
             $menu->add('Портфолио', ['route' => 'admin.articles.index']);
-            $menu->add('Меню', ['route' => 'admin.articles.index']);
+            $menu->add('Меню', ['route' => 'admin.menus.index']);
             $menu->add('Пользователи', ['route' => 'admin.articles.index']);
             $menu->add('Привилегии', ['route' => 'admin.permissions.index']);
         });

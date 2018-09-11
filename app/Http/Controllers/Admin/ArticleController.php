@@ -17,7 +17,7 @@ class ArticleController extends AdminController
 
         $this->a_rep = $a_rep;
         $this->cat_rep = $cat_rep;
-        $this->template = 'admin.articles';
+        $this->template = 'admin.general';
     }
 
     /**
@@ -27,7 +27,7 @@ class ArticleController extends AdminController
      */
     public function index()
     {
-        if (Gate::denies('VIEW_ADMIN_ARTICLES')) {
+        if (Gate::denies('view', new Article())) {
             abort(403);
         }
 
