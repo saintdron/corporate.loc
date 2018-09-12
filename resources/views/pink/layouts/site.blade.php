@@ -119,7 +119,7 @@
                 <div id="logo" class="group">
                     <a href="{{ route('home') }}" title="Pink Rio">
                         <img src="{{ asset(env('THEME')) }}/images/logo.png" title="Pink Rio"
-                                                               alt="Pink Rio"/>
+                             alt="Pink Rio"/>
                     </a>
                 </div>
                 <!-- END LOGO -->

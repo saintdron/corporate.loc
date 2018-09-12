@@ -15,13 +15,10 @@
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset(env('THEME')) }}/style.css"/>
     <!-- MAIN THEME STYLESHEET -->
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset(env('THEME')) }}/css/style-minifield.css"/>
-    <!-- MAIN THEME STYLESHEET -->
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset(env('THEME')) }}/css/buttons.css"/>
-    <!-- MAIN THEME STYLESHEET -->
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset(env('THEME')) }}/css/cache-custom.css"/>
-    <!-- MAIN THEME STYLESHEET -->
-    <link rel="stylesheet" type="text/css" media="all" href="{{ asset(env('THEME')) }}/css/cache-custom.css"/>
-    <!-- MAIN THEME STYLESHEET -->
+    <!-- JQUERY-UI STYLESHEET -->
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset(env('THEME')) }}/jquery-ui-1.12.1.custom/jquery-ui.css"/>
 
     <!-- FONTs -->
     <link rel="stylesheet" id="google-fonts-css"
@@ -33,6 +30,7 @@
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.js"></script>
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="{{ asset(env('THEME')) }}/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 </head>
 <!-- END HEAD -->
 

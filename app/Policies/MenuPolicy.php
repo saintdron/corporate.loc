@@ -30,7 +30,7 @@ class MenuPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->canDo('EDIT_MENU');
     }
 
     /**
@@ -42,7 +42,7 @@ class MenuPolicy
      */
     public function update(User $user, Menu $menu)
     {
-        //
+        return $user->canDo('EDIT_MENU');
     }
 
     /**
@@ -54,7 +54,7 @@ class MenuPolicy
      */
     public function delete(User $user, Menu $menu)
     {
-        //
+        return $user->canDo('EDIT_MENU');
     }
 
     /**
