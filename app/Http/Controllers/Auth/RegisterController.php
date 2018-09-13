@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
     /**
@@ -64,11 +64,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        /*return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'login' => $data['login']
-        ]);
+        ]);*/
+
+        $data['password'] = Hash::make($data['password']);
+
+        $user = new User();
+        $user->fill($data)->save();
+        $guest_id = \Corp\Role::select(['id'])->where('name', 'Guest')->first()->id;
+        $user->roles()->sync([$user->id => $guest_id]);
+
+        return $user;
     }
 }

@@ -84,7 +84,7 @@ class MenuController extends AdminController
             return array_add($carry, $item->alias, $item->title);
         }, []);
 
-        $this->content_view = view(env('THEME') . '.admin.menus_create_content')
+        $this->content_view = view(env('THEME') . '.admin.menus_edit_content')
             ->with(['menus' => $menus, 'categories' => $list, 'articles' => $articles, 'filters' => $filters, 'portfolios' => $portfolios])
             ->render();
 
@@ -124,9 +124,68 @@ class MenuController extends AdminController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(\Corp\Menu $menu)
     {
-        //
+        $this->title = "Редактирование пункта меню – " . $menu->title;
+
+        $route = app('router')->getRoutes()->match(app('request')->create($menu->path));
+        $routeAlias = $route->getName();
+        $parameters = $route->parameters();
+        switch ($routeAlias) {
+            case 'articles.index':
+            case 'articlesCat':
+                $type = 'blogLink';
+                $option = $parameters['cat_alias'] ?? 'parent';
+                break;
+            case 'articles.show':
+                $type = 'blogLink';
+                $option = $parameters['alias'] ?? '';
+                break;
+            case 'portfolios.index':
+                $type = 'portfolioLink';
+                $option = 'parent';
+                break;
+            case 'portfolios.show':
+                $type = 'portfolioLink';
+                $option = $parameters['alias'] ?? '';
+                break;
+            default:
+                $type = 'customLink';
+                $option = '';
+        }
+
+        $menus = $this->getMenus()->roots()->reduce(function ($carry, $item) {
+            return array_add($carry, $item->id, $item->title);
+        }, ['0' => 'Родительский пункт меню']);
+
+        $categories = Category::select(['id', 'title', 'alias', 'parent_id'])->get();
+        $list = ['0' => 'Не используется'];
+        $list = array_add($list, 'parent', 'Раздел блог');
+        foreach ($categories as $category) {
+            if ($category->parent_id === 0) {
+                $list[$category->title] = [];
+            } else {
+                $list[$categories->where('id', $category->parent_id)->first()->title][$category->alias] = $category->title;
+            }
+        }
+
+        $articles = $this->a_rep->get(['id', 'title', 'alias'])->reduce(function ($carry, $item) {
+            return array_add($carry, $item->alias, $item->title);
+        }, []);
+
+        $filters = Filter::select(['id', 'title', 'alias'])->get()->reduce(function ($carry, $item) {
+            return array_add($carry, $item->alias, $item->title);
+        }, ['parent' => 'Раздел портфолио']);
+
+        $portfolios = $this->p_rep->get(['id', 'title', 'alias'])->reduce(function ($carry, $item) {
+            return array_add($carry, $item->alias, $item->title);
+        }, []);
+
+        $this->content_view = view(env('THEME') . '.admin.menus_edit_content')
+            ->with(['menu' => $menu, 'type' => $type, 'option' => $option, 'menus' => $menus, 'categories' => $list, 'articles' => $articles, 'filters' => $filters, 'portfolios' => $portfolios])
+            ->render();
+
+        return $this->renderOutput();
     }
 
     /**
@@ -136,9 +195,14 @@ class MenuController extends AdminController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MenuRequest $request, \Corp\Menu $menu)
     {
-        //
+        $result = $this->m_rep->updateMenu($request, $menu);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**
@@ -147,9 +211,14 @@ class MenuController extends AdminController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\Corp\Menu $menu)
     {
-        //
+        $result = $this->m_rep->deleteMenu($menu);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     public function getMenus()

@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <input id="login" type="text"
                                            class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}"
-                                           name="login" value="{{ old('login') }}" required>
+                                           name="login" value="{{ old('login') }}" required autofocus>
 
                                     @if ($errors->has('login'))
                                         <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                           name="name" value="{{ old('name') }}" required autofocus>
+                                           name="name" value="{{ old('name') }}" required>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">

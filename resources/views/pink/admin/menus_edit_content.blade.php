@@ -32,7 +32,7 @@
         <h1>Тип меню:</h1>
 
         <div id="accordion">
-            <h3>{!! Form::radio('type', 'customLink', (isset($type) && $type == 'customLink') ? TRUE : FALSE, ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
+            <h3>{!! Form::radio('type', 'customLink', isset($type) && $type == 'customLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
                 <span class="label">Пользовательская ссылка</span>
             </h3>
             <ul>
@@ -42,13 +42,13 @@
                         <span class="sublabel">Путь для создаваемой ссылки</span><br/>
                     </label>
                     <div class="input-prepend">
-                        {!! Form::text('custom_link', (isset($menu->path) && $type === 'customLink') ? $menu->path  : old('custom_link'), ['id' => 'custom_link']) !!}
+                        {!! Form::text('custom_link', (isset($menu->path) && $type === 'customLink') ? $menu->path : old('custom_link'), ['id' => 'custom_link']) !!}
                     </div>
                 </li>
                 <div style="clear: both;"></div>
             </ul>
 
-            <h3>{!! Form::radio('type', 'blogLink', (isset($type) && $type === 'blogLink') ? TRUE : FALSE, ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
+            <h3>{!! Form::radio('type', 'blogLink', isset($type) && $type === 'blogLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
                 <span class="label">Раздел Блог</span>
             </h3>
             <ul>
@@ -77,7 +77,7 @@
             </ul>
 
 
-            <h3>{!! Form::radio('type', 'portfolioLink', (isset($type) && $type == 'portfolioLink') ? TRUE : FALSE,['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
+            <h3>{!! Form::radio('type', 'portfolioLink', isset($type) && $type == 'portfolioLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
                 <span class="label">Раздел портфолио</span>
             </h3>
             <ul>
@@ -119,12 +119,15 @@
     jQuery(function ($) {
         $('#accordion').accordion({
             activate: function (event, ui) {
-                ui.newPanel.prev().find('input[type=radio]').attr('checked', 'checked');
-            },
-            active: 0,
-            create: function( event, ui ) {
-                $('input[type=radio]:first').attr('checked', 'checked');
+                ui.newPanel.prev().find('input[type="radio"]').attr('checked', 'checked');
             }
         });
+        let active = 0;
+        $('#accordion input[type=radio]').each(function(index, element) {
+            if($(element).prop('checked')) {
+                active = index;
+            }
+        });
+        $('#accordion').accordion('option', 'active', active);
     });
 </script>
