@@ -41,7 +41,7 @@ class MenuController extends AdminController
         $this->title = "Управление меню";
 
         $menus = $this->getMenus();
-        $this->content_view = view(env('THEME') . '.admin.menus_content')
+        $this->content_view = view(config('settings.theme') . '.admin.menus_content')
             ->with('menus', $menus)
             ->render();
 
@@ -88,7 +88,7 @@ class MenuController extends AdminController
             return array_add($carry, $item->alias, $item->title);
         }, []);
 
-        $this->content_view = view(env('THEME') . '.admin.menus_edit_content')
+        $this->content_view = view(config('settings.theme') . '.admin.menus_edit_content')
             ->with(['menus' => $menus, 'categories' => $list, 'articles' => $articles, 'filters' => $filters, 'portfolios' => $portfolios])
             ->render();
 
@@ -189,7 +189,7 @@ class MenuController extends AdminController
             return array_add($carry, $item->alias, $item->title);
         }, []);
 
-        $this->content_view = view(env('THEME') . '.admin.menus_edit_content')
+        $this->content_view = view(config('settings.theme') . '.admin.menus_edit_content')
             ->with(['menu' => $menu, 'type' => $type, 'option' => $option, 'menus' => $menus, 'categories' => $list, 'articles' => $articles, 'filters' => $filters, 'portfolios' => $portfolios])
             ->render();
 

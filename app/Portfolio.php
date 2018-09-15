@@ -2,12 +2,12 @@
 
 namespace Corp;
 
-use Corp\Traits\DataTrait;
+use Corp\Traits\DronTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Portfolio extends Model
 {
-    use DataTrait;
+    use DronTrait;
 
     public function filter()
     {

@@ -10,7 +10,7 @@
                 </thead>
                 <tbody>
                 @if($menus)
-                    @include(env('THEME') . '.admin.customMenuItems', array('items' => $menus->roots(), 'paddingLeft' => ''))
+                    @include(config('settings.theme') . '.admin.customMenuItems', array('items' => $menus->roots(), 'paddingLeft' => ''))
                 @endif
                 </tbody>
             </table>

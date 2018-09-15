@@ -4,7 +4,7 @@ namespace Corp\Repositories;
 
 use Corp\Article;
 use Corp\Http\Requests\ArticleRequest;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Intervention\Image\Facades\Image;
 
 class ArticleRepository extends Repository
@@ -50,6 +50,7 @@ class ArticleRepository extends Repository
         } else {
             $data['alias'] = $this->transliterate($data['alias']);
         }
+        $data['alias'] = str_limit($data['alias'], 20);
 
         if (empty($data['desc'])) {
             $data['desc'] = '<p>' . str_limit(strip_tags($data['text']), config('settings.articles_desc_length')) . '</p>';
@@ -77,7 +78,7 @@ class ArticleRepository extends Repository
 
     public function updateArticle(ArticleRequest $request, Article $article)
     {
-        if (Gate::denies('update', $this->model)) {
+        if (Gate::denies('update', $article)) {
             abort(403);
         }
 
@@ -147,11 +148,11 @@ class ArticleRepository extends Repository
 
                 $img = Image::make($image);
                 $img->fit(config('settings.image')['width'], config('settings.image')['height'])
-                    ->save(public_path() . '/' . env('THEME') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
+                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
                 $img->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'])
-                    ->save(public_path() . '/' . env('THEME') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
+                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
                 $img->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'])
-                    ->save(public_path() . '/' . env('THEME') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
+                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
 
                 return json_encode($obj);
             }

@@ -27,7 +27,7 @@ class ContactController extends SiteController
             ]);
 
             $data = $request->all();
-            $result = Mail::send(env('THEME') . '.email', ['data' => $data], function ($message) use ($data) {
+            $result = Mail::send(config('settings.theme') . '.email', ['data' => $data], function ($message) use ($data) {
                 $message->from($data['email'], $data['name']);
                 $message->to(env('MAIL_ADMIN'), 'Mr. Admin')->subject('Question');
             });
@@ -41,11 +41,11 @@ class ContactController extends SiteController
         $this->keywords = 'Контакты_ключи';
         $this->meta_desc = 'Контакты_описание';
 
-        $content_view = view(env('THEME') . '.contacts_content')
+        $content_view = view(config('settings.theme') . '.contacts_content')
             ->render();
         $this->vars = array_add($this->vars, 'content_view', $content_view);
 
-        $this->contentLeftBar = view(env('THEME') . '.contactsBar')
+        $this->contentLeftBar = view(config('settings.theme') . '.contactsBar')
             ->render();
 
         return $this->renderOutput();

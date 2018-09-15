@@ -33,7 +33,7 @@ class UserController extends AdminController
         $this->title = "Управление пользователями";
 
         $users = $this->getUsers();
-        $this->content_view = view(env('THEME') . '.admin.users_content')
+        $this->content_view = view(config('settings.theme') . '.admin.users_content')
             ->with('users', $users)
             ->render();
 
@@ -56,7 +56,7 @@ class UserController extends AdminController
         $roles = $this->getRoles()->reduce(function ($carry, $item) {
             return array_add($carry, $item->id, $item->name);
         }, []);
-        $this->content_view = view(env('THEME') . '.admin.users_edit_content')
+        $this->content_view = view(config('settings.theme') . '.admin.users_edit_content')
             ->with('roles', $roles)
             ->render();
 
@@ -108,7 +108,7 @@ class UserController extends AdminController
             return array_add($carry, $item->id, $item->name);
         }, []);
 
-        $this->content_view = view(env('THEME') . '.admin.users_edit_content')
+        $this->content_view = view(config('settings.theme') . '.admin.users_edit_content')
             ->with(['roles' => $roles, 'user' => $user])
             ->render();
 

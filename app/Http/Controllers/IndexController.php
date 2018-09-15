@@ -38,12 +38,12 @@ class IndexController extends SiteController
         $this->keywords = 'Главная';
         $this->meta_desc = 'Главная';
 
-        $slider_view = view(env('THEME') . '.slider')
+        $slider_view = view(config('settings.theme') . '.slider')
             ->with('slider', $this->getSlider())
             ->render();
 
         $portfolios = $this->getPortfolios();
-        $content_view = view(env('THEME') . '.content')
+        $content_view = view(config('settings.theme') . '.content')
             ->with('portfolios', $portfolios)
             ->render();
 
@@ -53,7 +53,7 @@ class IndexController extends SiteController
         ]);
 
         $articles = $this->getArticles();
-        $this->contentRightBar = view(env('THEME') . '.indexBar')
+        $this->contentRightBar = view(config('settings.theme') . '.indexBar')
             ->with('articles', $articles)
             ->render();
 

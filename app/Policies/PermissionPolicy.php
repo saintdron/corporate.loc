@@ -19,7 +19,7 @@ class PermissionPolicy
      */
     public function view(User $user, Permission $permission)
     {
-        //
+        return $user->canDo('VIEW_ADMIN_PERMISSIONS');
     }
 
     /**
@@ -30,7 +30,7 @@ class PermissionPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->canDo('EDIT_PERMISSIONS');
     }
 
     /**
@@ -54,7 +54,7 @@ class PermissionPolicy
      */
     public function delete(User $user, Permission $permission)
     {
-        //
+        return $user->canDo('EDIT_PERMISSIONS');
     }
 
     /**

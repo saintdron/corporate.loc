@@ -6,11 +6,11 @@
                     <div class="hentry work group {{ ($k === config('settings.articles_paginate') - 1) ? 'last' : '' }}">
                         <div class="work-thumbnail">
                             <div class="nozoom">
-                                <img src="{{ asset(env('THEME')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->max }}"
+                                <img src="{{ asset(config('settings.theme')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->max }}"
                                      alt="{{ $portfolio->title }}" title="{{ $portfolio->title }}"/>
                                 <div class="overlay">
                                     <a class="overlay_img"
-                                       href="{{ asset(env('THEME')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->path }}"
+                                       href="{{ asset(config('settings.theme')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->path }}"
                                        rel="lightbox" title="{{ $portfolio->title }}"></a>
                                     <a class="overlay_project"
                                        href="{{ route('portfolios.show', $portfolio->alias) }}"></a>

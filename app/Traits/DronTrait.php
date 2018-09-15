@@ -3,7 +3,7 @@
 namespace Corp\Traits;
 
 
-trait DataTrait
+trait DronTrait
 {
     public function formatCreatedAtDate($template)
     {
@@ -15,5 +15,16 @@ trait DataTrait
         }
         setlocale(LC_TIME, $currentLocal);
         return $date;
+    }
+
+    public function strExplode($str)
+    {
+        if (isset($str) && !empty($str)) {
+            $array = preg_split('/[\s,]+/', $str, -1, PREG_SPLIT_NO_EMPTY);
+            $array = array_map(function ($item) {
+                return trim($item);
+            }, $array);
+        }
+        return $array;
     }
 }

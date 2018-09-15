@@ -2,12 +2,12 @@
 
 namespace Corp;
 
-use Corp\Traits\DataTrait;
+use Corp\Traits\DronTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    use DataTrait;
+    use DronTrait;
 
     protected $fillable = ['title', 'img', 'alias', 'text', 'desc', 'keywords', 'meta_desc', 'category_id'];
 

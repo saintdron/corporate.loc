@@ -2,6 +2,7 @@
 
 namespace Corp\Http\Controllers\Admin;
 
+use Corp\Permission;
 use Corp\Repositories\PermissionRepository;
 use Corp\Repositories\RoleRepository;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class PermissionController extends AdminController
      */
     public function index()
     {
-        if (Gate::denies('EDIT_USERS')) {
+        if (Gate::denies('view', new Permission())) {
             abort(403);
         }
 
@@ -36,7 +37,7 @@ class PermissionController extends AdminController
 
         $roles = $this->getRoles();
         $permissions = $this->getPermissions();
-        $this->content_view = view(env('THEME') . '.admin.permissions_content')
+        $this->content_view = view(config('settings.theme') . '.admin.permissions_content')
             ->with(['roles' => $roles, 'permissions' => $permissions])
             ->render();
 

@@ -10,7 +10,7 @@
                     <div class="portfolios hentry work group">
                         <div class="work-thumbnail">
                             <a class="thumb">
-                                <img src="{{ asset(env('THEME')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->max }}"
+                                <img src="{{ asset(config('settings.theme')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->max }}"
                                      alt="{{ $portfolio->title }}" title="{{ $portfolio->title }}"/>
                             </a>
                         </div>
@@ -41,7 +41,7 @@
                             @foreach($portfolios as $portfolio)
                                 <div class="related_project">
                                     <a class="related_proj related_img" href="{{ route('portfolios.show', $portfolio->alias) }}" title="{{ $portfolio->title }}">
-                                        <img src="{{ asset(env('THEME')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->mini }}"
+                                        <img src="{{ asset(config('settings.theme')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->mini }}"
                                              alt="{{ $portfolio->title }}" title="{{ $portfolio->title }}"/>
                                     </a>
                                     <h4><a href="{{ route('portfolios.show', $portfolio->alias) }}">{{ $portfolio->title }}</a></h4>

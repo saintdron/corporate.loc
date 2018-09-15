@@ -7,7 +7,7 @@
                 <h1 class="post-title"><a>{{ $article->title }}</a></h1>
                 <!-- post featured -->
                 <div class="image-wrap">
-                    <img src="{{ asset(env('THEME')) }}/images/{{ config('settings.articles_path') }}/{{ $article->img->max }}"
+                    <img src="{{ asset(config('settings.theme')) }}/images/{{ config('settings.articles_path') }}/{{ $article->img->max }}"
                          alt="{{ $article->title }}" title="{{ $article->title }}"/>
                 </div>
                 <p class="date">
@@ -37,7 +37,7 @@
             <div class="the-content single group">
                 <p>{!! $article->text !!}</p>
                 <div class="socials">
-                    <h2>love it, share it!</h2>
+                    <h2>Поделитесь этим с друзьями:</h2>
                     <a href="https://www.facebook.com/sharer.html?u=http%3A%2F%2Fyourinspirationtheme.com%2Fdemo%2Fpinkrio%2F2012%2F09%2F24%2Fthis-is-the-title-of-the-first-article-enjoy-it%2F&amp;t=This+is+the+title+of+the+first+article.+Enjoy+it."
                        class="socials-small facebook-small" title="Facebook">facebook</a>
                     <a href="https://twitter.com/share?url=http%3A%2F%2Fyourinspirationtheme.com%2Fdemo%2Fpinkrio%2F2012%2F09%2F24%2Fthis-is-the-title-of-the-first-article-enjoy-it%2F&amp;text=This+is+the+title+of+the+first+article.+Enjoy+it."
@@ -50,8 +50,11 @@
                        class="socials-small bookmark-small" title="This is the title of the first article. Enjoy it.">bookmark</a>
                 </div>
             </div>
-            <p class="tags">Tags: <a href="#" rel="tag">book</a>, <a href="#" rel="tag">css</a>, <a href="#" rel="tag">design</a>,
-                <a href="#" rel="tag">inspiration</a></p>
+            @if($article->keywords)
+            <p class="tags">Теги:
+                @foreach($article->strExplode($article->keywords) as $i => $keyword){{ ($i !== 0) ? ', ' : '' }}<a rel="tag">{{ $keyword }}</a>@endforeach
+            </p>
+            @endif
             <div class="clear"></div>
         </div>
         <!-- START COMMENTS -->
@@ -66,7 +69,7 @@
                         @if($k !== 0)
                             @break
                         @endif
-                        @include(env('THEME') . '.comment', ['items' => $comments])
+                        @include(config('settings.theme') . '.comment', ['items' => $comments])
                     @endforeach
                 </ol>
             @endif

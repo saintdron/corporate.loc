@@ -33,7 +33,7 @@ class ArticleController extends SiteController
 
         $articles = $this->getArticles($cat_alias);
 
-        $content_view = view(env('THEME') . '.articles_content')
+        $content_view = view(config('settings.theme') . '.articles_content')
             ->with('articles', $articles)
             ->render();
         $this->vars = array_add($this->vars, 'content_view', $content_view);
@@ -51,7 +51,7 @@ class ArticleController extends SiteController
             $this->keywords = $article->keywords;
             $this->meta_desc = $article->meta_desc;
 
-            $content_view = view(env('THEME') . '.article_content')
+            $content_view = view(config('settings.theme') . '.article_content')
                 ->with('article', $article)
                 ->render();
         } else {
@@ -85,7 +85,7 @@ class ArticleController extends SiteController
     {
         $comments = $this->getComments(config('settings.recent_comments'));
         $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
-        $this->contentRightBar = view(env('THEME') . '.articlesBar')
+        $this->contentRightBar = view(config('settings.theme') . '.articlesBar')
             ->with(['comments' => $comments, 'portfolios' => $portfolios]);
     }
 

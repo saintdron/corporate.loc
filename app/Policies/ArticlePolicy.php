@@ -30,7 +30,7 @@ class ArticlePolicy
      */
     public function create(User $user)
     {
-        return $user->canDo('ADD_ARTICLES');
+        return $user->canDo('CREATE_ARTICLES');
     }
 
     /**

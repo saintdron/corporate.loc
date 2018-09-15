@@ -34,7 +34,7 @@ class ArticleController extends AdminController
         $this->title = "Управление статьями";
 
         $articles = $this->getArticles();
-        $this->content_view = view(env('THEME') . '.admin.articles_content')
+        $this->content_view = view(config('settings.theme') . '.admin.articles_content')
             ->with('articles', $articles)
             ->render();
 
@@ -55,7 +55,7 @@ class ArticleController extends AdminController
         $this->title = "Добавление нового материала";
 
         $list = $this->makeCategoriesList();
-        $this->content_view = view(env('THEME') . '.admin.articles_edit_content')
+        $this->content_view = view(config('settings.theme') . '.admin.articles_edit_content')
             ->with('categories', $list)
             ->render();
 
@@ -106,7 +106,7 @@ class ArticleController extends AdminController
         $article->img = json_decode($article->img);
 
         $list = $this->makeCategoriesList();
-        $this->content_view = view(env('THEME') . '.admin.articles_edit_content')
+        $this->content_view = view(config('settings.theme') . '.admin.articles_edit_content')
             ->with(['categories' => $list, 'article' => $article])
             ->render();
 

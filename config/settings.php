@@ -1,5 +1,7 @@
 <?php
 return [
+    'theme' => env('THEME'),
+
     'slider_path' => 'slider-cycle',
     'portfolios_path' => 'projects',
     'articles_path' => 'articles',

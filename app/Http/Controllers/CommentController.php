@@ -75,7 +75,7 @@ class CommentController extends Controller
         $data['date'] = $comment->formatCreatedAtDate('%B %d, %Y') . ' в ' .
             $comment->formatCreatedAtDate('%R');
 
-        $comment_new_view = view(env('THEME') . '.comment_new')
+        $comment_new_view = view(config('settings.theme') . '.comment_new')
             ->with('data', $data)
             ->render();
 

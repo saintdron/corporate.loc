@@ -23,7 +23,7 @@ class PortfolioController extends SiteController
         $this->meta_desc = 'Портфолио_описание';
 
         $portfolios = $this->getPortfolios(false, true);
-        $content = view(env('THEME') . '.portfolios_content')
+        $content = view(config('settings.theme') . '.portfolios_content')
             ->with('portfolios', $portfolios)
             ->render();
         $this->vars = array_add($this->vars, 'content_view', $content);
@@ -41,7 +41,7 @@ class PortfolioController extends SiteController
 
         $portfolios = $this->getPortfolios(config('settings.other_portfolios'), false);
 
-        $content_view = view(env('THEME') . '.portfolio_content')
+        $content_view = view(config('settings.theme') . '.portfolio_content')
             ->with(['portfolio' => $portfolio, 'portfolios' => $portfolios])
             ->render();
         $this->vars = array_add($this->vars, 'content_view', $content_view);

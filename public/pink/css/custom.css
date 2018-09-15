@@ -48,3 +48,15 @@ Good work... and good luck! :)
 .input-prepend input[type="password"] {
     border: 1px solid rgb(207, 207, 207);
 }
+
+.socials {
+    margin-top: 75px;
+}
+
+#header .sub-indicator {
+    font-size: 15px;
+}
+
+.yit_text_quote {
+    margin-top: 8px;
+}

@@ -11,6 +11,6 @@
     </tr>
 
     @if($item->hasChildren())
-        @include(env('THEME') . '.admin.customMenuItems', ['items' => $item->children(), 'paddingLeft' => $paddingLeft . '--- '])
+        @include(config('settings.theme') . '.admin.customMenuItems', ['items' => $item->children(), 'paddingLeft' => $paddingLeft . '--- '])
     @endif
 @endforeach

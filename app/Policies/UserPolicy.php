@@ -18,7 +18,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->canDo('EDIT_USERS');
+        return $user->canDo('VIEW_ADMIN_USERS');
     }
 
     /**

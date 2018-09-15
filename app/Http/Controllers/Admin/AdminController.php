@@ -2,9 +2,14 @@
 
 namespace Corp\Http\Controllers\Admin;
 
+use Corp\Article;
 use Corp\Http\Controllers\Controller;
+use Corp\Permission;
+use Corp\Portfolio;
+use Corp\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 use Menu;
 
 class AdminController extends Controller
@@ -28,7 +33,7 @@ class AdminController extends Controller
         $this->vars = array_add($this->vars, 'title', $this->title);
 
         $menu = $this->getAdminMenu();
-        $menu_view = view(env('THEME') . '.admin.menu')
+        $menu_view = view(config('settings.theme') . '.admin.menu')
             ->with('menu', $menu)
             ->render();
         $this->vars = array_add($this->vars, 'menu_view', $menu_view);
@@ -37,22 +42,32 @@ class AdminController extends Controller
             $this->vars = array_add($this->vars, 'content_view', $this->content_view);
         }
 
-        $footer_view = view(env('THEME') . '.footer')
+        $footer_view = view(config('settings.theme') . '.footer')
             ->render();
         $this->vars = array_add($this->vars, 'footer_view', $footer_view);
 
-        return view(env('THEME') . '.' . $this->template)
+        return view(config('settings.theme') . '.' . $this->template)
             ->with($this->vars);
     }
 
     public function getAdminMenu()
     {
         return Menu::make('adminMenu', function ($menu) {
-            $menu->add('Статьи', ['route' => 'admin.articles.index']);
-            $menu->add('Портфолио', ['route' => 'admin.articles.index']);
-            $menu->add('Меню', ['route' => 'admin.menus.index']);
-            $menu->add('Пользователи', ['route' => 'admin.users.index']);
-            $menu->add('Привилегии', ['route' => 'admin.permissions.index']);
+            if (Gate::allows('view', new Article())) {
+                $menu->add('Статьи', ['route' => 'admin.articles.index']);
+            }
+            if (Gate::allows('view', new Portfolio())) {
+                $menu->add('Портфолио', ['route' => 'admin.portfolios.index']);
+            }
+            if (Gate::allows('view', new \Corp\Menu())) {
+                $menu->add('Меню', ['route' => 'admin.menus.index']);
+            }
+            if (Gate::allows('view', new User())) {
+                $menu->add('Пользователи', ['route' => 'admin.users.index']);
+            }
+            if (Gate::allows('view', new Permission())) {
+                $menu->add('Привилегии', ['route' => 'admin.permissions.index']);
+            }
         });
     }
 }

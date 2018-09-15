@@ -2,12 +2,12 @@
 
 namespace Corp;
 
-use Corp\Traits\DataTrait;
+use Corp\Traits\DronTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use DataTrait;
+    use DronTrait;
 
     protected $fillable = ['name', 'email', 'text', 'site', 'user_id', 'article_id', 'parent_id'];
 

@@ -816,7 +816,7 @@ body.no_js .classic #nav ul li ul.submenu li:hover > ul, body.no_js .classic #na
     max-width: 100%;
     width: auto;
     height: auto;
-    display: block;
+    /*display: block;*/
 }
 
 img.size-auto, img.size-full, img.size-large, img.size-medium, .attachment img {

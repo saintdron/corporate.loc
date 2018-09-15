@@ -55,13 +55,13 @@ class Handler extends ExceptionHandler
             switch ($code) {
                 case '404':
                     $obj = new SiteController(new MenuRepository(new Menu()));
-                    $navigation_view = view(env('THEME') . '.navigation')
+                    $navigation_view = view(config('settings.theme') . '.navigation')
                         ->with('menu', $obj->getMenu())
                         ->render();
 
                     Log::alert('Страница не найдена - ' . $request->url());
 
-                    return response()->view(env('THEME') . '.404', ['bar' => 'no', 'title' => 'Страница не найдена', 'navigation_view' => $navigation_view]);
+                    return response()->view(config('settings.theme') . '.404', ['bar' => 'no', 'title' => 'Страница не найдена', 'navigation_view' => $navigation_view]);
             }
         }
 

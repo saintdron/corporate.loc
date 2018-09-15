@@ -14,7 +14,7 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo('ADD_ARTICLES');
+        return Auth::user()->canDo(['CREATE_ARTICLES', 'UPDATE_ARTICLES']);
     }
 
     /**

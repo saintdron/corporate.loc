@@ -33,26 +33,26 @@ class SiteController extends Controller
 
     protected function renderOutput()
     {
-        $navigation_view = view(env('THEME') . '.navigation')
+        $navigation_view = view(config('settings.theme') . '.navigation')
             ->with('menu', $this->getMenu())
             ->render();
         $this->vars = array_add($this->vars, 'navigation_view', $navigation_view);
 
         if ($this->contentRightBar) {
-            $rightBar_view = view(env('THEME') . '.rightBar')
+            $rightBar_view = view(config('settings.theme') . '.rightBar')
                 ->with('content_rightBar', $this->contentRightBar)
                 ->render();
             $this->vars = array_add($this->vars, 'rightBar_view', $rightBar_view);
         }
         if ($this->contentLeftBar) {
-            $leftBar_view = view(env('THEME') . '.leftBar')
+            $leftBar_view = view(config('settings.theme') . '.leftBar')
                 ->with('content_leftBar', $this->contentLeftBar)
                 ->render();
             $this->vars = array_add($this->vars, 'leftBar_view', $leftBar_view);
         }
         $this->vars = array_add($this->vars, 'bar', $this->bar);
 
-        $footer_view = view(env('THEME') . '.footer')
+        $footer_view = view(config('settings.theme') . '.footer')
             ->render();
         $this->vars = array_add($this->vars, 'footer_view', $footer_view);
 
@@ -62,7 +62,7 @@ class SiteController extends Controller
             'title' => $this->title
         ]);
 
-        return view(env('THEME') . '.' . $this->template)
+        return view(config('settings.theme') . '.' . $this->template)
             ->with($this->vars);
     }
 
