@@ -55,6 +55,10 @@ class MenuController extends AdminController
      */
     public function create()
     {
+        if (Gate::denies('create', new \Corp\Menu())) {
+            abort(403);
+        }
+
         $this->title = "Новый пункт меню";
 
         $menus = $this->getMenus()->roots()->reduce(function ($carry, $item) {
@@ -126,6 +130,10 @@ class MenuController extends AdminController
      */
     public function edit(\Corp\Menu $menu)
     {
+        if (Gate::denies('update', new \Corp\Menu())) {
+            abort(403);
+        }
+
         $this->title = "Редактирование пункта меню – " . $menu->title;
 
         $route = app('router')->getRoutes()->match(app('request')->create($menu->path));

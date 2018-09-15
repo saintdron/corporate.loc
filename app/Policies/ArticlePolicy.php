@@ -42,7 +42,7 @@ class ArticlePolicy
      */
     public function update(User $user, Article $article)
     {
-        return $user->canDo('UPDATE_ARTICLES');
+        return $user->id === $article->user_id && $user->canDo('UPDATE_ARTICLES');
     }
 
     /**
