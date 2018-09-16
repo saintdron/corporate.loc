@@ -60,3 +60,24 @@ Good work... and good luck! :)
 .yit_text_quote {
     margin-top: 8px;
 }
+
+#logo .brand_name {
+    font-family: "Roboto Slab",serif;
+    font-weight: 800;
+    letter-spacing: .5px;
+    font-size: 28px;
+}
+
+#logo img {
+    vertical-align: middle;
+}
+
+#logo .brand_name {
+    vertical-align: middle;
+    position: relative;
+    left: 5px;
+}
+
+#logo {
+    padding-bottom: 15px;
+}

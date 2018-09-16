@@ -77,6 +77,8 @@
           href="http://fonts.googleapis.com/css?family=Oswald%7CDroid+Sans%7CPlayfair+Display%7COpen+Sans+Condensed%3A300%7CRokkitt%7CShadows+Into+Light%7CAbel%7CDamion%7CMontez&amp;ver=3.4.2"
           type="text/css" media="all"/>
     <link rel='stylesheet' href='{{ asset(config('settings.theme')) }}/css/font-awesome.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab%3A400%7CArimo%3A400%2C400italic%2C700" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" media="all">
 
     <!-- JAVASCRIPTs -->
     <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/jquery.js"></script>
@@ -117,9 +119,10 @@
             <div class="group inner">
                 <!-- START LOGO -->
                 <div id="logo" class="group">
-                    <a href="{{ route('home') }}" title="Pink Rio">
-                        <img src="{{ asset(config('settings.theme')) }}/images/logo.png" title="Pink Rio"
-                             alt="Pink Rio"/>
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset(config('settings.theme')) }}/images/tp-circle2.png" title="Tproger"
+                             alt="Tproger"/>
+                        <span class="brand_name">Tproger</span>
                     </a>
                 </div>
                 <!-- END LOGO -->
