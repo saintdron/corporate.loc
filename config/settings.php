@@ -25,4 +25,6 @@ return [
         'mini' => ['width' => 55, 'height' => 55]
     ],
 
+    'slider_img' => ['width' => 1920, 'height' => 483],
+
 ];

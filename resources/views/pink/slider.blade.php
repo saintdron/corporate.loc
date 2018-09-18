@@ -30,22 +30,24 @@
         <div id="yit-widget-area" class="group">
             <div class="yit-widget-content inner group">
                 <div class="widget-first yit-widget widget col1_4 one-fourth col widget-icon-text group">
-                    <img class="icon-img" src="{{ asset(config('settings.theme')) }}/images/icons/cloud.jpg" alt=""/>
-                    <h3>Great Design</h3>
-                    <p>A widgetized area: add shorcodes, text, icons and more.</p>
+                    <a href="https://tproger.ru/tag/job-interview/">
+                        <img class="icon-img" src="{{ asset(config('settings.theme')) }}/images/job-770-80x80.webp"
+                             alt=""/>
+                        <p>Все, что нужно знать программисту для собеседования</p>
+                    </a>
                 </div>
                 <div class="yit-widget widget col1_4 one-fourth col widget-last-post group">
-                    <img class="icon-img" src="{{ asset(config('settings.theme')) }}/images/icons/blog1.png" alt=""/>
-                    <div>
-                        <h3><a class="text-color" href="#" title="">Blog news</a></h3>
-                        <p>Section shortcodes &amp; sticky posts! <a href="#"> | more →</a></p>
-                    </div>
+                    <a href="https://tproger.ru/tag/web/">
+                        <img class="icon-img" src="{{ asset(config('settings.theme')) }}/images/web770-80x80.webp"
+                             alt=""/>
+                        <p>Все для веб-разработчиков: дизайн, верстка, программы</p>
+                    </a>
                 </div>
                 <div class="widget-last yit-widget widget col1_4 one-fourth col yit_text_quote">
-                    <blockquote class="text-quote-quote">“Anyone who has never made a mistake has never tried anything
-                        new.”
+                    <blockquote class="text-quote-quote">
+                        “Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, знающий, где вы живете.”
                     </blockquote>
-                    <cite class="text-quote-author">Albert Einstein</cite>
+                    <cite class="text-quote-author">Мартин Голдинг</cite>
                 </div>
             </div>
         </div>

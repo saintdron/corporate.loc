@@ -23,8 +23,8 @@ it will automatically override the style in this file.
 ---------------------------------------------------------------------------------------------- */
 
 /* === FONTS
-Serif:      'Rokkitt', 'Georgia', 'Times New Roman', serif
-Sans-serif: 'Droid Sans', 'Verdana', 'Arial', sans-serif
+Serif:      'Roboto Slab', 'Georgia', 'Times New Roman', serif
+Sans-serif: 'Roboto', 'Verdana', 'Arial', sans-serif
 
 Text size: 12px;
 Menu size: 15px;
@@ -166,7 +166,7 @@ body .last-row {
 p, li, address, dd, blockquote, td, th, a,
 body, h1, h2, h3, h4, h5, h6, p, dl, ul, ol {
     color: #585555;
-    font-family: 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Verdana', 'Arial', sans-serif;
     font-size: 12px;
     font-weight: normal;
 }
@@ -187,7 +187,7 @@ pre {
 /* ===== HEADINGS ===== */
 h1, h2, h3, h4, h5, h6,
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    font-family: 'Rokkitt', 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+    font-family: 'Roboto Slab', 'Roboto', 'Verdana', 'Arial', sans-serif;
     font-size: 12px;
 }
 
@@ -314,7 +314,7 @@ html {
     -webkit-appearance: none;
     padding: 8px 10px;
     cursor: pointer;
-    font-family: 'Rokkitt', sans-serif;
+    font-family: 'Roboto Slab', sans-serif;
     color: #373636;
     font-size: 14px;
     position: relative;
@@ -368,7 +368,7 @@ html {
 #header .menu ul li a {
     color: #939191;
     display: block;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 11px;
     text-align: left;
 }
@@ -446,7 +446,7 @@ html {
 }
 
 #header .menu.megamenu > ul ul li a {
-    font-family: 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Verdana', 'Arial', sans-serif;
     font-size: 11px;
     min-height: 25px;
     line-height: 25px;
@@ -620,7 +620,7 @@ body.no_js .classic #nav ul li ul.submenu li:hover > ul, body.no_js .classic #na
 
 #page-meta h3, #page-meta h4 {
     font-size: 28px;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     color: #030303;
     text-align: center;
     margin: 0;
@@ -743,7 +743,7 @@ body.no_js .classic #nav ul li ul.submenu li:hover > ul, body.no_js .classic #na
 
 .error-404-text p, .error-404-text p a {
     font-size: 18px;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     line-height: 22px;
     text-align: center;
 }
@@ -1028,7 +1028,7 @@ ol.trackbacklist li {
 .text-quote-quote, .text-quote-author {
     background: none;
     color: #939191;
-    font-family: Rokkitt, Georgia, 'Times New Roman', serif;
+    font-family: Roboto Slab, Georgia, 'Times New Roman', serif;
     font-size: 18px;
     font-style: normal;
     margin-top: 0px;
@@ -1267,7 +1267,7 @@ input#searchsubmit {
     width: 22%;
     padding: 4px 8px;
     height: 28px;
-    font-family: 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Verdana', 'Arial', sans-serif;
 }
 
 .gecko input#searchsubmit {
@@ -1571,7 +1571,7 @@ input#s {
 }
 
 .content .contact-form label span.sublabel {
-    font-family: 'Calibri', 'Droid Sans', Verdana, Arial, sans-serif;
+    font-family: 'Calibri', 'Roboto', Verdana, Arial, sans-serif;
     font-size: 11px;
     color: #9C9B9B
 }
@@ -1774,7 +1774,7 @@ input#s {
     text-align: center;
     display: block;
     width: 100%;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 16px;
     line-height: 15px;
     text-indent: 0;

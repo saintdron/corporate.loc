@@ -146,12 +146,11 @@ class ArticleRepository extends Repository
                 $obj->max = $str . '_max.jpg';
                 $obj->path = $str . '.jpg';
 
-                $img = Image::make($image);
-                $img->fit(config('settings.image')['width'], config('settings.image')['height'])
+                Image::make($image)->fit(config('settings.image')['width'], config('settings.image')['height'])
                     ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
-                $img->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'])
+                Image::make($image)->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'])
                     ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
-                $img->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'])
+                Image::make($image)->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'])
                     ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
 
                 return json_encode($obj);

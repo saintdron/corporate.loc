@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         'Corp\Menu' => 'Corp\Policies\MenuPolicy',
         'Corp\User' => 'Corp\Policies\UserPolicy',
         'Corp\Portfolio' => 'Corp\Policies\PortfolioPolicy',
+        'Corp\Slider' => 'Corp\Policies\SliderPolicy',
     ];
 
     /**

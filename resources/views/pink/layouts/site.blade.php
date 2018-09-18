@@ -74,7 +74,7 @@
 
     <!-- FONTs -->
     <link rel="stylesheet" id="google-fonts-css"
-          href="http://fonts.googleapis.com/css?family=Oswald%7CDroid+Sans%7CPlayfair+Display%7COpen+Sans+Condensed%3A300%7CRokkitt%7CShadows+Into+Light%7CAbel%7CDamion%7CMontez&amp;ver=3.4.2"
+          href="http://fonts.googleapis.com/css?family=Oswald%7CDroid+Sans%7CPlayfair+Display%7COpen+Sans+Condensed%3A300%7CRoboto Slab%7CShadows+Into+Light%7CAbel%7CDamion%7CMontez&amp;ver=3.4.2"
           type="text/css" media="all"/>
     <link rel='stylesheet' href='{{ asset(config('settings.theme')) }}/css/font-awesome.css' type='text/css' media='all'/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab%3A400%7CArimo%3A400%2C400italic%2C700" media="all">

@@ -52,4 +52,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('menus', 'Admin\MenuController', ['as' => 'admin']);
     Route::resource('users', 'Admin\UserController', ['as' => 'admin']);
     Route::resource('portfolios', 'Admin\PortfolioController', ['as' => 'admin']);
+    Route::resource('sliders', 'Admin\SliderController', ['as' => 'admin']);
 });

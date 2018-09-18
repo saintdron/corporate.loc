@@ -6,6 +6,7 @@ use Corp\Article;
 use Corp\Http\Controllers\Controller;
 use Corp\Permission;
 use Corp\Portfolio;
+use Corp\Slider;
 use Corp\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -53,6 +54,9 @@ class AdminController extends Controller
     public function getAdminMenu()
     {
         return Menu::make('adminMenu', function ($menu) {
+            if (Gate::allows('view', new Slider())) {
+                $menu->add('Слайд', ['route' => 'admin.sliders.index']);
+            }
             if (Gate::allows('view', new Article())) {
                 $menu->add('Статьи', ['route' => 'admin.articles.index']);
             }

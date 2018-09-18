@@ -71,7 +71,7 @@
             @if(isset($article->img->path))
                 <li class="textarea-field">
                     <label>
-                        <span class="label">Изображения материала:</span>
+                        <span class="label">Текущее изображение:</span>
                     </label>
                     {{ Html::image(asset(config('settings.theme')).'/images/' . config('settings.articles_path') . '/'.$article->img->path, '', ['style' => 'width: 400px']) }}
                     {!! Form::hidden('old_image', $article->img->path) !!}

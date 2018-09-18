@@ -58,7 +58,7 @@ Good work... and good luck! :)
 }
 
 .yit_text_quote {
-    margin-top: 8px;
+    margin-top: 9px;
 }
 
 #logo .brand_name {
@@ -80,4 +80,69 @@ Good work... and good luck! :)
 
 #logo {
     padding-bottom: 15px;
+}
+
+#sidebar-header .widget blockquote,
+.yit-widget-content .yit_text_quote blockquote {
+    font-size: 18px;
+    color: #939191;
+    line-height: 22px ;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 2px;
+}
+
+.yit-widget-content .yit_text_quote blockquote {
+    padding-top: 5px;
+}
+
+.text-quote-author {
+    font-family: "Roboto", sans-serif;
+    color: #b77a2b;
+}
+
+.yit-widget-content .yit_text_quote cite {
+    font-size: 18px;
+}
+
+#header div.menu > ul > li > a {
+    font-family: 'Roboto', sans-serif;
+}
+
+#header div.menu > ul ul li a {
+    font-size: 12px;
+}
+
+.page-template-home-php #header .menu {
+    height: 33px;
+}
+
+.menu-select select {
+    font-family: 'Roboto', sans-serif;
+}
+
+.sub-indicator {
+    /*display: none;*/
+}
+
+.widget-icon-text {
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-right: 20px;
+    /*max-width: 250px;*/
+}
+
+.widget-last-post {
+    padding-top: 10px;
+}
+
+.icon-img {
+    border-radius: 50%;
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.icon-img + p {
+    font-size: 15px;
+    padding-left: 80px;
+    line-height: 20px;
 }

@@ -5,7 +5,7 @@
 
 .blog-small .post-title a {
     color: #030303;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 20px;
 }
 
@@ -388,7 +388,7 @@ img.comment-avatar {
 
 .blog-big .meta p {
     color: #636060;
-    font-family: 'Droid Sans', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     line-height: 24px;
 }
 
@@ -801,7 +801,7 @@ div.anythingSlider, div.anythingSlider .anythingWindow, div.anythingSlider .anyt
 .yit-widget-content h3, .yit-widget-content h3 a, .yit-widget-content h2, .yit-widget-content h2 a {
     margin: 0px;
     font-size: 28px;
-    font-family: 'Rokkitt', serif;
+    font-family: 'Roboto Slab', serif;
 }
 
 .yit-widget-content h3, .yit-widget-content h3 a {
@@ -1923,7 +1923,7 @@ html[xmlns] .slides {
     padding-right: 5px;
     text-transform: none;
     font-weight: bold;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 15px;
 }
 
@@ -2087,7 +2087,7 @@ ul#portfolio.three-columns {
     text-align: center;
     display: block;
     width: 100%;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 16px;
     line-height: 15px;
 }
@@ -2281,7 +2281,7 @@ ul.gallery_categories_widget li {
     text-align: center;
     display: block;
     width: 100%;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 16px;
     line-height: 15px;
 }
@@ -2383,7 +2383,7 @@ ul.gallery_categories_widget li {
     padding-right: 5px;
     text-transform: none;
     font-weight: bold;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 15px;
 }
 
@@ -2428,7 +2428,7 @@ ul.gallery_categories_widget li {
     text-align: center;
     display: block;
     width: 100%;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 16px;
     line-height: 15px;
 }
@@ -4578,7 +4578,7 @@ a.video a.zoom {
 
 .call-to-action .number-phone, .call-to-action .number-phone a {
     color: #838383;
-    font-family: 'Calibri', 'Droid Sans', Verdana, Arial, sans-serif;
+    font-family: 'Calibri', 'Roboto', Verdana, Arial, sans-serif;
     font-size: 42px;
     font-weight: bold;
     letter-spacing: -3px;
@@ -4950,7 +4950,7 @@ ul.tweets-widget li p.meta {
     color: #3E3E3E;
     cursor: pointer;
     display: block;
-    font-family: 'Rokkitt', Helvetica, sans-serif;
+    font-family: 'Roboto Slab', Helvetica, sans-serif;
     font-size: 18px;
     line-height: 22px;
     padding: 0 0 0 10px;
@@ -5191,7 +5191,7 @@ ul.tweets-widget li p.meta {
     cursor: pointer;
     display: block;
     float: right;
-    font-family: "Droid Sans", serif;
+    font-family: "Roboto", serif;
     font-size: 10px;
     height: 25px;
     line-height: 25px;
@@ -5372,7 +5372,7 @@ pre.shortcodes {
 .section .description {
     margin-top: 0px;
     margin-bottom: 10px;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 15px;
 }
 
@@ -5653,7 +5653,7 @@ pre.shortcodes {
     text-align: center;
     display: block;
     width: 100%;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 16px;
     line-height: 15px;
 }

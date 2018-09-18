@@ -23,8 +23,8 @@ it will automatically override the style in this file.
 ---------------------------------------------------------------------------------------------- */
 
 /* === FONTS
-Serif:      'Rokkitt', 'Georgia', 'Times New Roman', serif
-Sans-serif: 'Droid Sans', 'Verdana', 'Arial', sans-serif
+Serif:      'Roboto Slab', 'Georgia', 'Times New Roman', serif
+Sans-serif: 'Roboto', 'Verdana', 'Arial', sans-serif
 
 Text size: 12px;
 Menu size: 15px;
@@ -77,7 +77,7 @@ body .last-row { margin-bottom:0; }
 p, li, address, dd, blockquote, td, th, a,
 body, h1, h2, h3, h4, h5, h6, p, dl, ul, ol {
     color: #585555;
-    font-family: 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Verdana', 'Arial', sans-serif;
     font-size: 12px;
     font-weight: normal;
 }
@@ -87,7 +87,7 @@ pre { margin-bottom: 10px; margin-top: 10px; }
 /* ===== HEADINGS ===== */
 h1, h2, h3, h4, h5, h6,
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-	font-family: 'Rokkitt', 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+	font-family: 'Roboto Slab', 'Roboto', 'Verdana', 'Arial', sans-serif;
 	font-size: 12px;
 }
 h1 span, h2 span, h3 span, h4 span, h5 span, h6 span { color: #A05F02; }
@@ -172,7 +172,7 @@ html { min-height:101% }
 
 /* === NAVIGATION  - This code works with both standard WP menus and Theme menus */
 .menu-select { display:none; overflow:hidden; position:relative; width:75%; margin:20px auto; }
-.menu-select select { width:100%; border:1px solid #ddd; background:none; -webkit-appearance: none; padding:8px 10px; cursor:pointer; font-family:'Rokkitt', sans-serif; color:#373636; font-size:14px; position:relative; z-index:1; }
+.menu-select select { width:100%; border:1px solid #ddd; background:none; -webkit-appearance: none; padding:8px 10px; cursor:pointer; font-family:'Roboto Slab', sans-serif; color:#373636; font-size:14px; position:relative; z-index:1; }
 .gecko .menu-select select { width:120%; }
 .menu-select select option { background:none; width:100%; }
 .menu-select .arrow-icon { position:absolute; height:100%; width:100%; background:#d8dbdb url('images/menu-select-arrow.png') no-repeat 95% center; top:0; }
@@ -207,7 +207,7 @@ html { min-height:101% }
 #header .menu ul li a {
     color: #939191;
     display: block;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     font-size: 11px;
     text-align: left;
 }
@@ -274,7 +274,7 @@ html { min-height:101% }
 }
 
 #header .menu.megamenu > ul ul li a {
-    font-family: 'Droid Sans', 'Verdana', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Verdana', 'Arial', sans-serif;
     font-size: 11px;
     min-height: 25px;
     line-height: 25px;
@@ -375,7 +375,7 @@ body.no_js .classic #nav ul li ul.submenu li:hover > ul, body.no_js .classic #na
 /* ===== PAGE META ===== */
 #page-meta { margin: 0 0 20px }
 
-#page-meta h3, #page-meta h4 { font-size: 28px; font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif; color: #030303; text-align: center; margin:0; line-height: 1em; }
+#page-meta h3, #page-meta h4 { font-size: 28px; font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif; color: #030303; text-align: center; margin:0; line-height: 1em; }
 #page-meta h4 { color: #c86f06; font-size: 24px; }
 
 #yit-breadcrumb, #yit-breadcrumb a{ color:#838383; }
@@ -442,7 +442,7 @@ body.no_js .classic #nav ul li ul.submenu li:hover > ul, body.no_js .classic #na
 }
 .error-404-text p, .error-404-text p a {
     font-size: 18px;
-    font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
     line-height: 22px;
     text-align: center;    
 }
@@ -516,7 +516,7 @@ ol.trackbacklist li {padding:10px 0;}
 .text-quote-quote, .text-quote-author {
     background: none;
     color: #939191;
-    font-family: Rokkitt, Georgia, 'Times New Roman', serif;
+    font-family: Roboto Slab, Georgia, 'Times New Roman', serif;
     font-size: 18px;
     font-style: normal;
     margin-top: 0px;
@@ -580,7 +580,7 @@ ol.trackbacklist li {padding:10px 0;}
 #searchform { margin:10px 0 30px 0 }
 #searchform .screen-reader-text { display:none }
 #searchform input {border:1px solid #CFCFCF;color:#666;}
-input#searchsubmit {cursor:pointer;width:22%;padding:4px 8px;height:28px;font-family:'Droid Sans', 'Verdana', 'Arial', sans-serif;}
+input#searchsubmit {cursor:pointer;width:22%;padding:4px 8px;height:28px;font-family:'Roboto', 'Verdana', 'Arial', sans-serif;}
 .gecko input#searchsubmit{vertical-align: bottom;}
 .chrome input#searchsubmit{vertical-align: top;}
 input#searchsubmit:hover {background:#ddd;}
@@ -685,7 +685,7 @@ input#s { width:73%; padding:5px; }
 .content .contact-form li.full label { display: block }  
 .content .contact-form li.textarea-field { clear:both; width:auto; float:none; }
 .content .contact-form label span.label { font-size:13px; }
-.content .contact-form label span.sublabel { font-family: 'Calibri', 'Droid Sans', Verdana, Arial, sans-serif; font-size: 11px; color: #9C9B9B }  
+.content .contact-form label span.sublabel { font-family: 'Calibri', 'Roboto', Verdana, Arial, sans-serif; font-size: 11px; color: #9C9B9B }
 .content .contact-form li.text-field input, .content .contact-form li.checkbox-field input, .content .contact-form li.file-field input, .content .contact-form li select, .content .contact-form li textarea { margin-top:10px; padding:10px; }
 .content .contact-form li.text-field input, .content .contact-form li select { font-size: 12px; background-color:#fff; width:97.5%; }
 .content .contact-form li select { padding:10px; }
@@ -745,7 +745,7 @@ input#s { width:73%; padding:5px; }
 #portfolio a.video a.zoom { background:#000 url('images/icons/play.png') center no-repeat }
 #portfolio a.project a.zoom { background:#000 url('images/icons/project.png') center no-repeat }
 #portfolio a.onlytitle a.zoom { background:#000  }
-#portfolio a.zoom span, .section a.zoom span { position: absolute; bottom: 25%; color: white; text-align: center; display: block; width: 100%; font-family: 'Rokkitt', 'Georgia', 'Times New Roman', serif; font-size: 16px; line-height: 15px; text-indent: 0;}
+#portfolio a.zoom span, .section a.zoom span { position: absolute; bottom: 25%; color: white; text-align: center; display: block; width: 100%; font-family: 'Roboto Slab', 'Georgia', 'Times New Roman', serif; font-size: 16px; line-height: 15px; text-indent: 0;}
 
 #portfolio .read-more, #portfolio .more-link { background: /*url("images/bg-button-light.png") repeat-x scroll left top*/ #F4F4F8; border: 1px solid #CFCFCF; border-radius: 2px 2px 2px 2px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); color: #787D8C !important; float: left; font-size: 12px; margin: 15px 0 20px; padding: 4px 12px; text-decoration: none; text-shadow: 1px 1px 0 white; }
 #portfolio .read-more:hover, #portfolio .more-link:hover { background: none repeat scroll 0 0 #F9F9FB; border: 1px solid #CFCFCF; color: #464B5A !important; }
