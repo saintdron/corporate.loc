@@ -10,6 +10,7 @@
                         <th>Изображение</th>
                         <th>Заглавие</th>
                         <th>Описание</th>
+                        <th>Размещение текста</th>
                         <th>Действие</th>
                     </tr>
                     </thead>
@@ -23,11 +24,12 @@
                             </td>
                             <td class="align-left" style="background-color: lightgrey;">{!! str_limit($slider->title, 200) !!}</td>
                             <td class="align-left">{!! str_limit($slider->desc, 200) !!}</td>
+                            <td class="{{ $slider->position->class }}">{{ $slider->position->text }}</td>
                             <td>
-                                {!! Form::open(['url' => route('admin.sliders.destroy', ['sliders' => $slider->id]), 'class' => 'form-horizontal', 'method' => 'POST']) !!}
-                                @method('DELETE')
-                                {!! Form::button('Удалить', ['class' => 'btn btn-french-5', 'type' => 'submit']) !!}
-                                {!! Form::close() !!}
+                            {!! Form::open(['url' => route('admin.sliders.destroy', ['sliders' => $slider->id]), 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+                            @method('DELETE')
+                            {!! Form::button('Удалить', ['class' => 'btn btn-french-5', 'type' => 'submit']) !!}
+                            {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach

@@ -25,7 +25,7 @@ class SliderRepository extends Repository
             return ['error' => 'Нет данных'];
         }
 
-        $image = $this->saveImage($request);
+        $image = $this->getImage($request, $data['cutout']);
         if ($image) {
             $data['img'] = $image;
         } else {
@@ -41,7 +41,33 @@ class SliderRepository extends Repository
         }
     }
 
-    public function saveImage($request)
+    public function updateSlider($request, $slider)
+    {
+        if (Gate::denies('update', $slider)) {
+            abort(403);
+        }
+
+        $data = $request->except('_token', 'image');
+        if (empty($data)) {
+            return ['error' => 'Нет данных'];
+        }
+
+        $image = $this->getImage($request, $data['cutout']);
+        if ($image) {
+            $data['img'] = $image;
+        }
+
+        try {
+            if ($slider->update($data)) {
+                return ['status' => 'Слайд обновлен'];
+            }
+            return ['error' => 'Не удалось обновить слайд'];
+        } catch (\Exception $exception) {
+            return ['error' => 'Не удалось обновить слайд'];
+        }
+    }
+
+    public function getImage($request, $cutout = 'center')
     {
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -49,12 +75,26 @@ class SliderRepository extends Repository
             if ($image->isValid()) {
                 $name = str_random(8) . '.jpg';
 
-                Image::make($image)->fit(config('settings.slider_img')['width'], config('settings.slider_img')['height'])
-                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.slider_path') . '/' . $name);
+                Image::make($image)->fit(config('settings.slider_img')['width'], config('settings.slider_img')['height'], function ($constraint) {
+                    $constraint->upsize();
+                }, $cutout)->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.slider_path') . '/' . $name);
 
                 return $name;
             }
         }
         return null;
+    }
+
+    public function deleteSlider($slider)
+    {
+        if (Gate::denies('delete', $slider)) {
+            abort(403);
+        }
+
+        if ($slider->delete()) {
+            return ['status' => 'Слайд удален'];
+        } else {
+            return ['error' => 'Не удалось удалить слайд'];
+        }
     }
 }

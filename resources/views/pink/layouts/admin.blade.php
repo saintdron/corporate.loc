@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset(config('settings.theme')) }}/css/cache-custom.css"/>
     <!-- JQUERY-UI STYLESHEET -->
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset(config('settings.theme')) }}/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+    <!-- CUSTOM STYLESHEET -->
+    <link rel="stylesheet" id="custom-css" href="{{ asset(config('settings.theme')) }}/css/custom.css" type="text/css" media="all"/>
 
     <!-- FONTs -->
     <link rel="stylesheet" id="google-fonts-css"

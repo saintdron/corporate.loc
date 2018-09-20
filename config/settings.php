@@ -18,6 +18,7 @@ return [
     'portfolio_bar_preview_length' => 130,
     'comment_bar_preview_length' => 130,
     'articles_desc_length' => 260,
+    'articles_alias_length' => 50,
 
     'image' => ['width' => 1024, 'height' => 768],
     'articles_img' => [

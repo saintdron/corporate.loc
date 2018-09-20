@@ -14,12 +14,8 @@
                     <span class="sublabel">HTML заголовка слайда</span><br/>
                 </label>
                 <div class="input-prepend">
-                    {{--<textarea name="title" id="title" class='form-control'>--}}
-                    {{--{{ isset($slider->title) ? $slider->title : old('title') }}--}}
                     <input type="text" name="title" id="title" class='form-control'
-                           value="{{ isset($slider->title) ? $slider->title : old('title') }}">
-                    {{--{!! Form::text('title', isset($slider->title) ? $slider->title : old('title'), ['id' => 'title', 'class' => 'form-control']) !!}--}}
-                    {{--</textarea>--}}
+                           value="{{ (isset($slider->title) && !empty($slider->title)) ? $slider->title : (!empty(old('title')) ? old('title') : '<h2 style="color: #fff">WHITE.<br /><span style="color: #b77a2b">BROWN</span></h2>') }}">
                 </div>
                 <div class="msg-error"></div>
             </li>
@@ -35,6 +31,16 @@
                 <div class="msg-error"></div>
             </li>
 
+            <li class="textarea-field">
+                <label>
+                    <span class="label">Позиция:</span><br/>
+                    <span class="sublabel">Расположение текста на слайде</span><br/>
+                </label>
+                <div class="input-prepend">
+                    {!! Form::select('position', $positions, isset($slider->position) ? $slider->position : old('position'), ['id' => 'position', 'class' => 'form-control']) !!}
+                </div>
+                <div class="msg-error"></div>
+            </li>
 
             @if(isset($slider->img))
                 <li class="textarea-field">
@@ -54,6 +60,14 @@
                 <div class="input-prepend">
                     {!! Form::file('image', ['class' => 'filestyle', 'data-text' => 'Выберите изображение', 'data-btnClass' => "btn-primary", 'data-placeholder' => "Файла нет"]) !!}
                 </div>
+            </li>
+
+            <li class="textarea-field">
+                <label>
+                    <span class="label">Обрезка:</span><br/>
+                    <span class="sublabel">Подходящая сторона изображения</span><br/>
+                </label>
+                {!! Form::select('cutout', $cutouts, old('cutout') ?? 'center', ['id' => 'cutout', 'class' => 'form-control']) !!}
             </li>
 
             <li class="submit-button">

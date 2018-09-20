@@ -26,6 +26,14 @@ class SliderRequest extends FormRequest
     {
         return [
             'title' => 'max:255',
+            'desc' => 'sometimes|max:255'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'desc' => '"Описание"'
         ];
     }
 

@@ -146,3 +146,55 @@ Good work... and good luck! :)
     padding-left: 80px;
     line-height: 20px;
 }
+
+td.slider-top-right,
+td.slider-bottom-right {
+    text-align: right;
+}
+
+td.slider-top-left,
+td.slider-bottom-left {
+    text-align: left;
+}
+
+td.slider-top-left,
+td.slider-top-right {
+    vertical-align: top;
+}
+
+td.slider-bottom-left,
+td.slider-bottom-right {
+    vertical-align: bottom;
+}
+
+div.slider-top-left,
+div.slider-top-right,
+div.slider-bottom-left,
+div.slider-bottom-right {
+    position: absolute;
+    width: 550px;
+}
+
+div.slider-top-right,
+div.slider-bottom-right {
+    right: 10px;
+}
+
+div.slider-top-left,
+div.slider-bottom-left {
+    left: 30px;
+}
+
+div.slider-top-left,
+div.slider-top-right {
+    top: 0px;
+}
+
+div.slider-bottom-left,
+div.slider-bottom-right {
+    bottom: 110px;
+}
+
+#slider-cycle.slider_cycle .slide-title h2 span {
+    color: #b77a2b;
+}

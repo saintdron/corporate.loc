@@ -77,7 +77,7 @@ class IndexController extends SiteController
 
     protected function getSlider()
     {
-        $slider = $this->s_rep->get();
+        $slider = $this->s_rep->get(['id', 'img', 'desc', 'title', 'position']);
 
         if ($slider->isEmpty()) {
             return false;
@@ -85,8 +85,31 @@ class IndexController extends SiteController
 
         $slider->transform(function ($item) {
             $item->img = Config::get('settings.slider_path') . '/' . $item->img;
+
+            $obj = new \stdClass();
+            $obj->value = $item->position;
+            switch ($item->position) {
+                case 2:
+                    $obj->text = 'Нижний правый угол';
+                    $obj->class = 'slider-bottom-right';
+                    break;
+                case 3:
+                    $obj->text = 'Нижний левый угол';
+                    $obj->class = 'slider-bottom-left';
+                    break;
+                case 3:
+                    $obj->text = 'Верхний левый угол';
+                    $obj->class = 'slider-top-left';
+                    break;
+                default:
+                    $obj->text = 'Верхний правый угол';
+                    $obj->class = 'slider-top-right';
+            }
+            $item->position = $obj;
+
             return $item;
         });
+
         return $slider;
     }
 

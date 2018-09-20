@@ -50,7 +50,7 @@ class ArticleRepository extends Repository
         } else {
             $data['alias'] = $this->transliterate($data['alias']);
         }
-        $data['alias'] = str_limit($data['alias'], 20);
+        $data['alias'] = chop(substr($data['alias'], 0, config('settings.articles_alias_length')), '-');
 
         if (empty($data['desc'])) {
             $data['desc'] = '<p>' . str_limit(strip_tags($data['text']), config('settings.articles_desc_length')) . '</p>';
@@ -93,6 +93,7 @@ class ArticleRepository extends Repository
         } else {
             $data['alias'] = $this->transliterate($data['alias']);
         }
+        $data['alias'] = chop(substr($data['alias'], 0, config('settings.articles_alias_length')), '-');
 
         if (empty($data['desc'])) {
             $data['desc'] = '<p>' . str_limit(strip_tags($data['text']), config('settings.articles_desc_length')) . '</p>';
@@ -146,12 +147,15 @@ class ArticleRepository extends Repository
                 $obj->max = $str . '_max.jpg';
                 $obj->path = $str . '.jpg';
 
-                Image::make($image)->fit(config('settings.image')['width'], config('settings.image')['height'])
-                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
-                Image::make($image)->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'])
-                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
-                Image::make($image)->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'])
-                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
+                Image::make($image)->fit(config('settings.image')['width'], config('settings.image')['height'], function ($constraint) {
+                    $constraint->upsize();
+                })->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
+                Image::make($image)->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'], function ($constraint) {
+                    $constraint->upsize();
+                })->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
+                Image::make($image)->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'], function ($constraint) {
+                    $constraint->upsize();
+                })->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
 
                 return json_encode($obj);
             }

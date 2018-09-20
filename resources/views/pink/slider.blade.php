@@ -6,20 +6,14 @@
                 <li>
                     <div class="slide-holder" style="height: 483px; background: url('{{ asset(config('settings.theme')) }}/images/{{ $slide->img }}') no-repeat center center;">
                         <div class="slide-content-holder inner" style="height: 483px;">
-                            @if($i % 2 === 1)
-                                <div class="slide-content-holder-content"
-                                     style="position: absolute; top: 80px; left: 500px;">
-                            @else
-                                <div class="slide-content-holder-content"
-                                         style="position: absolute; top: 30px; right: 650px;">
-                            @endif
-                                            <div class="slide-title">
-                                                {!! $slide->title !!}
-                                            </div>
-                                            <div class="slide-content" style="color:#fff">
-                                                <p>{!! $slide->desc !!}</p>
-                                            </div>
+                            <div class="slide-content-holder-content {{ $slide->position->class }}">
+                                <div class="slide-title">
+                                    {!! $slide->title !!}
                                 </div>
+                                <div class="slide-content" style="color:#fff">
+                                    <p>{!! $slide->desc !!}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>

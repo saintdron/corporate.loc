@@ -55,7 +55,7 @@ class AdminController extends Controller
     {
         return Menu::make('adminMenu', function ($menu) {
             if (Gate::allows('view', new Slider())) {
-                $menu->add('Слайд', ['route' => 'admin.sliders.index']);
+                $menu->add('Слайды', ['route' => 'admin.sliders.index']);
             }
             if (Gate::allows('view', new Article())) {
                 $menu->add('Статьи', ['route' => 'admin.articles.index']);

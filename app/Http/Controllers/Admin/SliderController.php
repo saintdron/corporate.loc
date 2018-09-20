@@ -33,9 +33,9 @@ class SliderController extends AdminController
         $this->title = "Управление слайдом";
 
         $sliders = $this->getSliders();
-//        dd($sliders);
+
         $this->content_view = view(config('settings.theme') . '.admin.sliders_content')
-            ->with('sliders', $sliders)
+            ->with(['sliders' => $sliders])
             ->render();
 
         return $this->renderOutput();
@@ -54,7 +54,10 @@ class SliderController extends AdminController
 
         $this->title = "Добавление нового слайда";
 
+        $cutouts = $this->getСuttouts();
+        $positions = $this->getPositions();
         $this->content_view = view(config('settings.theme') . '.admin.sliders_edit_content')
+            ->with(['positions' => $positions, 'cutouts' => $cutouts])
             ->render();
 
         return $this->renderOutput();
@@ -63,7 +66,7 @@ class SliderController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(SliderRequest $request)
@@ -73,13 +76,13 @@ class SliderController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.sliders.index')->with($result);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -90,7 +93,7 @@ class SliderController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Slider $slider)
@@ -101,37 +104,106 @@ class SliderController extends AdminController
 
         $this->title = "Редактирование материала – №" . $slider->id;
 
+        $cutouts = $this->getСuttouts();
+        $positions = $this->getPositions();
         $this->content_view = view(config('settings.theme') . '.admin.sliders_edit_content')
-            ->with('slider', $slider)
+            ->with(['slider' => $slider, 'positions' => $positions, 'cutouts' => $cutouts])
             ->render();
-//        dd($slider);
+
         return $this->renderOutput();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SliderRequest $request, Slider $slider)
     {
-        //
+        $result = $this->s_rep->updateSlider($request, $slider);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect()->route('admin.sliders.index')->with($result);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Slider $slider)
     {
-        //
+        $result = $this->s_rep->deleteSlider($slider);
+
+        if (is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect()->route('admin.sliders.index')->with($result);
     }
 
-    public function getSliders(){
-        return $this->s_rep->get(['id', 'img', 'desc', 'title']);
+
+    protected function getSliders()
+    {
+        $sliders = $this->s_rep->get(['id', 'img', 'desc', 'title', 'position']);
+
+        if ($sliders->isEmpty()) {
+            return false;
+        }
+
+        $sliders->transform(function ($item) {
+            $obj = new \stdClass();
+            $obj->value = $item->position;
+            switch ($item->position) {
+                case 2:
+                    $obj->text = 'Нижний правый угол';
+                    $obj->class = 'slider-bottom-right';
+                    break;
+                case 3:
+                    $obj->text = 'Нижний левый угол';
+                    $obj->class = 'slider-bottom-left';
+                    break;
+                case 4:
+                    $obj->text = 'Верхний левый угол';
+                    $obj->class = 'slider-top-left';
+                    break;
+                case 1:
+                default:
+                    $obj->text = 'Верхний правый угол';
+                    $obj->class = 'slider-top-right';
+            }
+            $item->position = $obj;
+
+            return $item;
+        });
+
+        return $sliders;
+    }
+
+    public function getPositions()
+    {
+        return ['1' => 'Верхний правый угол',
+            '2' => 'Нижний правый угол',
+            '3' => 'Нижний левый угол',
+            '4' => 'Верхний левый угол'
+        ];
+    }
+
+    public function getСuttouts()
+    {
+        return ['top-left' => 'Верхний левый угол',
+            'top' => 'Верх',
+            'top-right' => 'Верхний правый угол',
+            'left' => 'Левая сторона',
+            'center' => 'Центр',
+            'right' => 'Правая сторона',
+            'bottom-left' => 'Нижний левый угол',
+            'bottom' => 'Низ',
+            'bottom-right' => 'Нижний правый угол'
+        ];
     }
 }
