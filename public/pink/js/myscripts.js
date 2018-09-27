@@ -101,10 +101,10 @@ jQuery(document).ready(function ($) {
             data: data,
             datatype: 'text',
             success: function (result) {
-                console.log(result);
+                // console.log(result);
             },
             error: function () {
-                console.log('error');
+                // console.log('error');
             }
         });
     });
