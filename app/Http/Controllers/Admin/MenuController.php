@@ -108,7 +108,7 @@ class MenuController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.menus.index')->with($result);
     }
 
     /**
@@ -210,7 +210,7 @@ class MenuController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.menus.index')->with($result);
     }
 
     /**
@@ -226,7 +226,7 @@ class MenuController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.menus.index')->with($result);
     }
 
     public function getMenus()

@@ -38,7 +38,19 @@ class ArticleRequest extends FormRequest
                 $model = $this->route()->parameter('article');
                 return ($model->alias !== $input->alias) && !empty($input->alias);
             }
+
             return !empty($input->alias);
         });
+
+        $validator->sometimes('image', 'required', function ($input) {
+            return empty($input->old_image);
+        });
+
+/*
+        $validator->after(function ($validator) {
+            if (!$this->route()->hasParameter('image') && !$this->route()->hasParameter('old_image')) {
+                $validator->errors()->add('memu_type', 'Необходимо выбрать изображение.');
+            }
+        });*/
     }
 }

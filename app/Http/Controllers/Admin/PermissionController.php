@@ -67,7 +67,7 @@ class PermissionController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return back()->with($result);
+        return redirect()->route('admin.permissions.index')->with($result);
     }
 
     /**

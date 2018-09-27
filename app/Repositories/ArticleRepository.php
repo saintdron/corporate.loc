@@ -147,15 +147,12 @@ class ArticleRepository extends Repository
                 $obj->max = $str . '_max.jpg';
                 $obj->path = $str . '.jpg';
 
-                Image::make($image)->fit(config('settings.image')['width'], config('settings.image')['height'], function ($constraint) {
-                    $constraint->upsize();
-                })->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
-                Image::make($image)->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'], function ($constraint) {
-                    $constraint->upsize();
-                })->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
-                Image::make($image)->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'], function ($constraint) {
-                    $constraint->upsize();
-                })->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
+                Image::make($image)->fit(config('settings.image')['width'], config('settings.image')['height'])
+                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->path);
+                Image::make($image)->fit(config('settings.articles_img')['max']['width'], config('settings.articles_img')['max']['height'])
+                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->max);
+                Image::make($image)->fit(config('settings.articles_img')['mini']['width'], config('settings.articles_img')['mini']['height'])
+                    ->save(public_path() . '/' . config('settings.theme') . '/images/' . config('settings.articles_path') . '/' . $obj->mini);
 
                 return json_encode($obj);
             }

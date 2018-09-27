@@ -75,7 +75,7 @@ class ArticleController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.articles.index')->with($result);
     }
 
     /**
@@ -127,7 +127,7 @@ class ArticleController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.articles.index')->with($result);
     }
 
     /**
@@ -143,7 +143,22 @@ class ArticleController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect('/admin')->with($result);
+        return redirect()->route('admin.articles.index')->with($result);
+    }
+
+    public function fix(Article $article, Request $request)
+    {
+        if (Gate::denies('update', $article)) {
+            return ['error' => 'Нет прав на редактирование страниц'];
+        }
+
+        $data = $request->only('fixed');
+        $data['fixed'] = ($data['fixed'] === 'true');
+        if ($article->update($data)) {
+            return ['status' => 200];
+        } else {
+            return ['error' => 'Не удалось зафиксировать страницу'];
+        }
     }
 
     public function getArticles()

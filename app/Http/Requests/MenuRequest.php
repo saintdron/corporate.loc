@@ -28,4 +28,25 @@ class MenuRequest extends FormRequest
             'title' => 'required|max:255'
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if (!$this->menuTypeCheck()) {
+                $validator->errors()->add('memu_type', 'Необходимо выбрать тип меню.');
+            }
+        });
+    }
+
+    protected function menuTypeCheck()
+    {
+        if ($this->route()->hasParameter('custom_link')
+            || $this->route()->hasParameter('category_alias')
+            || $this->route()->hasParameter('article_alias')
+            || $this->route()->hasParameter('filter_alias')
+            || $this->route()->hasParameter('portfolio_alias')) {
+            return false;
+        }
+        return true;
+    }
 }

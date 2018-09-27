@@ -1,4 +1,26 @@
 jQuery(document).ready(function ($) {
+    $(".btn-french-5").on('click', function (e) {
+        e.preventDefault();
+        $("#dialog-confirm").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Удалить": function () {
+                    $(this).dialog("close");
+                    $(e.target).trigger("click.confirmed");
+                },
+                "Отмена": function () {
+                    $(this).dialog("close");
+                    $(e.target).trigger('blur');
+                }
+            }
+        });
+        $("#dialog-confirm").dialog("open");
+    });
+
     $('.commentlist li').each(function (i) {
         $(this).find('div.commentNumber').text('#' + (i + 1));
     });
@@ -56,5 +78,34 @@ jQuery(document).ready(function ($) {
                     }
                 });
             }).css('color', 'initial');
+    });
+
+    $('input[name=fixed]').on('change', function (e) {
+        let $label = $(this).closest('label');
+        let data = 'fixed=';
+        if ($(this).is(":checked")) {
+            $label.find('span').text('Открепить');
+            $label.addClass('btn-come-to-me-4').removeClass('btn-clear-3');
+            data += true;
+        } else {
+            $label.find('span').text('Закрепить');
+            $label.addClass('btn-clear-3').removeClass('btn-come-to-me-4');
+            data += false;
+        }
+        $.ajax({
+            url: $(this).attr('data-action'),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            data: data,
+            datatype: 'text',
+            success: function (result) {
+                console.log(result);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
     });
 });

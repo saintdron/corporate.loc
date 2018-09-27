@@ -9,7 +9,7 @@ class Article extends Model
 {
     use DronTrait;
 
-    protected $fillable = ['title', 'img', 'alias', 'text', 'desc', 'keywords', 'meta_desc', 'category_id'];
+    protected $fillable = ['title', 'img', 'alias', 'text', 'desc', 'keywords', 'meta_desc', 'category_id', 'fixed'];
 
     public function user()
     {

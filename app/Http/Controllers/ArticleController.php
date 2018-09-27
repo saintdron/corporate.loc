@@ -56,7 +56,7 @@ class ArticleController extends SiteController
                 ->render();
         } else {
             $content_view = "<p>Указанный материал не найден</p>";
-}
+        }
         $this->vars = array_add($this->vars, 'content_view', $content_view);
 
         $this->formContentRightBar();

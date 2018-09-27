@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8"/>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ $title }}</title>
 
     <!-- [favicon] begin -->
@@ -33,6 +35,8 @@
     <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/myscripts.js"></script>
 </head>
 <!-- END HEAD -->
 

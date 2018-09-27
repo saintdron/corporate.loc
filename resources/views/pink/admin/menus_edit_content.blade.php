@@ -29,7 +29,7 @@
             </li>
         </ul>
 
-        <h1>Тип меню:</h1>
+        <span class="label">Тип меню:</span>
 
         <div id="accordion">
             <h3>{!! Form::radio('type', 'customLink', isset($type) && $type == 'customLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}

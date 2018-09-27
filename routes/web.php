@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::resource('/', 'IndexController', [
     'only' => ['index'],
     'names' => [
@@ -33,7 +32,7 @@ Route::resource('articles', 'ArticleController', [
 ]);
 
 Route::get('articles/cat/{cat_alias?}', ['uses' => 'ArticleController@index', 'as' => 'articlesCat'])
-    ->where('cat_alias', '[\w]+');
+    ->where('cat_alias', '[\w-]+');
 
 Route::resource('comments', 'CommentController', [
     'only' => ['store']
@@ -48,6 +47,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', ['uses' => 'Admin\IndexController@index', 'as' => 'adminIndex']);
 
     Route::resource('articles', 'Admin\ArticleController', ['as' => 'admin']);
+    Route::post('articles/{article}/fix', ['uses' => 'Admin\ArticleController@fix', 'as' => 'articlesFix']);
+
     Route::resource('permissions', 'Admin\PermissionController', ['as' => 'admin']);
     Route::resource('menus', 'Admin\MenuController', ['as' => 'admin']);
     Route::resource('users', 'Admin\UserController', ['as' => 'admin']);
