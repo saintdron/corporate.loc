@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         let $commentForm = $(e.delegateTarget);
         $('.wrap_status').css("border-color", '#b77a2b');
-        $('.status').html('Сохранение комментария...<br>(симуляция, конечно)');
+        $('.status').html('Сохранение комментария...<br>Cимуляция длительного процесса ;)');
         $('.wrap_status')
             .animate({
                 opacity: 1
@@ -74,7 +74,21 @@ jQuery(document).ready(function ($) {
                                                 $('#comments-title').after("<ol class='commentlist group'>" + result.comment + "</ol>");
                                             }
                                             let commentsCount = $('#comments-title span').text();
-                                            $('#comments-title span').text(+commentsCount + 1);
+                                            let commentWord = '';
+                                            commentsCount = +commentsCount + 1;
+                                            switch (commentsCount) {
+                                                case 1:
+                                                    commentWord = 'комментарий';
+                                                    break;
+                                                case 2:
+                                                case 3:
+                                                case 4:
+                                                    commentWord = 'комментария';
+                                                    break;
+                                                default:
+                                                    commentWord = 'комментариев';
+                                            }
+                                            $('#comments-title').html(`<span>${commentsCount}</span> ${commentWord}`);
                                         }
                                         $('#cancel-comment-reply-link').click();
                                         $('#respond input[type="text"], #respond textarea').val('');
@@ -123,5 +137,18 @@ jQuery(document).ready(function ($) {
                 // console.log('error');
             }
         });
+    });
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1500) {
+            $('.scrollup').fadeIn();
+        } else {
+            $('.scrollup').fadeOut();
+        }
+    });
+
+    $('.scrollup').click(function () {
+        $("html, body").animate({scrollTop: 0}, 600);
+        return false;
     });
 });

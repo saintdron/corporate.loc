@@ -292,3 +292,68 @@ a.comment-reply-link {
     display: none;
 }
 
+h3#comments-title {
+    padding-top: 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.socials {
+    margin-bottom: 30px;
+}
+
+.scrollup {
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+    position: fixed;
+    bottom: 60px;
+    right: 35px;
+    display: none;
+    text-indent: -9999px;
+    background: url('../images/icon_top.png') no-repeat;
+}
+
+/*#copyright .inner {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}*/
+
+.recent-post .hentry-post div.text,
+.recent-comments a.title {
+    line-height: 16px;
+}
+
+.recent-post p.post-date {
+    margin-top: 2px;
+}
+
+.sticky {
+    position: sticky;
+    top: 10px;
+}
+
+.content .contact-form {
+    width: 100%;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+}
+
+.bg-shadow {
+    padding-bottom: 5rem;
+}
+
+#copyright {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

@@ -25,6 +25,7 @@ class SiteController extends Controller
     protected $bar = 'no'; // whether the sidebar is enabled
     protected $contentLeftBar = null; // content of the left bar
     protected $contentRightBar = null; // content of the right bar
+    protected $stickyBar = false;
 
     public function __construct(MenuRepository $m_rep)
     {
@@ -40,13 +41,13 @@ class SiteController extends Controller
 
         if ($this->contentRightBar) {
             $rightBar_view = view(config('settings.theme') . '.rightBar')
-                ->with('content_rightBar', $this->contentRightBar)
+                ->with(['content_rightBar' => $this->contentRightBar, 'sticky' => $this->stickyBar])
                 ->render();
             $this->vars = array_add($this->vars, 'rightBar_view', $rightBar_view);
         }
         if ($this->contentLeftBar) {
             $leftBar_view = view(config('settings.theme') . '.leftBar')
-                ->with('content_leftBar', $this->contentLeftBar)
+                ->with(['content_leftBar' => $this->contentLeftBar, 'sticky' => $this->stickyBar])
                 ->render();
             $this->vars = array_add($this->vars, 'leftBar_view', $leftBar_view);
         }

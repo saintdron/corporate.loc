@@ -163,8 +163,8 @@
         <!-- START PORTFOLIO META -->
         <div id="page-meta">
             <div class="inner group">
-                <h3>Welcome to my portfolio page</h3>
-                <h4>... i hope you enjoy my works</h4>
+                <h3>Добро пожаловать на страничку портфолио</h3>
+                <h4>...и я надеюсь, что вам понравятся мои работы</h4>
             </div>
         </div>
         <!-- END PORTFOLIO META -->
@@ -174,8 +174,8 @@
         <!-- START CONTACTS META -->
         <div id="page-meta">
             <div class="inner group">
-                <h3>...Say Hello! :)</h3>
-                <h4>Get in touch with Pink Rio team</h4>
+                <h3>...Скажи ПРИВЕТ! :)</h3>
+                <h4>Свяжитесь с разработчиками сайта</h4>
             </div>
         </div>
         <!-- END CONTACTS META -->
@@ -203,6 +203,9 @@
     <!-- END WRAPPER -->
 </div>
 <!-- END BG SHADOW -->
+
+{{--Стрелка вверх--}}
+<a href="#" class="scrollup">Наверх</a>
 
 <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/jquery.custom.js"></script>
 <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/contact.js"></script>

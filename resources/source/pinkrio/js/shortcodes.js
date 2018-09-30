@@ -1,4 +1,4 @@
-/* JS for Shortcode */
+// JS for Shortcode
 (function($){
 
 $(document).ready(function(){

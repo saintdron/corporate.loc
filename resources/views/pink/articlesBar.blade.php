@@ -1,12 +1,13 @@
-@if(isset($portfolios) && !$portfolios->isEmpty())
+@if($portfolios && !$portfolios->isEmpty())
     <div class="widget-first widget recent-posts">
         <h3>{{ trans('custom.recent_posts') }}</h3>
         <div class="recent-post group">
             @foreach($portfolios as $portfolio)
                 <div class="hentry-post group">
-                    <div class="thumb-img"><img style="width: 55px"
-                                                src="{{ asset(config('settings.theme')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->mini }}"
-                                                alt="{{ $portfolio->title }}" title="{{ $portfolio->title }}"/></div>
+                    <div class="thumb-img">
+                        <img style="width: 55px"
+                             src="{{ asset(config('settings.theme')) }}/images/{{ config('settings.portfolios_path') }}/{{ $portfolio->img->mini }}"
+                             alt="{{ $portfolio->title }}" title="{{ $portfolio->title }}"/></div>
                     <div class="text">
                         <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}"
                            title="{{ $portfolio->title }}" class="title">{{ $portfolio->title }}</a>
@@ -19,7 +20,7 @@
     </div>
 @endif
 
-@if(isset($comments) && !$comments->isEmpty())
+@if($comments && !$comments->isEmpty())
     <div class="widget-last widget recent-comments">
         <h3>{{ trans('custom.recent_comments') }}</h3>
         <div class="recent-post recent-comments group">
@@ -29,7 +30,7 @@
                         @set($hash, ($comment->email) ? md5($comment->email) : (($comment->user) ? md5($comment->user->email) : ''))
                         <img alt="{{ $comment->name }}" src="https://www.gravatar.com/avatar/{{ $hash }}?d=mp&s=55"/>
                     </div>
-                    <span class="author"><strong><a href="#">{{ ($comment->name) ? $comment->name : (($comment->user && $comment->user->name) ? $comment->user->name : 'Anonymous') }}</a></strong> in</span>
+                    <span class="author"><strong><a>{{ ($comment->name) ? $comment->name : (($comment->user && $comment->user->name) ? $comment->user->name : 'Аноним') }}</a></strong> в</span>
                     <a class="title" href="{{ route('articles.show', ['alias' => $comment->article->alias]) }}">{{ $comment->article->title }}</a>
                     <p class="comment">
                         {{ str_limit($comment->text, config('settings.comment_bar_preview_length')) }}

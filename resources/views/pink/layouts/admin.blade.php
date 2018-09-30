@@ -127,14 +127,15 @@
             </div>
         </div>
         <!-- END PRIMARY -->
-
-        <!-- START COPYRIGHT -->
-        @yield('footer')
-        <!-- END COPYRIGHT -->
     </div>
     <!-- END WRAPPER -->
 </div>
 <!-- END BG SHADOW -->
+
+<!-- START COPYRIGHT -->
+@yield('footer')
+<!-- END COPYRIGHT -->
+
 </body>
 <!-- END BODY -->
 </html>

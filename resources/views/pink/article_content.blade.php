@@ -28,7 +28,7 @@
                 </p>
                 <p class="comments">
                     <span><a href="#comments"
-                             title="Comment on {{ $article->title }}">{{ count($article->comments) }}
+                             title="Комментарии к {{ str_limit($article->title, 50) }}">{{ count($article->comments) }}
                             {{ Lang::choice('custom.comments', count($article->comments)) }}</a></span>
                 </p>
             </div>

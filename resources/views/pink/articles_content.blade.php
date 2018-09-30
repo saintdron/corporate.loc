@@ -21,22 +21,18 @@
                 <!-- post meta -->
                 <div class="meta group">
                     <p class="author">
-                        <span>by <a href="#" title="Posts by {{ $article->user->name }}"
-                                    rel="author">{{ $article->user->name }}</a>
-                        </span>
+                        <span>Автор: <a rel="author">{{ $article->user->name }}</a></span>
                     </p>
                     <p class="categories">
-                        <span>In: <a href="{{ route('articlesCat', ['cat_alias' => $article->category->alias]) }}"
-                                     title="View all posts in {{ $article->category->title }}"
-                                     rel="category tag">{{ $article->category->title }}</a>
-                        </span>
+                    <span>Рубрика: <a
+                                href="{{ route('articlesCat', $article->category->alias) }}"
+                                title="Читайте все новости в {{ $article->category->title }}"
+                                rel="category tag">{{ $article->category->title }}</a></span>
                     </p>
                     <p class="comments">
-                        <span><a href="{{ route('articles.show', ['alias' => $article->alias]) }}#respond"
-                                 title="Comment on Section shortcodes &amp; sticky posts!">
-                                {{ ($article->comments) ? count($article->comments) : 0 }}
-                                {{ Lang::choice('custom.comments', count($article->comments)) }}</a>
-                        </span>
+                    <span><a href="#comments"
+                             title="Комментарии к {{ str_limit($article->title, 50) }}">{{ count($article->comments) }}
+                            {{ Lang::choice('custom.comments', count($article->comments)) }}</a></span>
                     </p>
                 </div>
                 <!-- post content -->

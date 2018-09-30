@@ -50,6 +50,7 @@ class ArticleController extends SiteController
             $this->title = $article->title;
             $this->keywords = $article->keywords;
             $this->meta_desc = $article->meta_desc;
+            $this->stickyBar = true;
 
             $content_view = view(config('settings.theme') . '.article_content')
                 ->with('article', $article)

@@ -1,24 +1,27 @@
 <div class="widget-first widget contact-info">
-    <h3>Contacts</h3>
+    <h3>Контактная информация</h3>
     <div class="sidebar-nav">
         <ul>
             <li>
-                <i class="icon-map-marker" style="color:#979797; font-size:20px"></i> Location: PinkRio, 115  Avenue street - Italy
+                <i class="icon-map-marker" style="color:#979797; font-size:20px"></i> г. Киев, ул. А.Малышка, 21
             </li>
             <li>
-                <i class="icon-info-sign" style="color:#979797; font-size:20px"></i> Phone: 3471717174
+                <i class="icon-info-sign" style="color:#979797; font-size:20px"></i> Телефон: +38 095 222-18-03
             </li>
             <li>
-                <i class="icon-print" style="color:#979797; font-size:20px"></i> Fax: +39 0035 356 765
+                <i class="icon-print" style="color:#979797; font-size:20px"></i> Факс: +38 095 222-18-04
             </li>
             <li>
-                <i class="icon-envelope" style="color:#979797; font-size:20px"></i> Email: pinkrio@yit.com
+                <i class="icon-envelope" style="color:#979797; font-size:20px"></i> E-mail: saintdron@bigmir.net
             </li>
         </ul>
     </div>
 </div>
 <div class="widget-last widget text-image">
-    <h3>Customer Support</h3>
-    <div class="text-image" style="text-align:left"><img src="{{ asset(config('settings.theme')) }}/images/callus.gif" alt="Customer Support" /></div>
-    <p>Nunc sit amet pretium purus. Pellet netus et malesuada fames ac turpis egestas.entesque habitant morbi tristique senectus </p>
+    <h3>Служба поддержки</h3>
+    <div class="text-image" style="text-align:left">
+        <img src="{{ asset(config('settings.theme')) }}/images/callus.png"
+             alt="Служба поддержки"/>
+    </div>
+    <p>Контактная информация выдуманная, а вот сообщения отправляются на действующий адрес.</p>
 </div>

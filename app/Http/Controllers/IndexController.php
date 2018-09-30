@@ -189,8 +189,17 @@ class IndexController extends SiteController
 
     protected function formContentRightBar()
     {
-        $articles = $this->getArticles(config('settings.home_articles_count'));
+        $fixed = $this->a_rep->get(['title', 'img', 'created_at', 'alias'], config('settings.home_articles_count'), false, ['fixed', 1]);
+        $restCount = config('settings.home_articles_count') - count($fixed);
+        if ($restCount) {
+            $restArticles = $this->a_rep->get(['title', 'img', 'created_at', 'alias'], $restCount, false, ['fixed', 0]);
+            $articles = $fixed->concat($restArticles);
+        } else {
+            $articles = $fixed;
+        }
+
         $comments = $this->getComments(config('settings.recent_comments'));
+
         $this->contentRightBar = view(config('settings.theme') . '.indexBar')
             ->with(['comments' => $comments, 'articles' => $articles])
             ->render();
