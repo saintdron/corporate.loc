@@ -154,7 +154,9 @@
         <!-- END SLIDER -->
 
         <!-- START STASUS -->
-        <div class="wrap_status"></div>
+        <div class="wrap_status">
+            <div class="status"></div>
+        </div>
         <!-- END STASUS -->
 
         @if(Route::currentRouteName() === 'portfolios.index')

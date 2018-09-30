@@ -1,4 +1,4 @@
-/* JS for Shortcode */
+slider-cycle/* JS for Shortcode */
 (function ($) {
 
     $(document).ready(function () {
@@ -181,4 +181,4 @@
             });
         });
     }
-})(jQuery);     
+})(jQuery);

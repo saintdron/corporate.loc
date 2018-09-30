@@ -22,18 +22,26 @@ Good work... and good luck! :)
 ********************************************/
 
 .wrap_status {
-    background-color: #f0f2f0;
-    border: 2px solid #2c8db8;
-    border-radius: 10px;
-    padding: 20px;
+    background-color: #FFF4E5;
+    border: 1px solid #b77a2b;
+    border-radius: 7px;
     position: fixed;
-    left: 35%;
-    top: 45%;
-    width: 300px;
-    height: 80px;
-    text-align: center;
+    left: 30%;
+    top: 3%;
+    width: 40%;
+    min-height: 80px;
     display: none;
     z-index: 5005;
+    display: flex;
+    opacity: 0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.wrap_status .status {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 15px;
 }
 
 .borGreen {
@@ -222,3 +230,65 @@ div.slider-bottom-right {
 #dialog-confirm img {
     margin-right: 7px;
 }
+
+.blog-big .meta a, .blog-small .meta a {
+    color: #b77a2b;
+}
+
+.tags {
+    margin-top: 20px;
+}
+
+.socials {
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+#comments .fn {
+    line-height: 15px;
+    margin-top: 3px;
+}
+
+.comment-container {
+    position: relative;
+}
+
+a.comment-reply-link {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+
+.commentDate {
+    font-style: italic;
+}
+
+#reply-title {
+    margin-bottom: 0;
+}
+
+[class^="comment-form-"],
+#respond p.form-submit {
+    margin-top: 0;
+}
+
+#respond p.form-submit {
+    margin-bottom: 40px;
+}
+
+#cancel-comment-reply-link .icon-remove-sign {
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 27px;
+    width: auto;
+}
+
+#cancel-comment-reply-link .icon-remove-sign:hover {
+    color: black;
+}
+
+.commentNumber {
+    display: none;
+}
+

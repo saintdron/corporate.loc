@@ -3,12 +3,12 @@
         <div class="comment-author vcard">
             <img alt="{{ $data['name'] }}" src="https://www.gravatar.com/avatar/{{ $data['hash'] }}?d=mp&s=75"
                  class="avatar" height="75" width="75"/>
-            <cite class="fn">{{ $data['name'] }}</cite>
+            <a class="fn">{{ $data['name'] }}</a>
         </div>
         <div class="comment-meta commentmetadata">
             <div class="intro">
                 <div class="commentDate">
-                    <a href="#">{{ $data['date'] }}</a>
+                    <span>{{ $data['date'] }}</span>
                 </div>
                 <div class="commentNumber">#&nbsp;</div>
             </div>

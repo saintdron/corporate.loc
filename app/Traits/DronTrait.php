@@ -20,7 +20,7 @@ trait DronTrait
     public function strExplode($str)
     {
         if (isset($str) && !empty($str)) {
-            $array = preg_split('/[\s,]+/', $str, -1, PREG_SPLIT_NO_EMPTY);
+            $array = preg_split('/\s?,\s?/', $str, -1, PREG_SPLIT_NO_EMPTY);
             $array = array_map(function ($item) {
                 return trim($item);
             }, $array);

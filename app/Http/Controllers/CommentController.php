@@ -46,6 +46,9 @@ class CommentController extends Controller
         $validator = Validator::make($data, [
             'article_id' => 'integer|required',
             'text' => 'required'
+        ])->setAttributeNames([
+            'email' => '"E-mail"',
+            'text' => '"Ваш комментарий"'
         ]);
         $validator->sometimes('name', 'required|max:255', function ($input) {
             return !Auth::check();

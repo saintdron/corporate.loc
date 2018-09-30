@@ -46,7 +46,7 @@
                 </table>
 
                 {{--Модальное окно удаления--}}
-                <div id="dialog-confirm" title="Удаление материала">
+                <div id="dialog-confirm" title="Удаление материала" style="display: none;">
                     <p><img src="{{ asset(config('settings.theme')) }}/images/icons/set_icons/info32.png" alt="info" class="icon">Вы уверены, что хотите удалить эту статью?</p>
                 </div>
             </div>

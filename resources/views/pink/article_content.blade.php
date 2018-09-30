@@ -18,13 +18,12 @@
             <!-- post meta -->
             <div class="meta group">
                 <p class="author">
-                    <span>by <a href="#" title="Posts by {{ $article->user->name }}"
-                                rel="author">{{ $article->user->name }}</a></span>
+                    <span>Автор: <a rel="author">{{ $article->user->name }}</a></span>
                 </p>
                 <p class="categories">
-                    <span>In: <a
+                    <span>Рубрика: <a
                                 href="{{ route('articlesCat', $article->category->alias) }}"
-                                title="View all posts in {{ $article->category->title }}"
+                                title="Читайте все новости в {{ $article->category->title }}"
                                 rel="category tag">{{ $article->category->title }}</a></span>
                 </p>
                 <p class="comments">
@@ -36,6 +35,11 @@
             <!-- post content -->
             <div class="the-content single group">
                 <p>{!! $article->text !!}</p>
+                @if($article->keywords)
+                    <p class="tags">Теги:
+                        @foreach($article->strExplode($article->keywords) as $i => $keyword){{ ($i !== 0) ? ', ' : '' }}<span style="font-weight: bold;" rel="tag">{{ $keyword }}</span>@endforeach
+                    </p>
+                @endif
                 <div class="socials">
                     <h2>Поделитесь этим с друзьями:</h2>
                     <a href="https://www.facebook.com/sharer.html?u=http%3A%2F%2Fyourinspirationtheme.com%2Fdemo%2Fpinkrio%2F2012%2F09%2F24%2Fthis-is-the-title-of-the-first-article-enjoy-it%2F&amp;t=This+is+the+title+of+the+first+article.+Enjoy+it."
@@ -49,13 +53,8 @@
                     <a href="http://yourinspirationtheme.com/demo/pinkrio/2012/09/24/this-is-the-title-of-the-first-article-enjoy-it/"
                        class="socials-small bookmark-small" title="This is the title of the first article. Enjoy it.">bookmark</a>
                 </div>
+                <div class="clear"></div>
             </div>
-            @if($article->keywords)
-            <p class="tags">Теги:
-                @foreach($article->strExplode($article->keywords) as $i => $keyword){{ ($i !== 0) ? ', ' : '' }}<a rel="tag">{{ $keyword }}</a>@endforeach
-            </p>
-            @endif
-            <div class="clear"></div>
         </div>
         <!-- START COMMENTS -->
         <div id="comments">
@@ -74,43 +73,36 @@
                 </ol>
             @endif
 
-            <!-- START TRACKBACK & PINGBACK -->
-            <h2 id="trackbacks">Trackbacks and pingbacks</h2>
-            <ol class="trackbacklist"></ol>
-            <p><em>No trackback or pingback available for this article.</em></p>
-
-            <!-- END TRACKBACK & PINGBACK -->
             <div id="respond">
-                <h3 id="reply-title">Leave a <span>Reply</span>
-                    <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel
-                            reply</a></small>
+                <h3 id="reply-title">Оставьте свой комментарий
+                    <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;"><span class="icon-remove-sign">&nbsp;Отменить</span></a></small>
                 </h3>
                 <form action="{{ route('comments.store') }}" method="post" id="commentform">
                     @csrf
                     @if(!Auth::check())
                         <p class="comment-form-author">
-                            <label for="name">Name</label>
+                            <label for="name">Имя</label>
                             <input id="name" name="name" type="text" value="" size="30" aria-required="true"/>
                         </p>
                         <p class="comment-form-email">
-                            <label for="email">Email</label>
+                            <label for="email">E-mail</label>
                             <input id="email" name="email" type="text" value="" size="30" aria-required="true"/>
                         </p>
                         <p class="comment-form-url">
-                            <label for="site">Website</label>
+                            <label for="site">Сайт</label>
                             <input id="site" name="site" type="text" value="" size="30"/>
                         </p>
                     @endif
 
                     <p class="comment-form-comment">
-                        <label for="text">Your comment</label>
+                        <label for="text">Ваш&nbsp;комментарий</label>
                         <textarea id="text" name="text" cols="45" rows="8"></textarea>
                     </p>
                     <div class="clear"></div>
                     <p class="form-submit">
                         <input type="hidden" id="comment_post_ID" name="comment_post_ID" value="{{ $article->id }}">
                         <input type="hidden" id="comment_parent" name="comment_parent" value="0">
-                        <input name="submit" type="submit" id="submit" value="Post Comment"/>
+                        <input name="submit" type="submit" id="submit" value="Отправить"/>
                     </p>
                 </form>
             </div>

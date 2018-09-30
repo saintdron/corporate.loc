@@ -6,15 +6,15 @@
                 @set($hash, isset($item->email) ? md5($item->email) : md5($item->user->email))
                 <img alt="{{ ($item->name) ? $item->name : (($item->user->name) ? $item->user->name : 'Anonymous') }}"
                      src="https://www.gravatar.com/avatar/{{ $hash }}?d=mp&s=75" class="avatar" height="75" width="75"/>
-                <cite class="fn">{{ ($item->name) ? $item->name : (($item->user->name) ? $item->user->name : 'Anonymous') }}</cite>
+                <a class="fn">{{ ($item->name) ? $item->name : (($item->user->name) ? $item->user->name : 'Аноним') }}</a>
             </div>
             <!-- .comment-author .vcard -->
             <div class="comment-meta commentmetadata">
                 <div class="intro">
                     <div class="commentDate">
-                        <a href="#">
+                        <span>
                             {{ $item->formatCreatedAtDate('%B %d, %Y'). ' в '. $item->formatCreatedAtDate('%R') }}
-                        </a>
+                        </span>
                     </div>
                     <div class="commentNumber">#&nbsp;</div>
                 </div>

@@ -1,4 +1,4 @@
-@if($portfolios && !$portfolios->isEmpty())
+@if(isset($portfolios) && !$portfolios->isEmpty())
     <div class="widget-first widget recent-posts">
         <h3>{{ trans('custom.recent_posts') }}</h3>
         <div class="recent-post group">
@@ -19,7 +19,7 @@
     </div>
 @endif
 
-@if($comments && !$comments->isEmpty())
+@if(isset($comments) && !$comments->isEmpty())
     <div class="widget-last widget recent-comments">
         <h3>{{ trans('custom.recent_comments') }}</h3>
         <div class="recent-post recent-comments group">
