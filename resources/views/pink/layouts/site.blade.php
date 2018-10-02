@@ -97,7 +97,7 @@
     <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/jquery.colorbox-min.js"></script> <!-- nav -->
     <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/jquery.tweetable.js"></script>
 
-    <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/myscripts.js"></script>
+    <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/my_site_scripts.js"></script>
 
 </head>
 <!-- END HEAD -->

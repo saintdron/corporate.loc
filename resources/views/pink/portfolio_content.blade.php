@@ -19,16 +19,18 @@
                             <div class="clear"></div>
                             <div class="work-skillsdate">
                                 <p class="skills">
-                                    <span class="label">Filter: </span>{{ $portfolio->filter->title }}
+                                    <span class="label">Раздел: </span>{{ $portfolio->filter->title }}
                                 </p>
                                 @if($portfolio->customer)
                                     <p class="workdate">
-                                        <span class="label">Customer: </span>{{ $portfolio->customer }}
+                                        <span class="label">Заказчик: </span>{{ $portfolio->customer }}
                                     </p>
                                 @endif
+                                @if($portfolio->date)
                                 <p class="workdate">
-                                    <span class="label">Date: </span>{{ $portfolio->formatCreatedAtDate('%B %Y') }}
+                                    <span class="label">Дата: </span>{{ $portfolio->date }}
                                 </p>
+                                @endif
                             </div>
                         </div>
                         <div class="clear"></div>

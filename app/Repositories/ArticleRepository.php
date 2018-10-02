@@ -125,7 +125,7 @@ class ArticleRepository extends Repository
         if ($article->update()) {
             return ['status' => 'Материал обновлен'];
         } else {
-            return ['error' => 'Не удалось сохранить материал'];
+            return ['error' => 'Не удалось обновить материал'];
         }
     }
 

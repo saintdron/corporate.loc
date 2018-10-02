@@ -5,7 +5,7 @@ namespace Corp\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class ArticleRequest extends FormRequest
+class PortfolioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo(['CREATE_ARTICLES', 'UPDATE_ARTICLES']);
+        return Auth::user()->canDo(['CREATE_PORTFOLIOS', 'UPDATE_PORTFOLIOS']);
     }
 
     /**
@@ -27,15 +27,16 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'text' => 'required',
-            'category_id' => 'required|integer'
+            'filter_alias' => 'required|string',
+            'date' => 'required|string'
         ];
     }
 
     public function withValidator($validator)
     {
-        $validator->sometimes('alias', 'unique:articles|max:255', function ($input) {
-            if ($this->route()->hasParameter('article')) {
-                $model = $this->route()->parameter('article');
+        $validator->sometimes('alias', 'unique:portfolios|max:255', function ($input) {
+            if ($this->route()->hasParameter('portfolio')) {
+                $model = $this->route()->parameter('portfolio');
                 return ($model->alias !== $input->alias) && !empty($input->alias);
             }
             return !empty($input->alias);
@@ -44,12 +45,5 @@ class ArticleRequest extends FormRequest
         $validator->sometimes('image', 'required', function ($input) {
             return empty($input->old_image);
         });
-
-/*
-        $validator->after(function ($validator) {
-            if (!$this->route()->hasParameter('image') && !$this->route()->hasParameter('old_image')) {
-                $validator->errors()->add('memu_type', 'Необходимо выбрать изображение.');
-            }
-        });*/
     }
 }

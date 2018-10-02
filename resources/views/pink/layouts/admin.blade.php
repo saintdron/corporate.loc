@@ -42,7 +42,7 @@
     <script type="text/javascript"
             src="{{ asset(config('settings.theme')) }}/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 
-    <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/myscripts.js"></script>
+    <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/my_admin_scripts.js"></script>
 </head>
 <!-- END HEAD -->
 

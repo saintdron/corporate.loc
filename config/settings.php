@@ -22,11 +22,17 @@ return [
     'comment_bar_preview_length' => 130,
     'articles_desc_length' => 260,
     'articles_alias_length' => 50,
+    'portfolios_alias_length' => 50,
 
     'image' => ['width' => 1024, 'height' => 768],
     'articles_img' => [
         'max' => ['width' => 816, 'height' => 282],
         'mini' => ['width' => 55, 'height' => 55]
+    ],
+
+    'portfolios_img' => [
+        'max' => ['width' => 770, 'height' => 368],
+        'mini' => ['width' => 175, 'height' => 175]
     ],
 
     'slider_img' => ['width' => 1920, 'height' => 483],

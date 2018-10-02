@@ -52,11 +52,11 @@ class PortfolioController extends SiteController
 
     protected function getPortfolios($take = false, $pagination = false)
     {
-        return $this->p_rep->get(['title', 'text', 'alias', 'customer', 'img', 'filter_alias', 'created_at'], $take, $pagination);
+        return $this->p_rep->get(['title', 'text', 'alias', 'customer', 'img', 'date', 'filter_alias', 'created_at'], $take, $pagination);
     }
 
     protected function getPortfolio($alias)
     {
-        return $this->p_rep->one($alias, ['title', 'text', 'alias', 'customer', 'img', 'filter_alias', 'created_at']);
+        return $this->p_rep->one($alias, ['title', 'text', 'alias', 'customer', 'img', 'date', 'filter_alias', 'created_at']);
     }
 }

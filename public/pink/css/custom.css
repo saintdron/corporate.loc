@@ -396,3 +396,17 @@ p.author {
     right: 0px;
     z-index: 100000;
 }
+
+.work-description a,
+.related_project a {
+    color: #b77a2b;
+}
+
+.work-description a:hover,
+.related_project a:hover {
+    color: #030303;
+}
+
+.work-description div.work-skillsdate {
+    padding-bottom: 10px;
+}
