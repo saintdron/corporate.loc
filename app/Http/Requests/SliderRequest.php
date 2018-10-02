@@ -14,7 +14,7 @@ class SliderRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo('EDIT_SLIDERS');
+        return Auth::user()->canDo(['CREATE_SLIDERS', 'UPDATE_SLIDERS']);
     }
 
     /**

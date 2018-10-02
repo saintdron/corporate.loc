@@ -27,7 +27,9 @@ class SliderController extends AdminController
     public function index()
     {
         if (Gate::denies('view', new Slider())) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.VIEW_ADMIN_SLIDERS';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $this->title = "Управление слайдом";
@@ -48,9 +50,9 @@ class SliderController extends AdminController
      */
     public function create()
     {
-        if (Gate::denies('create', new Slider())) {
+/*        if (Gate::denies('create', new Slider())) {
             abort(403);
-        }
+        }*/
 
         $this->title = "Добавление нового слайда";
 
@@ -98,9 +100,9 @@ class SliderController extends AdminController
      */
     public function edit(Slider $slider)
     {
-        if (Gate::denies('update', $slider)) {
+   /*     if (Gate::denies('update', $slider)) {
             abort(403);
-        }
+        }*/
 
         $this->title = "Редактирование материала – №" . $slider->id;
 

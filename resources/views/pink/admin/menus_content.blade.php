@@ -6,7 +6,7 @@
                 <thead>
                     <th>Название</th>
                     <th>Ссылка</th>
-                    <th>Удалить</th>
+                    <th>Действие</th>
                 </thead>
                 <tbody>
                 @if($menus)

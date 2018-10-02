@@ -15,7 +15,9 @@ class MenuRepository extends Repository
     public function addMenu($request)
     {
         if (Gate::denies('create', $this->model)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.CREATE_' . strtoupper(class_basename($this->model)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->only('type', 'title', 'parent_id');
@@ -65,7 +67,9 @@ class MenuRepository extends Repository
     public function updateMenu($request, $menu)
     {
         if (Gate::denies('update', $menu)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.UPDATE_' . strtoupper(class_basename($menu)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->only('type', 'title', 'parent_id');
@@ -115,7 +119,9 @@ class MenuRepository extends Repository
     public function deleteMenu($menu)
     {
         if (Gate::denies('delete', $menu)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.DELETE_' . strtoupper(class_basename($menu)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         if ($menu->delete()) {

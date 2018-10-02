@@ -36,9 +36,9 @@ class IndexController extends SiteController
      */
     public function index()
     {
-        $this->title = 'Главная';
-        $this->keywords = 'Главная';
-        $this->meta_desc = 'Главная';
+        $this->title = 'Tproger';
+        $this->keywords = 'Tproger';
+        $this->meta_desc = 'Tproger';
 
         $slider_view = view(config('settings.theme') . '.slider')
             ->with('slider', $this->getSlider())

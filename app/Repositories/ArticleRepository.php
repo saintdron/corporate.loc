@@ -4,6 +4,7 @@ namespace Corp\Repositories;
 
 use Corp\Article;
 use Corp\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Intervention\Image\Facades\Image;
 
@@ -36,7 +37,9 @@ class ArticleRepository extends Repository
     public function addArticle(ArticleRequest $request)
     {
         if (Gate::denies('create', $this->model)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.CREATE_' . strtoupper(class_basename($this->model)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->except('_token', 'image');
@@ -78,8 +81,14 @@ class ArticleRepository extends Repository
 
     public function updateArticle(ArticleRequest $request, Article $article)
     {
-        if (Gate::denies('update', $article)) {
-            abort(403);
+        if (Gate::denies('update', $this->model)) {
+//            abort(403);
+            $key = 'custom.UPDATE_' . strtoupper(class_basename($this->model)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
+        }
+
+        if (Auth::user()->id !== $article->user_id && Auth::user()->roles()->first()->name === 'Guest') {
+            return ['error' => 'Вы не можете редактировать чужие статьи'];
         }
 
         $data = $request->except('_token', 'image', '_method');
@@ -123,7 +132,13 @@ class ArticleRepository extends Repository
     public function deleteArticle(Article $article)
     {
         if (Gate::denies('delete', $article)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.DELETE_' . strtoupper(class_basename($article)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
+        }
+
+        if (Auth::user()->id !== $article->user_id && Auth::user()->roles()->first()->name === 'Guest') {
+            return ['error' => 'Вы не можете удалять чужие статьи'];
         }
 
         $article->comments()->delete();

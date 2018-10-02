@@ -28,7 +28,9 @@ class ArticleController extends AdminController
     public function index()
     {
         if (Gate::denies('view', new Article())) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.VIEW_ADMIN_ARTICLES';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $this->title = "Управление статьями";
@@ -48,9 +50,11 @@ class ArticleController extends AdminController
      */
     public function create()
     {
-        if (Gate::denies('create', new Article())) {
-            abort(403);
-        }
+/*        if (Gate::denies('create', new Article())) {
+//            abort(403);
+            $key = 'custom.CREATE_ARTICLES';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
+        }*/
 
         $this->title = "Добавление нового материала";
 
@@ -97,9 +101,9 @@ class ArticleController extends AdminController
      */
     public function edit(Article $article)
     {
-        if (Gate::denies('update', $article)) {
+/*        if (Gate::denies('update', $article)) {
             abort(403);
-        }
+        }*/
 
         $this->title = "Редактирование материала – " . $article->title;
 
@@ -149,14 +153,14 @@ class ArticleController extends AdminController
     public function fix(Article $article, Request $request)
     {
         if (Gate::denies('update', $article)) {
-            return ['error' => 'Нет прав на редактирование страниц'];
+//            abort(403);
+            $key = 'custom.UPDATE_' . strtoupper(class_basename($article)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->only('fixed');
         $data['fixed'] = ($data['fixed'] === 'true');
-        if ($article->update($data)) {
-            return ['status' => 200];
-        } else {
+        if (!$article->update($data)) {
             return ['error' => 'Не удалось зафиксировать страницу'];
         }
     }

@@ -27,7 +27,9 @@ class UserController extends AdminController
     public function index()
     {
         if (Gate::denies('view', new User())) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.VIEW_ADMIN_USERS';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $this->title = "Управление пользователями";
@@ -47,15 +49,13 @@ class UserController extends AdminController
      */
     public function create()
     {
-        if (Gate::denies('create', new User())) {
+/*        if (Gate::denies('create', new User())) {
             abort(403);
-        }
+        }*/
 
         $this->title = "Создание нового пользователя";
 
-        $roles = $this->getRoles()->reduce(function ($carry, $item) {
-            return array_add($carry, $item->id, $item->name);
-        }, []);
+        $roles = $this->getRoles();
         $this->content_view = view(config('settings.theme') . '.admin.users_edit_content')
             ->with('roles', $roles)
             ->render();
@@ -98,15 +98,13 @@ class UserController extends AdminController
      */
     public function edit(User $user)
     {
-        if (Gate::denies('update', $user)) {
+/*        if (Gate::denies('update', $user)) {
             abort(403);
-        }
+        }*/
 
         $this->title = "Редактирование пользователя – " . $user->title;
 
-        $roles = $this->getRoles()->reduce(function ($carry, $item) {
-            return array_add($carry, $item->id, $item->name);
-        }, []);
+        $roles = $this->getRoles();
 
         $this->content_view = view(config('settings.theme') . '.admin.users_edit_content')
             ->with(['roles' => $roles, 'user' => $user])
@@ -155,6 +153,15 @@ class UserController extends AdminController
 
     public function getRoles()
     {
-        return $this->rol_rep->get(['id', 'name']);
+        $currentRoleId = \Auth::user()->roles->sortBy('id')->values()->first()->id;
+        $rolesAll = $this->rol_rep->get(['id', 'name']);
+        $roles = $rolesAll->reduce(function ($carry, $item) use ($currentRoleId) {
+            if ($item->id >= $currentRoleId) {
+                return array_add($carry, $item->id, $item->name);
+            } else {
+                return $carry;
+            }
+        }, []);
+        return $roles;
     }
 }

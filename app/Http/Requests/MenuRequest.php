@@ -14,7 +14,7 @@ class MenuRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo('EDIT_MENU');
+        return Auth::user()->canDo(['CREATE_MENUS', 'UPDATE_MENUS']);
     }
 
     /**
@@ -40,13 +40,10 @@ class MenuRequest extends FormRequest
 
     protected function menuTypeCheck()
     {
-        if ($this->route()->hasParameter('custom_link')
-            || $this->route()->hasParameter('category_alias')
-            || $this->route()->hasParameter('article_alias')
-            || $this->route()->hasParameter('filter_alias')
-            || $this->route()->hasParameter('portfolio_alias')) {
-            return false;
-        }
-        return true;
+        return $this->filled('custom_link')
+            || ($this->filled('category_alias') && $this->category_alias !== '0')
+            || $this->filled('article_alias')
+            || $this->filled('filter_alias')
+            || $this->filled('portfolio_alias');
     }
 }

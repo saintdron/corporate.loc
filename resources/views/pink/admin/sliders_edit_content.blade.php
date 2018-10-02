@@ -45,7 +45,7 @@
             @if(isset($slider->img))
                 <li class="textarea-field">
                     <label>
-                        <span class="label">Текущее изображение:</span>
+                        <span class="label">Текущее изображение:&nbsp;</span>
                     </label>
                     {{ Html::image(asset(config('settings.theme')).'/images/' . config('settings.slider_path') . '/' . $slider->img, '', ['style' => 'width: 60%']) }}
                     {!! Form::hidden('old_image', $slider->img) !!}
@@ -54,7 +54,7 @@
 
             <li class="text-field">
                 <label>
-                    <span class="label">Изображение:</span><br/>
+                    <span class="label">Изображение{{ (isset($slider->id)) ? '' : '*'}}:</span><br/>
                     <span class="sublabel">Изображение материала</span><br/>
                 </label>
                 <div class="input-prepend">

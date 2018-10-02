@@ -30,13 +30,15 @@ class PermissionController extends AdminController
     public function index()
     {
         if (Gate::denies('view', new Permission())) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.VIEW_ADMIN_PERMISSIONS';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $this->title = "Управление правами";
 
         $roles = $this->getRoles();
-        $permissions = $this->getPermissions();
+        $permissions = $this->getPermissions()->sortByDesc('name');
         $this->content_view = view(config('settings.theme') . '.admin.permissions_content')
             ->with(['roles' => $roles, 'permissions' => $permissions])
             ->render();

@@ -26,7 +26,9 @@ class PermissionRepository extends Repository
     public function changePermission($request)
     {
         if (Gate::denies('update', $this->model)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.EDIT_PERMISSIONS';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->except('_token');

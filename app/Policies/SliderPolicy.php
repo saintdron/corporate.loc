@@ -30,7 +30,7 @@ class SliderPolicy
      */
     public function create(User $user)
     {
-        return $user->canDo('EDIT_SLIDERS');
+        return $user->canDo('CREATE_SLIDERS');
     }
 
     /**
@@ -42,7 +42,7 @@ class SliderPolicy
      */
     public function update(User $user, Slider $slider)
     {
-        return $user->canDo('EDIT_SLIDERS');
+        return $user->canDo('UPDATE_SLIDERS');
     }
 
     /**
@@ -54,7 +54,7 @@ class SliderPolicy
      */
     public function delete(User $user, Slider $slider)
     {
-        return $user->canDo('EDIT_SLIDERS');
+        return $user->canDo('DELETE_SLIDERS');
     }
 
     /**

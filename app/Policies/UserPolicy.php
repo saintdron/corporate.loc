@@ -29,7 +29,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->canDo('EDIT_USERS');
+        return $user->canDo('CREATE_USERS');
     }
 
     /**
@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->canDo('EDIT_USERS');
+        return $user->canDo('UPDATE_USERS');
     }
 
     /**
@@ -53,7 +53,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        return $user->canDo('EDIT_USERS');
+        return $user->canDo('DELETE_USERS');
     }
 
     /**

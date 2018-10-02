@@ -1,6 +1,5 @@
 jQuery(document).ready(function ($) {
     $(".btn-french-5").on('click', function (e) {
-        e.preventDefault();
         $("#dialog-confirm").dialog({
             autoOpen: false,
             resizable: false,
@@ -14,10 +13,13 @@ jQuery(document).ready(function ($) {
                 },
                 "Отмена": function () {
                     $(this).dialog("close");
-                    $(e.target).trigger('blur');
                 }
+            },
+            close: function () {
+                $(e.target).trigger('blur');
             }
         });
+        e.preventDefault();
         $("#dialog-confirm").dialog("open");
     });
 
@@ -58,7 +60,7 @@ jQuery(document).ready(function ($) {
                             } else if (result.success) {
                                 $('.wrap_status').css("border-color", 'green');
                                 $('.status')
-                                    .html('<strong style="color: green">Комментарий сохранен!</strong>')
+                                    .html('<strong style="color: green">Комментарий сохранен!</strong>');
                                 $('.wrap_status').delay(1000)
                                     .animate({
                                         opacity: 0
@@ -97,7 +99,7 @@ jQuery(document).ready(function ($) {
                         },
                         error: function () {
                             $('.status')
-                                .html('<strong style="color: red">Ошибка!</strong>')
+                                .html('<strong style="color: red">Ошибка!</strong>');
                             $('.wrap_status').delay(2000)
                                 .animate({
                                     opacity: 0
@@ -115,11 +117,15 @@ jQuery(document).ready(function ($) {
         let data = 'fixed=';
         if ($(this).is(":checked")) {
             $label.find('span').text('Открепить');
-            $label.addClass('btn-come-to-me-4').removeClass('btn-clear-3');
+            $label.addClass('btn-come-to-me-4')
+                .removeClass('btn-clear-3')
+                .attr('title', 'Убрать статью с главной страницы');
             data += true;
         } else {
             $label.find('span').text('Закрепить');
-            $label.addClass('btn-clear-3').removeClass('btn-come-to-me-4');
+            $label.addClass('btn-clear-3')
+                .removeClass('btn-come-to-me-4')
+                .attr('title', 'Предложить статью на главной странице');
             data += false;
         }
         $.ajax({

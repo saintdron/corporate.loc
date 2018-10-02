@@ -17,7 +17,7 @@
                     @if(!$permissions->isEmpty())
                         @foreach($permissions as $perm)
                             <tr>
-                                <td>{{ $perm->name }}</td>
+                                <td style="text-align: left">{{ trans('custom.' . $perm->name) }}</td>
                                 @foreach($roles as $role)
                                     <td>
                                         <input type="checkbox" name="roles[{{ $role->id }}][]" value="{{ $perm->id }}"

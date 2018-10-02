@@ -19,23 +19,23 @@
                     <ul>
                         <li class="text-field">
                             <label for="name-contact-us">
-                                <span class="label">Login</span>
-                                <br/> <span class="sublabel">This is a field login</span><br/>
+                                <span class="label">Логин</span>
+                                <br/> <span class="sublabel">Можно зайти как гость</span><br/>
                             </label>
                             <div class="input-prepend">
                                 <span class="add-on"><i class="icon-user"></i></span>
                                 <input type="text" name="login" id="login-contact-us" class="required"
-                                       value="{{ old('login') }}"/>
+                                       value="{{ old('login') ?? 'Guest' }}"/>
                             </div>
                         </li>
                         <li class="text-field">
                             <label for="email-contact-us">
-                                <span class="label">Password</span>
-                                <br/> <span class="sublabel">This is a field password</span><br/>
+                                <span class="label">Пароль</span>
+                                <br/> <span class="sublabel">Можно не вводить пароль</span><br/>
                             </label>
                             <div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span>
                                 <input type="password" name="password" id="password-contact-us" class="required"
-                                       value=""/>
+                                       value="123456"/>
                             </div>
                         </li>
                         <li class="submit-button">

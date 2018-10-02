@@ -27,8 +27,10 @@ class IndexController extends AdminController
      */
     public function index()
     {
-        if (Gate::denies('VIEW_ADMIN')) {
-            abort(403);
+        if (Gate::denies('VIEW__ADMIN')) {
+            //            abort(403);
+            $key = 'custom.VIEW__ADMIN';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $this->title = 'Панель администратора';

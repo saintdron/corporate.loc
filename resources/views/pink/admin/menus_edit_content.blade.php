@@ -10,7 +10,7 @@
         <ul>
             <li class="text-field">
                 <label for="title">
-                    <span class="label">Заголовок:</span><br/>
+                    <span class="label">Заголовок*:</span><br/>
                     <span class="sublabel">Название пункта меню</span><br/>
                 </label>
                 <div class="input-prepend">
@@ -29,10 +29,10 @@
             </li>
         </ul>
 
-        <span class="label">Тип меню:</span>
+        <span class="label">Тип меню*:</span>
 
         <div id="accordion">
-            <h3>{!! Form::radio('type', 'customLink', isset($type) && $type == 'customLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
+            <h3>{!! Form::radio('type', 'customLink', (isset($type) && $type == 'customLink') || !isset($type), ['class' => 'radioMenu', 'style' => 'opacity: 0.01; margin-left: -20px;']) !!}
                 <span class="label">Пользовательская ссылка</span>
             </h3>
             <ul>
@@ -48,12 +48,12 @@
                 <div style="clear: both;"></div>
             </ul>
 
-            <h3>{!! Form::radio('type', 'blogLink', isset($type) && $type === 'blogLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
+            <h3>{!! Form::radio('type', 'blogLink', isset($type) && $type === 'blogLink', ['class' => 'radioMenu', 'style' => 'opacity: 0.01; margin-left: -20px;']) !!}
                 <span class="label">Раздел Блог</span>
             </h3>
             <ul>
                 <li class="text-field">
-                    <label for="name-contact-us">
+                    <label>
                         <span class="label">Ссылка на категорию блога:</span><br/>
                         <span class="sublabel">Ссылка на категорию блога</span><br/>
                     </label>
@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="text-field">
-                    <label for="name-contact-us">
+                    <label>
                         <span class="label">Ссылка на материал блога:</span><br/>
                         <span class="sublabel">Ссылка на материал блога</span><br/>
                     </label>
@@ -77,12 +77,12 @@
             </ul>
 
 
-            <h3>{!! Form::radio('type', 'portfolioLink', isset($type) && $type == 'portfolioLink', ['class' => 'radioMenu', 'style' => 'visibility: hidden; margin-left: -20px;']) !!}
+            <h3>{!! Form::radio('type', 'portfolioLink', isset($type) && $type == 'portfolioLink', ['class' => 'radioMenu', 'style' => 'opacity: 0.01; margin-left: -20px;']) !!}
                 <span class="label">Раздел портфолио</span>
             </h3>
             <ul>
                 <li class="text-field">
-                    <label for="name-contact-us">
+                    <label>
                         <span class="label">Портфолио:</span><br/>
                         <span class="sublabel">Портфолио</span><br/>
                     </label>
@@ -92,7 +92,7 @@
                 </li>
 
                 <li class="text-field">
-                    <label for="name-contact-us">
+                    <label>
                         <span class="label">Ссылка на запись портфолио:</span><br/>
                         <span class="sublabel">Ссылка на запись портфолио</span><br/>
                     </label>

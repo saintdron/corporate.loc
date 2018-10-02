@@ -23,7 +23,9 @@ class UserRepository extends Repository
     public function addUser($request)
     {
         if (Gate::denies('create', $this->model)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.CREATE_' . strtoupper(class_basename($this->model)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->all();
@@ -46,7 +48,9 @@ class UserRepository extends Repository
     public function updateUser($request, $user)
     {
         if (Gate::denies('update', $user)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.UPDATE_' . strtoupper(class_basename($user)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->all();
@@ -66,7 +70,9 @@ class UserRepository extends Repository
     public function destroyUser($user)
     {
         if (Gate::denies('delete', $user)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.DELETE_' . strtoupper(class_basename($user)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $user->roles()->detach();

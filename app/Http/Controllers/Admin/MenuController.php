@@ -35,7 +35,9 @@ class MenuController extends AdminController
     public function index()
     {
         if (Gate::denies('view', new \Corp\Menu())) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.VIEW_MENUS';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];;
         }
 
         $this->title = "Управление меню";
@@ -55,9 +57,11 @@ class MenuController extends AdminController
      */
     public function create()
     {
-        if (Gate::denies('create', new \Corp\Menu())) {
-            abort(403);
-        }
+/*        if (Gate::denies('create', new \Corp\Menu())) {
+//            abort(403);
+            $key = 'custom.CREATE_MENUS';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];;
+        }*/
 
         $this->title = "Новый пункт меню";
 
@@ -130,9 +134,9 @@ class MenuController extends AdminController
      */
     public function edit(\Corp\Menu $menu)
     {
-        if (Gate::denies('update', new \Corp\Menu())) {
+/*        if (Gate::denies('update', new \Corp\Menu())) {
             abort(403);
-        }
+        }*/
 
         $this->title = "Редактирование пункта меню – " . $menu->title;
 

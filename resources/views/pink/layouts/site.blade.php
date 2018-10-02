@@ -142,6 +142,13 @@
                 @yield('navigation')
                 <!-- END MAIN NAVIGATION -->
 
+                {{--Кнопка Login--}}
+                @if(Route::currentRouteName() === 'home')
+                {!! Form::open(['url' => route('login'), 'method' => 'get']) !!}
+                {!! Form::button('<i class="icon-signin"></i> Войти в админку', ['class' => 'btn btn-oliva-3 btn-admin-enter', 'title' => 'Войти в панель администратора', 'type' => 'submit']) !!}
+                {!! Form::close() !!}
+                @endif
+
                 <div id="header-shadow"></div>
                 <div id="menu-shadow"></div>
             </div>
@@ -195,14 +202,14 @@
             </div>
         </div>
         <!-- END PRIMARY -->
-
-        <!-- START COPYRIGHT -->
-        @yield('footer');
-        <!-- END COPYRIGHT -->
     </div>
     <!-- END WRAPPER -->
 </div>
 <!-- END BG SHADOW -->
+
+<!-- START COPYRIGHT -->
+@yield('footer');
+<!-- END COPYRIGHT -->
 
 {{--Стрелка вверх--}}
 <a href="#" class="scrollup">Наверх</a>

@@ -9,7 +9,9 @@ return [
 
     'home_portfolios_count' => 5,
     'home_articles_count' => 3,
-    'articles_paginate' => 2,
+
+    'articles_paginate' => 3,
+    'portfolios_paginate' => 2,
 
     'recent_portfolios' => 3,
     'recent_comments' => 3,

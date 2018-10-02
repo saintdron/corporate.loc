@@ -4,21 +4,24 @@
         <div class="short-table white">
             <table style="width: 100%" cellspacing="0" cellpadding="0">
                 <thead>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Login</th>
-                <th>Role</th>
-                <th>Удалить</th>
+                <th>Логин</th>
+                <th>Имя</th>
+                <th>E-mail</th>
+                <th>Роль</th>
+                <th>Действие</th>
                 </thead>
                 <tbody>
                 @if($users)
                     @foreach($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{!! Html::link(route('admin.users.edit', ['users' => $user->id]), $user->name) !!}</td>
+                            {{--<td>{!! Html::link(route('admin.users.edit', ['users' => $user->id]), $user->login) !!}</td>--}}
+                            @if(\Auth::user()->id === $user->id || \Auth::user()->roles->sortBy('id')->values()->first()->id <= $user->roles->sortBy('id')->values()->first()->id)
+                                <td>{!! Html::link(route('admin.users.edit', ['users' => $user->id]), $user->login) !!}</td>
+                            @else
+                                <td>{{ $user->login }}</td>
+                            @endif
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->login }}</td>
                             <td>{{ $user->roles->implode('name', ', ') }}</td>
                             <td>
                                 {!! Form::open(['url' => route('admin.users.destroy', ['users' => $user->id]), 'class' => 'form-horizontal', 'method' => 'POST']) !!}

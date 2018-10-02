@@ -9,6 +9,7 @@ use Corp\Repositories\CommentRepository;
 use Corp\Repositories\MenuRepository;
 use Corp\Repositories\PortfolioRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class ArticleController extends SiteController
 {
@@ -74,7 +75,7 @@ class ArticleController extends SiteController
         }
 
         return $this->a_rep->get(['id', 'title', 'text', 'desc', 'alias', 'img', 'created_at', 'user_id', 'category_id', 'keywords', 'meta_desc'],
-            false, true, $where);
+            false, Config::get('settings.articles_paginate'), $where);
     }
 
     protected function getArticle($alias)

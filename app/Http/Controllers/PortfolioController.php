@@ -5,6 +5,7 @@ namespace Corp\Http\Controllers;
 use Corp\Repositories\MenuRepository;
 use Corp\Repositories\PortfolioRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class PortfolioController extends SiteController
 {
@@ -22,7 +23,7 @@ class PortfolioController extends SiteController
         $this->keywords = 'Портфолио_ключи';
         $this->meta_desc = 'Портфолио_описание';
 
-        $portfolios = $this->getPortfolios(false, true);
+        $portfolios = $this->getPortfolios(false, Config::get('settings.portfolios_paginate'));
         $content = view(config('settings.theme') . '.portfolios_content')
             ->with('portfolios', $portfolios)
             ->render();

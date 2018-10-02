@@ -1,7 +1,7 @@
 @if($articles)
     <div id="content-page" class="content group">
         <div class="hentry group">
-            <h2>Добавленные статьи</h2>
+            <h3>Добавленные статьи</h3>
             <div class="short-table white">
                 <table style="width: 100%" cellspacing="0" cellpadding="0">
                     <thead>
@@ -9,7 +9,7 @@
                         <th>Заголовок</th>
                         <th>Текст</th>
                         <th>Изображение</th>
-                        <th>Категория</th>
+                        <th>Рубрика</th>
                         <th>Автор</th>
                         <th>Псевдоним</th>
                         <th>Действие</th>
@@ -30,7 +30,7 @@
                             <td>{{$article->alias}}</td>
                             <td>
                                 <label class='btn {{ $article->fixed ? 'btn-come-to-me-4' : 'btn-clear-3' }}'
-                                       title='{{ $article->fixed ? 'Убрать статью с главной' : 'Закрепить вверху списка статей' }}'>
+                                       title='{{ $article->fixed ? 'Убрать статью с главной страницы' : 'Предложить статью на главной странице' }}'>
                                     <span>{{ $article->fixed ? 'Открепить' : 'Закрепить' }}</span>
                                     {!! Form::checkbox('fixed', $article->id, $article->fixed, ['data-action' => route('articlesFix', $article->alias), 'hidden' => true]) !!}
                                 </label>
@@ -44,11 +44,6 @@
                     @endforeach
                     </tbody>
                 </table>
-
-                {{--Модальное окно удаления--}}
-                <div id="dialog-confirm" title="Удаление материала" style="display: none;">
-                    <p><img src="{{ asset(config('settings.theme')) }}/images/icons/set_icons/info32.png" alt="info" class="icon">Вы уверены, что хотите удалить эту статью?</p>
-                </div>
             </div>
             {!! HTML::link(route('admin.articles.create'), 'Добавить  материал', ['class' => 'btn btn-the-salmon-dance-3']) !!}
         </div>

@@ -19,7 +19,7 @@ class MenuPolicy
      */
     public function view(User $user, Menu $menu)
     {
-        return $user->canDo('VIEW_ADMIN_MENU');
+        return $user->canDo('VIEW_ADMIN_MENUS');
     }
 
     /**
@@ -30,7 +30,7 @@ class MenuPolicy
      */
     public function create(User $user)
     {
-        return $user->canDo('EDIT_MENU');
+        return $user->canDo('CREATE_MENUS');
     }
 
     /**
@@ -42,7 +42,7 @@ class MenuPolicy
      */
     public function update(User $user, Menu $menu)
     {
-        return $user->canDo('EDIT_MENU');
+        return $user->canDo('UPDATE_MENUS');
     }
 
     /**
@@ -54,7 +54,7 @@ class MenuPolicy
      */
     public function delete(User $user, Menu $menu)
     {
-        return $user->canDo('EDIT_MENU');
+        return $user->canDo('DELETE_MENUS');
     }
 
     /**

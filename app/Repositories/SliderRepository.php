@@ -17,7 +17,9 @@ class SliderRepository extends Repository
     public function addSlider($request)
     {
         if (Gate::denies('create', $this->model)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.CREATE_' . strtoupper(class_basename($this->model)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->except('_token', 'image');
@@ -44,7 +46,9 @@ class SliderRepository extends Repository
     public function updateSlider($request, $slider)
     {
         if (Gate::denies('update', $slider)) {
-            abort(403);
+//            abort(403);
+            $key = 'custom.UPDATE_' . strtoupper(class_basename($slider)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
         }
 
         $data = $request->except('_token', 'image');
@@ -67,6 +71,21 @@ class SliderRepository extends Repository
         }
     }
 
+    public function deleteSlider($slider)
+    {
+        if (Gate::denies('delete', $slider)) {
+//            abort(403);
+            $key = 'custom.DELETE_' . strtoupper(class_basename($slider)) . 'S';
+            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];
+        }
+
+        if ($slider->delete()) {
+            return ['status' => 'Слайд удален'];
+        } else {
+            return ['error' => 'Не удалось удалить слайд'];
+        }
+    }
+
     public function getImage($request, $cutout = 'center')
     {
         if ($request->hasFile('image')) {
@@ -83,18 +102,5 @@ class SliderRepository extends Repository
             }
         }
         return null;
-    }
-
-    public function deleteSlider($slider)
-    {
-        if (Gate::denies('delete', $slider)) {
-            abort(403);
-        }
-
-        if ($slider->delete()) {
-            return ['status' => 'Слайд удален'];
-        } else {
-            return ['error' => 'Не удалось удалить слайд'];
-        }
     }
 }

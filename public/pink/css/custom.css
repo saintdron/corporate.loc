@@ -304,7 +304,7 @@ h3#comments-title {
 
 .scrollup {
     width: 40px;
-    height: 40px;
+    height: 50px;
     opacity: 0.3;
     position: fixed;
     bottom: 60px;
@@ -313,11 +313,6 @@ h3#comments-title {
     text-indent: -9999px;
     background: url('../images/icon_top.png') no-repeat;
 }
-
-/*#copyright .inner {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}*/
 
 .recent-post .hentry-post div.text,
 .recent-comments a.title {
@@ -348,7 +343,7 @@ body {
 }
 
 .bg-shadow {
-    padding-bottom: 5rem;
+    padding-bottom: 5.5rem;
 }
 
 #copyright {
@@ -356,4 +351,48 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.short-table table {
+    margin-bottom: 20px;
+}
+
+.general-pagination {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.blog-big {
+    margin-bottom: 40px;
+}
+
+p.comments,
+p.categories,
+p.author {
+    margin-bottom: 10px !important;
+}
+
+#page-meta {
+    margin-bottom: 28px;
+}
+
+.portfolio-big-image .work {
+    margin-bottom: 40px;
+}
+
+#contact-form-contact-us .textarea-field {
+    margin-bottom: 0px;
+}
+
+.btn-admin-exit {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
+.btn-admin-enter {
+    position: absolute;
+    top: 102px;
+    right: 0px;
+    z-index: 100000;
 }

@@ -14,7 +14,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo('EDIT_USERS');
+        return Auth::user()->canDo(['CREATE_USERS', 'UPDATE_USERS']);
     }
 
     /**
@@ -27,9 +27,9 @@ class UserRequest extends FormRequest
         $id = $this->route()->parameter('user')->id ?? '';
 
         return [
+            'login' => 'required|string|unique:users,login,' . $id,
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'login' => 'required|string|unique:users,login,' . $id,
             'role_id' => 'required|integer'
         ];
     }
