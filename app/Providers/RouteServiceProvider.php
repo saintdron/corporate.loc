@@ -25,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::pattern('alias', '[\w-]+');
         Route::pattern('article', '[\w-]+');
-        Route::pattern('article', '[\w-]+');
+        Route::pattern('portfolio', '[\w-]+');
 
         parent::boot();
 

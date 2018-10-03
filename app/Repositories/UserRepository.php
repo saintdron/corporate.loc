@@ -37,6 +37,10 @@ class UserRepository extends Repository
             'login' => $data['login']
         ]);
 
+
+        // Создавать только Guest!!!
+        $data['role_id'] = 3;
+
         if ($user) {
             $user->roles()->attach($data['role_id']);
             return ['status' => 'Пользователь добавлен'];
@@ -62,7 +66,9 @@ class UserRepository extends Repository
         }
 
         $user->fill($data)->update();
-        $user->roles()->sync([$data['role_id']]);
+
+        // Оставлять ту же роль!!!
+//        $user->roles()->sync([$data['role_id']]);
 
         return ['status' => 'Пользователь изменен'];
     }

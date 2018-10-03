@@ -15,7 +15,7 @@
                     @foreach($users as $user)
                         <tr>
                             {{--<td>{!! Html::link(route('admin.users.edit', ['users' => $user->id]), $user->login) !!}</td>--}}
-                            @if(\Auth::user()->id === $user->id || \Auth::user()->roles->sortBy('id')->values()->first()->id <= $user->roles->sortBy('id')->values()->first()->id)
+                            @if((\Auth::user()->id === $user->id || \Auth::user()->roles->sortBy('id')->values()->first()->id <= $user->roles->sortBy('id')->values()->first()->id) && $user->login !== 'Guest')
                                 <td>{!! Html::link(route('admin.users.edit', ['users' => $user->id]), $user->login) !!}</td>
                             @else
                                 <td>{{ $user->login }}</td>

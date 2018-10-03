@@ -410,3 +410,56 @@ p.author {
 .work-description div.work-skillsdate {
     padding-bottom: 10px;
 }
+
+
+@media only screen and (max-width: 1200px) {
+    .btn-admin-enter {
+        display: none;
+    }
+
+    .sidebar-right .section.portfolio .work-description,
+    .sidebar-left .section.portfolio .work-description {
+        width: 100%;
+    }
+
+    .portfolio-big-image .work-thumbnail,
+    .portfolio-big-image .work-description {
+        float: none;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .portfolio-full-description .work-thumbnail,
+    .portfolio-full-description .work-description {
+        float: none;
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+@media only screen and (max-width: 987px) {
+    .sidebar {
+        width: 100%;
+    }
+
+    .content {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .section .related_project {
+        width: 100%;
+    }
+
+    .related_img {
+        float: none;
+        width: 175px;
+    }
+
+    .related_project h4 {
+        float: none;
+        width: 100%;
+    }
+}
+

@@ -57,11 +57,11 @@ class MenuController extends AdminController
      */
     public function create()
     {
-/*        if (Gate::denies('create', new \Corp\Menu())) {
-//            abort(403);
-            $key = 'custom.CREATE_MENUS';
-            return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];;
-        }*/
+        /*        if (Gate::denies('create', new \Corp\Menu())) {
+        //            abort(403);
+                    $key = 'custom.CREATE_MENUS';
+                    return ['error' => 'У вас нет прав на ' . mb_strtolower(trans($key))];;
+                }*/
 
         $this->title = "Новый пункт меню";
 
@@ -134,37 +134,47 @@ class MenuController extends AdminController
      */
     public function edit(\Corp\Menu $menu)
     {
-/*        if (Gate::denies('update', new \Corp\Menu())) {
-            abort(403);
-        }*/
+        /*        if (Gate::denies('update', new \Corp\Menu())) {
+                    abort(403);
+                }*/
+
 
         $this->title = "Редактирование пункта меню – " . $menu->title;
 
-        $route = app('router')->getRoutes()->match(app('request')->create($menu->path));
-        $routeAlias = $route->getName();
-        $parameters = $route->parameters();
-        switch ($routeAlias) {
-            case 'articles.index':
-            case 'articlesCat':
-                $type = 'blogLink';
-                $option = $parameters['cat_alias'] ?? 'parent';
-                break;
-            case 'articles.show':
-                $type = 'blogLink';
-                $option = $parameters['alias'] ?? '';
-                break;
-            case 'portfolios.index':
-                $type = 'portfolioLink';
-                $option = 'parent';
-                break;
-            case 'portfolios.show':
-                $type = 'portfolioLink';
-                $option = $parameters['alias'] ?? '';
-                break;
-            default:
-                $type = 'customLink';
-                $option = '';
+        try {
+            $route = app('router')->getRoutes()->match(app('request')->create($menu->path));
+        } catch (\Exception $exception) {
+            $type = 'customLink';
+            $option = '';
         }
+
+        if (isset($route)) {
+            $routeAlias = $route->getName();
+            $parameters = $route->parameters();
+            switch ($routeAlias) {
+                case 'articles.index':
+                case 'articlesCat':
+                    $type = 'blogLink';
+                    $option = $parameters['cat_alias'] ?? 'parent';
+                    break;
+                case 'articles.show':
+                    $type = 'blogLink';
+                    $option = $parameters['alias'] ?? '';
+                    break;
+                case 'portfolios.index':
+                    $type = 'portfolioLink';
+                    $option = 'parent';
+                    break;
+                case 'portfolios.show':
+                    $type = 'portfolioLink';
+                    $option = $parameters['alias'] ?? '';
+                    break;
+                default:
+                    $type = 'customLink';
+                    $option = '';
+            }
+        }
+
 
         $menus = $this->getMenus()->roots()->reduce(function ($carry, $item) {
             return array_add($carry, $item->id, $item->title);
