@@ -137,7 +137,7 @@ class PortfolioController extends AdminController
         if (is_array($result) && !empty($result['error'])) {
             return back()->with($result);
         }
-        return redirect()->route('admin.articles.index')->with($result);
+        return redirect()->route('admin.portfolios.index')->with($result);
     }
 
     public function getPortfolios()

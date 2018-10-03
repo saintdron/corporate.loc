@@ -23,14 +23,13 @@
                             <p>{{ $portfolio->text }}</p>
                             <div class="clear"></div>
                             <div class="work-skillsdate">
-                                <p class="skills"><span class="label">Filter: </span>{{ $portfolio->filter->title }}</p>
+                                <p class="skills"><span class="label">Раздел: </span>{{ $portfolio->filter->title }}</p>
                                 @if($portfolio->customer)
-                                <p class="workdate"><span class="label">Customer: </span>{{ $portfolio->customer }}</p>
+                                <p class="workdate"><span class="label">Заказчик: </span>{{ $portfolio->customer }}</p>
                                 @endif
-                                <p class="workdate"><span class="label">Date: </span>{{ $portfolio->formatCreatedAtDate('%B %Y') }}</p>
+                                <p class="workdate"><span class="label">Дата: </span>{{ $portfolio->date }}</p>
                             </div>
-                            <a class="read-more" href="{{ route('portfolios.show', $portfolio->alias) }}">View
-                                Project</a>
+                            <a class="read-more" href="{{ route('portfolios.show', $portfolio->alias) }}">Смотреть работу</a>
                         </div>
                         <div class="clear"></div>
                     </div>

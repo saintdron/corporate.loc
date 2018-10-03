@@ -26,9 +26,9 @@ class Article extends Model
         return $this->hasMany('Corp\Comment');
     }
 
-    public function getTextAttribute($value)
+/*    public function getTextAttribute($value)
     {
         return str_replace(["\\r\\n", "\\r", "\\n"], " ", $value);
-    }
+    }*/
 
 }

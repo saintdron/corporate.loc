@@ -28,7 +28,7 @@
                                 <h2>
                                     <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}">{{ $portfolio->title }}</a>
                                 </h2>
-                                <p class="work-categories">Раздел: <a href="#">{{ $portfolio->filter->title }}</a></p>
+                                <p class="work-categories">Раздел: <span>{{ $portfolio->filter->title }}</span></p>
                                 <p>{{ str_limit($portfolio->text, config('settings.portfolio_index_preview_length')) }}</p>
                                 <a href="{{ route('portfolios.show', ['alias' => $portfolio->alias]) }}" class="read-more"><span class="icon-play"></span> Подробнее</a>
                             </div>
